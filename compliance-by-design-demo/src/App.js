@@ -61,10 +61,10 @@ class App extends Component {
     return (
         <div class='grid-container'>
           <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} caseLink={this.state.caseLink} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
           <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} caseLink={this.state.caseLink} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
         </div>
     );

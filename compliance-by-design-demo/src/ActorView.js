@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Sticky from 'react-sticky-el';
 import './ActorView.css'
 
 class ActorView extends Component {
@@ -49,7 +48,7 @@ class ActorView extends Component {
         }
 
         return acts.map((act) => {
-            return <div class="available"><p>{JSON.stringify(act)}</p> <button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
+            return <div class="available"><p>{act}</p> <button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
         })
     }
 
@@ -60,7 +59,7 @@ class ActorView extends Component {
         }
 
         return acts.map((act) => {
-            return <div class="potential"><p>{JSON.stringify(act)}</p> <button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
+            return <div class="potential"><p>{act}</p> <button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
         })
     }
 
@@ -74,14 +73,16 @@ class ActorView extends Component {
             return []
         }
         return this.state.previousActs.map((prevAct) => {
-            return <li><p>{JSON.stringify(prevAct.act)}</p></li>
+            return <li><p>{prevAct.act}</p></li>
         })
     }
 
 
+
     render() {
         return <div class="container">
-            <div class="actorHeader">
+
+            <div class="actorHeader" style={{'background-color': this.props.colorCode}}>
               <h3>{this.props.name}</h3>
             </div>
             <div class="acts">
