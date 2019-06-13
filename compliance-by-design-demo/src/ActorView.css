@@ -15,13 +15,16 @@
 
 .acts {
   background-color: #eee;
+  word-wrap: inherit;
 }
 
 .container {
   display: grid;
   padding: 0px;
+  word-wrap: break-word;
 }
 
 .prevActs {
-  word-wrap: break-word;
+  word-wrap: inherit;
+  word-break: break-all;
 }
