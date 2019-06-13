@@ -13,9 +13,10 @@ class ActorView extends Component {
     async componentDidUpdate(prevProps) {
         if (this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid) {
             console.log('Rendering available acts and potential acts with props', this.props)
-            let availableActs = await this.renderAvailableActs()
-            let potentialActs = await this.renderPotentialActs()
-            this.setState({...this.state, 'availableActs': availableActs, 'potentialActs': potentialActs})
+            let availableActs = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts)
+            let potentialActs = await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, this.state.facts)
+            let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
+            this.setState({...this.state, 'availableActs': availableActs, 'potentialActs': potentialActs, 'previousActs': previousActs})
         }
 
     }
@@ -40,16 +41,22 @@ class ActorView extends Component {
         return result
     }
 
-    async renderAvailableActs(args) {
-        let acts = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts)
+    renderAvailableActs() {
+        let acts = this.state.availableActs
+        if (!acts) {
+            return []
+        }
 
         return acts.map((act) => {
             return <li><p>Available: {JSON.stringify(act)}</p> <button onClick={this.takeAction.bind(this, act)}>Act!</button></li>
         })
     }
 
-    async renderPotentialActs() {
-        let acts = await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, this.state.facts)
+    renderPotentialActs() {
+        let acts = this.state.potentialActs
+        if (!acts) {
+            return []
+        }
 
         return acts.map((act) => {
             return <li><p>Potential: {JSON.stringify(act)}</p> <button onClick={this.takeAction.bind(this, act)}>Act!</button></li>
@@ -61,16 +68,30 @@ class ActorView extends Component {
         return this.state.facts.map((fact) => <li><p>{fact}</p></li>)
     }
 
+    renderPreviousActs() {
+        if (!this.state.previousActs) {
+            return []
+        }
+        return this.state.previousActs.map((prevAct) => {
+            return <li><p>{JSON.stringify(prevAct)}</p></li>
+        })
+    }
+
+
     render() {
         return <div>
             <h3>{this.props.name}</h3>
             <ul>
-                {this.state.availableActs}
-                {this.state.potentialActs}
+                {this.renderAvailableActs()}
+                {this.renderPotentialActs()}
             </ul>
             <h4>Wallet</h4>
             <ul>
                 {this.renderWallet()}
+            </ul>
+            <h4>Previous acts</h4>
+            <ul>
+                {this.renderPreviousActs()}
             </ul>
             </div>
     }
