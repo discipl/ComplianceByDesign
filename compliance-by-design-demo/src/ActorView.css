@@ -5,15 +5,17 @@
 
 .actorHeader {
   color: #FFF;
+  position: fixed;
   height: 70px;
+  width: 49.75%;
   font-size: 1.5em;
   text-shadow: 1px 1px #444;
   text-align: center;
   background-color: #0a0;
-  background-size: border-box;
 }
 
 .acts {
+  padding-top: 70px;
   background-color: #eee;
   word-wrap: inherit;
 }

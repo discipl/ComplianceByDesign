@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StickyContainer, Sticky } from 'react-sticky';
+import Sticky from 'react-sticky-el';
 import './ActorView.css'
 
 class ActorView extends Component {
@@ -81,12 +81,9 @@ class ActorView extends Component {
 
     render() {
         return <div class="container">
-          <StickyContainer>
-            <Sticky>{({ style }) =>
-            <div class="actorHeader" style={style}>
+            <div class="actorHeader">
               <h3>{this.props.name}</h3>
             </div>
-            }</Sticky>
             <div class="acts">
               <ul>
                 {this.renderAvailableActs()}
@@ -105,7 +102,6 @@ class ActorView extends Component {
                   {this.renderPreviousActs()}
               </ul>
             </div>
-          </StickyContainer>
         </div>
     }
 }
