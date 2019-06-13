@@ -2,3 +2,18 @@
     display: block;
     width: 45%;
 }
+
+.actorHeader {
+  color: #000;
+  background-color: #0c0;
+  background-size: border-box;
+}
+
+.acts {
+  background-color: #cac;
+}
+
+.container {
+  display: grid;
+  padding: 0px;
+}

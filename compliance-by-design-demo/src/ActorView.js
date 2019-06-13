@@ -79,21 +79,29 @@ class ActorView extends Component {
 
 
     render() {
-        return <div>
-            <h3>{this.props.name}</h3>
-            <ul>
+        return <div class="container">
+            <div class="actorHeader">
+              <h3>{this.props.name}</h3>
+            </div>
+            <div class="acts">
+              <ul>
                 {this.renderAvailableActs()}
                 {this.renderPotentialActs()}
-            </ul>
-            <h4>Wallet</h4>
-            <ul>
-                {this.renderWallet()}
-            </ul>
-            <h4>Previous acts</h4>
-            <ul>
-                {this.renderPreviousActs()}
-            </ul>
+              </ul>
             </div>
+            <div class="wallet">
+              <h4>Wallet</h4>
+              <ul>
+                  {this.renderWallet()}
+              </ul>
+            </div>
+            <div class="prevActs">
+              <h4>Previous acts</h4>
+              <ul>
+                  {this.renderPreviousActs()}
+              </ul>
+            </div>
+          </div>
     }
 }
 
