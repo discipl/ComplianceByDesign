@@ -16,7 +16,7 @@
 
 .acts {
   padding-top: 70px;
-  background-color: #eee;
+  background-color: #ee6;
   word-wrap: inherit;
 }
 
@@ -27,6 +27,42 @@
 }
 
 .prevActs {
+  background-color: #eee;
+  padding-left: 20px;
+  padding-right: 20px;
   word-wrap: inherit;
   word-break: break-all;
+}
+
+.wallet {
+  background-color: #ddd;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.available {
+  padding-left: 30px;
+  background-color: #ffa;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #ccc;
+  display: grid;
+  grid-template-columns: 85% 15%;
+}
+
+.potential {
+  padding-left: 30px;
+  background-color: #eee;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #9994;
+  display: grid;
+  grid-template-columns: 85% 15%;
+}
+
+.actButton {
+  margin: 15px;
+  height: 30px;
 }

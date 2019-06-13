@@ -49,7 +49,7 @@ class ActorView extends Component {
         }
 
         return acts.map((act) => {
-            return <li><p>Available: {JSON.stringify(act)}</p> <button onClick={this.takeAction.bind(this, act)}>Act!</button></li>
+            return <div class="available"><p>{JSON.stringify(act)}</p> <button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
         })
     }
 
@@ -60,7 +60,7 @@ class ActorView extends Component {
         }
 
         return acts.map((act) => {
-            return <li><p>Potential: {JSON.stringify(act)}</p> <button onClick={this.takeAction.bind(this, act)}>Act!</button></li>
+            return <div class="potential"><p>{JSON.stringify(act)}</p> <button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
         })
     }
 
@@ -74,7 +74,7 @@ class ActorView extends Component {
             return []
         }
         return this.state.previousActs.map((prevAct) => {
-            return <li><p>{JSON.stringify(prevAct)}</p></li>
+            return <li><p>{JSON.stringify(prevAct.act)}</p></li>
         })
     }
 
@@ -85,10 +85,8 @@ class ActorView extends Component {
               <h3>{this.props.name}</h3>
             </div>
             <div class="acts">
-              <ul>
                 {this.renderAvailableActs()}
                 {this.renderPotentialActs()}
-              </ul>
             </div>
             <div class="wallet">
               <h4>Wallet</h4>
