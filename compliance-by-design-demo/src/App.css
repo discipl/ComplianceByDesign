@@ -31,3 +31,9 @@
     transform: rotate(360deg);
   }
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  grid-gap: 5%;
+}

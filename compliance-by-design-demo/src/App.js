@@ -59,9 +59,13 @@ class App extends Component {
 
   render() {
     return (
-        <div>
-          <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} caseLink={this.state.caseLink} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
-          <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} caseLink={this.state.caseLink} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
+        <div class='grid-container'>
+          <div>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} caseLink={this.state.caseLink} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
+          </div>
+          <div>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} caseLink={this.state.caseLink} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
+          </div>
         </div>
     );
   }
