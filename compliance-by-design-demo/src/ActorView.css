@@ -1,0 +1,67 @@
+.ActorView {
+    display: block;
+    width: 45%;
+}
+
+.actorHeader {
+  color: #FFF;
+  position: fixed;
+  height: 70px;
+  width: 49.75%;
+  font-size: 1.5em;
+  text-shadow: 1px 1px #444;
+  text-align: center;
+}
+
+.acts {
+  padding-top: 70px;
+  background-color: #ee6;
+  word-wrap: inherit;
+}
+
+.container {
+  display: grid;
+  padding: 0px;
+  word-wrap: break-word;
+}
+
+.prevActs {
+  background-color: #eee;
+  padding-left: 20px;
+  padding-right: 20px;
+  word-wrap: inherit;
+  word-break: break-all;
+}
+
+.wallet {
+  background-color: #ddd;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.available {
+  padding-left: 30px;
+  background-color: #f5f5a0;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #ccc;
+  display: grid;
+  grid-template-columns: 85% 15%;
+}
+
+.potential {
+  padding-left: 30px;
+  background-color: #eee;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #9994;
+  display: grid;
+  grid-template-columns: 85% 15%;
+}
+
+.actButton {
+  margin: 15px;
+  height: 30px;
+}

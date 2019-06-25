@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 49.75% 49.75%;
+  grid-column-gap: 0.5%;
+  padding: 0px;
+
+}
