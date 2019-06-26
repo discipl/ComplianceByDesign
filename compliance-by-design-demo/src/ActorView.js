@@ -6,7 +6,8 @@ class ActorView extends Component {
         super(props)
         console.log('Constructing ActorView', props)
         this.state = {
-            'facts': []
+            'facts': [],
+            'nonFacts': []
         }
     }
 
@@ -29,6 +30,14 @@ class ActorView extends Component {
     }
 
     askFact (fact) {
+        if (this.state.facts.includes(fact)) {
+            return true
+        }
+
+        if (this.state.nonFacts.includes(fact)) {
+            return false
+        }
+
         let result = window.confirm('Is ' + fact + ' van toepassing?')
 
         console.log('ActorView', this)
@@ -36,6 +45,11 @@ class ActorView extends Component {
             let newFacts = this.state.facts.slice(0)
             newFacts.push(fact)
             this.setState({...this.state, 'facts': newFacts})
+        }
+        else {
+            let newNonFacts = this.state.nonFacts.slice(0)
+            newNonFacts.push(fact)
+            this.setState({...this.state, 'nonFacts': newNonFacts})
         }
 
         return result
