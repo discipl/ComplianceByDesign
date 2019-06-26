@@ -60,7 +60,7 @@ class ActorView extends Component {
             let actDescription = act.details.juriconnect ?
                 <p><a href={'https://wetten.overheid.nl/' + act.details.juriconnect}>{act.act}</a></p>
                 : <p>{act.act}</p>;
-            return <div class="available">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
+            return <div class="available">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act.act)}>Act!</button></div>
         })
     }
 
@@ -75,7 +75,7 @@ class ActorView extends Component {
                 <p><a href={'https://wetten.overheid.nl/' + act.details.juriconnect}>{act.act}</a></p>
                 : <p>{act.act}</p>;
             console.log('ActionDetails potential', act.details)
-            return <div class="potential">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
+            return <div class="potential">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act.act)}>Act!</button></div>
         })
     }
 

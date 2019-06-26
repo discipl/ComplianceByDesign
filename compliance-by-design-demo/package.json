@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@discipl/core-ephemeral": "^0.9.0",
-    "@discipl/law-reg": "file:../../../packages/discipl-law-reg-0.2.0.tgz",
+    "@discipl/law-reg": "^0.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
