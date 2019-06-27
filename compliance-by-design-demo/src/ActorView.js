@@ -14,8 +14,16 @@ class ActorView extends Component {
     async componentDidUpdate(prevProps) {
         if (this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid) {
             console.log('Rendering available acts and potential acts with props', this.props)
-            let availableActs = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts)
-            let potentialActs = await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, this.state.facts)
+            let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts))
+                .map(async (act) => {
+                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                    return {...act, 'details': details}
+                }))
+            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, this.state.facts))
+                .map(async (act) => {
+                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                    return {...act, 'details': details}
+                }))
             let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
             this.setState({...this.state, 'availableActs': availableActs, 'potentialActs': potentialActs, 'previousActs': previousActs})
         }
@@ -62,7 +70,11 @@ class ActorView extends Component {
         }
 
         return acts.map((act) => {
-            return <div class="available"><p>{act}</p> <button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
+            console.log('ActionDetails available', act.details)
+            let actDescription = act.details.juriconnect ?
+                <p><a href={'https://wetten.overheid.nl/' + act.details.juriconnect}>{act.act}</a></p>
+                : <p>{act.act}</p>;
+            return <div class="available">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act.act)}>Act!</button></div>
         })
     }
 
@@ -73,7 +85,11 @@ class ActorView extends Component {
         }
 
         return acts.map((act) => {
-            return <div class="potential"><p>{act}</p> <button class="actButton" onClick={this.takeAction.bind(this, act)}>Act!</button></div>
+            let actDescription = act.details.juriconnect ?
+                <p><a href={'https://wetten.overheid.nl/' + act.details.juriconnect}>{act.act}</a></p>
+                : <p>{act.act}</p>;
+            console.log('ActionDetails potential', act.details)
+            return <div class="potential">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act.act)}>Act!</button></div>
         })
     }
 
