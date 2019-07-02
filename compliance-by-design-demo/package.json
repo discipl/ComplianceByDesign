@@ -2,6 +2,7 @@
   "name": "compliance-by-design-demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@discipl/core-ephemeral": "^0.10.0",
     "@discipl/law-reg": "^0.2.0",
