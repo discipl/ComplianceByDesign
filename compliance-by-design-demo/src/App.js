@@ -26,6 +26,8 @@ class App extends Component {
     await core.allow(leraarSsid)
     let bestuursorgaanSsid = await core.newSsid('ephemeral')
     await core.allow(bestuursorgaanSsid)
+    let bevoegdGezagSsid = await core.newSsid('ephemeral')
+    await core.allow(bevoegdGezagSsid)
 
     this.modelLink = await this.lawReg.publish(lawmakerSsid, { ...lb, 'model': 'LB' }, {
       '[persoon wiens belang rechtstreeks bij een besluit is betrokken]': 'IS:' + leraarSsid.did,
@@ -33,7 +35,7 @@ class App extends Component {
       '[orgaan]': 'IS:' + bestuursorgaanSsid.did,
       '[rechtspersoon die krachtens publiekrecht is ingesteld]': 'IS:' + bestuursorgaanSsid.did,
       '[met enig openbaar gezag bekleed]': 'IS:' + bestuursorgaanSsid.did,
-      '[bevoegd gezag]': 'IS:' + bestuursorgaanSsid.did,
+      '[bevoegd gezag]': 'IS:' + bevoegdGezagSsid.did,
       '[minister van Onderwijs, Cultuur en Wetenschap]': 'IS:' + bestuursorgaanSsid.did,
       '[persoon]': 'ANYONE'
     })
