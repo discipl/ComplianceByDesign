@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@discipl/core-ephemeral": "^0.10.0",
+    "@discipl/core-ephemeral": "0.10.1",
     "@discipl/law-reg": "^0.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
