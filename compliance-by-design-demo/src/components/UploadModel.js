@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import * as Papa from 'papaparse'
 import ModelView from "./ModelView";
+import readXlslxFile from 'read-excel-file'
 
 
 class UploadModel extends Component {
@@ -9,6 +10,16 @@ class UploadModel extends Component {
         this.state = {}
     }
     async processModel(event) {
+        const model = event.target.files[0].name.includes('xls') ?
+            await this.processExcel(event.target.files[0]) :
+            await this.processCsv(event);
+        this.setState({
+            ...this.state,
+            'model': model
+        })
+    }
+
+    async processCsv(event) {
         console.log(Array.from(event.target.files))
 
         let parsedArrays = await Promise.all(Array.from(event.target.files).map((inputFile) =>
@@ -26,20 +37,31 @@ class UploadModel extends Component {
         const facts = resultObjectArrays.filter((array) => Object.keys(array[0]).includes('fact'))[0].filter(fact => fact['fact'] != null && fact['fact'] !== '')
         const duties = resultObjectArrays.filter((array) => Object.keys(array[0]).includes('duty'))[0].filter(duty => duty['duty'] != null && duty['duty'] !== '')
 
-        const model = {
+        return {
             'acts': acts,
             'facts': facts,
             'duties': duties
-        }
-
-        console.log(model)
-        this.setState({
-            ...this.state,
-            'model': model
-        })
+        };
     }
 
-    doubleArrayToObjectArray(doubleArray) {
+    async processExcel(file) {
+        const result = {}
+        const sheets = ['acts', 'facts', 'duties']
+        const keyParts = {
+            'acts': 'act',
+            'facts': 'fact',
+            'duties': 'duty'
+        }
+        for (let sheet of sheets) {
+            const parsed = await readXlslxFile(file, {'sheet': sheet})
+            const parsedObjects = this.doubleArrayToObjectArray(parsed, true)
+            result[sheet] = parsedObjects.filter(item => item[keyParts[sheet]] != null && item[keyParts[sheet]] !== '')
+        }
+        console.log('excel results', result)
+        return result
+    }
+
+    doubleArrayToObjectArray(doubleArray, fixWhitespace = false) {
         const result = []
         const numRows = doubleArray.length
         const numCols = doubleArray[0].length
@@ -47,7 +69,12 @@ class UploadModel extends Component {
         for (let row = 1; row < numRows; row++) {
             let resultObject = {}
             for (let col = 0; col < numCols; col++ ) {
-                resultObject[doubleArray[0][col]] = doubleArray[row][col]
+                let value = doubleArray[row][col]
+                if (typeof value === 'string' && fixWhitespace) {
+                    value = doubleArray[row][col].replace(/_x000D_/g, ' ')
+                }
+
+                resultObject[doubleArray[0][col]] = value
             }
             result.push(resultObject)
         }
