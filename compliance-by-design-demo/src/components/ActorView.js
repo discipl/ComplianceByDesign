@@ -31,10 +31,17 @@ class ActorView extends Component {
     }
 
     async takeAction(act) {
-        let caseLink = await this.props.lawReg.take(this.props.actorSsid, this.props.caseLink, act, this.askFact.bind(this))
-        if (this.props.onCaseChange) {
-            this.props.onCaseChange(caseLink)
+        try {
+            let caseLink = await this.props.lawReg.take(this.props.actorSsid, this.props.caseLink, act, this.askFact.bind(this))
+            if (this.props.onCaseChange) {
+                this.props.onCaseChange(caseLink)
+            }
+        } catch (e) {
+            if (e.message.includes('is not allowed')) {
+                alert(e.message)
+            }
         }
+
     }
 
     askFact (fact) {
