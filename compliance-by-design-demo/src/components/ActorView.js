@@ -14,12 +14,12 @@ class ActorView extends Component {
     async componentDidUpdate(prevProps) {
         if (this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid) {
             console.log('Rendering available acts and potential acts with props', this.props)
-            let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts))
+            let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts, this.state.nonFacts))
                 .map(async (act) => {
                     const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
                     return {...act, 'details': details}
                 }))
-            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, this.state.facts))
+            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, this.state.facts, this.state.nonFacts))
                 .map(async (act) => {
                     const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
                     return {...act, 'details': details}
@@ -105,6 +105,10 @@ class ActorView extends Component {
         return this.state.facts.map((fact) => <li><p>{fact}</p></li>)
     }
 
+    renderFalseFacts() {
+        return this.state.nonFacts.map((fact) => <li><p>{fact}</p></li>)
+    }
+
     renderPreviousActs() {
         if (!this.state.previousActs) {
             return []
@@ -130,6 +134,8 @@ class ActorView extends Component {
               <h4>Wallet</h4>
               <ul>
                   {this.renderWallet()}
+                  <h5>False items</h5>
+                  {this.renderFalseFacts()}
               </ul>
             </div>
             <div class="prevActs">
