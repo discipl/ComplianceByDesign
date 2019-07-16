@@ -7,16 +7,31 @@ import readXlslxFile from 'read-excel-file'
 class UploadModel extends Component {
     constructor(props){
         super(props)
+
+        this.downloadJson = typeof this.props.location.search === 'string' && this.props.location.search.includes('download')
         this.state = {}
     }
     async processModel(event) {
         const model = event.target.files[0].name.includes('xls') ?
             await this.processExcel(event.target.files[0]) :
             await this.processCsv(event);
-        this.setState({
-            ...this.state,
-            'model': model
-        })
+        if (this.downloadJson) {
+            const filename = 'model.json'
+            const contentType = 'application/json;charset=utf-8;'
+            const a = document.createElement('a');
+            a.download = filename;
+            a.href = 'data:' + contentType + ',' + encodeURIComponent(JSON.stringify(model, null, 2));
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } else {
+            this.setState({
+                ...this.state,
+                'model': model
+            })
+        }
+
     }
 
     async processCsv(event) {
