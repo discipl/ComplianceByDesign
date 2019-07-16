@@ -22,6 +22,17 @@ class ModelView extends Component {
     await this.initialize(this.state.lb)
   }
 
+  async componentDidUpdate(prevProps) {
+    if (this.props.model !== prevProps.model) {
+      console.log('ComponentDidUpdate setting state', this.props.model)
+      this.setState({
+        ...this.state,
+        'lb': this.props.model
+      })
+      await this.initialize(this.state.lb)
+
+    }
+  }
 
   async reset() {
     this.setState({
@@ -36,7 +47,7 @@ class ModelView extends Component {
 
   async initialize(model) {
     console.log('Initializing with', model)
-    //this.setState({...this.state, 'loading': true})
+    this.setState({...this.state, 'loading': true})
     if (model == null) {
       console.log('Empty model, not initializing')
       this.setState({...this.state, 'loading': false})
@@ -90,7 +101,7 @@ class ModelView extends Component {
   render() {
     console.log('ModelView render with state', this.state)
     if (this.state.loading === true) {
-      console.log('ModelView render loading true')
+      console.log('View render loading true')
       return (<p>Loading...</p>)
     }
     return (

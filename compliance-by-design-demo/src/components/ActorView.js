@@ -16,6 +16,13 @@ class ActorView extends Component {
         await this.computeRenderData()
     }
 
+    async componentDidUpdate(prevProps) {
+        if (this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid) {
+            await this.computeRenderData();
+        }
+
+    }
+
     async computeRenderData() {
         this.setState({...this.state, 'loading': true})
         console.log('ComputeRenderData', this.props)
