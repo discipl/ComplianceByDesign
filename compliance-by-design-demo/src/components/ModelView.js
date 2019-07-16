@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from '../logo.svg';
 import './ModelView.css';
 import {LawReg} from "@discipl/law-reg";
 import EphemeralConnector from "@discipl/core-ephemeral/src/EphemeralConnector";
@@ -13,26 +12,34 @@ class ModelView extends Component {
     this.lawReg = new LawReg()
 
     this.state = {
-      'lb': this.props.model
+      'lb': this.props.model,
+      'loading': true
     }
   }
 
   async componentDidMount() {
+    console.log('ComponentDidMount', this.state.lb)
     await this.initialize(this.state.lb)
   }
 
-  async componentDidUpdate(prevProps) {
-    if (this.props.model !== prevProps.model) {
-      this.setState({
-        'lb': this.props.model
-      })
-      await this.initialize(this.state.lb)
-    }
+
+  async reset() {
+    this.setState({
+      'lb': this.props.model,
+      'loading': true
+    })
+    console.log('Pre initialize state', this.state)
+
+    await this.initialize(this.state.lb)
+    console.log('Post initialize state', this.state)
   }
 
   async initialize(model) {
-    if (model != null) {
+    console.log('Initializing with', model)
+    //this.setState({...this.state, 'loading': true})
+    if (model == null) {
       console.log('Empty model, not initializing')
+      this.setState({...this.state, 'loading': false})
     }
     console.log(new EphemeralConnector().getName())
     const core = this.lawReg.getAbundanceService().getCoreAPI()
@@ -70,8 +77,10 @@ class ModelView extends Component {
       }
     })
 
-    this.setState({...this.state, 'leraarSsid': leraarSsid, 'bestuursorgaanSsid': bestuursorgaanSsid, 'caseLink': caseLink})
-
+    this.setState({...this.state, 'leraarSsid': leraarSsid, 'bestuursorgaanSsid': bestuursorgaanSsid, 'caseLink': caseLink, 'loading': false})
+    console.log('State', this.state)
+    console.log('Finished initialization')
+    console.log('State', this.state)
   }
 
   onCaseChange(caseLink) {
@@ -79,14 +88,27 @@ class ModelView extends Component {
   }
 
   render() {
+    console.log('ModelView render with state', this.state)
+    if (this.state.loading === true) {
+      console.log('ModelView render loading true')
+      return (<p>Loading...</p>)
+    }
     return (
-        <div class='grid-container'>
+        <div>
+        <div className='model-header'>
+          <h1>
+            Compliance by Design
+          </h1>
+          <button onClick={this.reset.bind(this)}>Reset</button>
+        </div>
+        <div className='grid-container'>
           <div>
             <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
           <div>
             <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
+        </div>
         </div>
     );
   }
