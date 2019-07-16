@@ -86,7 +86,11 @@ class UploadModel extends Component {
             for (let col = 0; col < numCols; col++ ) {
                 let value = doubleArray[row][col]
                 if (typeof value === 'string' && fixWhitespace) {
-                    value = doubleArray[row][col].replace(/_x000D_/g, ' ')
+                    value = doubleArray[row][col].replace(/_x000D_/g, ' ').replace(/_x005F/g,' ')
+                }
+
+                if (value == null) {
+                    value = ''
                 }
 
                 resultObject[doubleArray[0][col]] = value
