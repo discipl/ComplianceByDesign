@@ -44,6 +44,7 @@ class ModelView extends Component {
     const core = this.lawReg.getAbundanceService().getCoreAPI()
     const timestamp = (+ new Date()).toString()
     console.log('Reset timestamp', timestamp)
+    // The timestamp is included here to force the claim to have a different link which triggers a reload
     let caseLink = await core.claim(this.needSsid, {
       'need': {
           'act': '<<leraar vraagt subsidie voor studiekosten aan>>',
