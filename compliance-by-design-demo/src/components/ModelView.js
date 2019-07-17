@@ -19,7 +19,8 @@ class ModelView extends Component {
 
     this.state = {
       'lb': this.props.model,
-      'loading': true
+      'loading': true,
+      'reset': false
     }
   }
 
@@ -52,7 +53,7 @@ class ModelView extends Component {
       },
       'timestamp': timestamp
     })
-    this.setState({...this.state, 'caseLink': caseLink})
+    this.setState({...this.state, 'caseLink': caseLink, 'reset': true})
   }
 
   async initialize(model) {
@@ -108,7 +109,7 @@ class ModelView extends Component {
 
 
   onCaseChange(caseLink) {
-    this.setState({...this.state, 'caseLink': caseLink})
+    this.setState({...this.state, 'caseLink': caseLink, 'reset': false})
   }
 
   render() {
@@ -127,10 +128,10 @@ class ModelView extends Component {
         </div>
         <div className='grid-container'>
           <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} reset={this.state.reset} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
           <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} reset={this.state.reset} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
         </div>
         </div>

@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import './ActorView.css'
 
-const timeoutPromise = (timeoutMillis) => {
-    return new Promise(function (resolve, reject) {
-        setTimeout(() => resolve(), timeoutMillis)
-    })
-}
-
 class ActorView extends Component {
     constructor(props) {
         super(props)
@@ -25,29 +19,32 @@ class ActorView extends Component {
     async componentDidUpdate(prevProps) {
         console.log('ComponentDidUpdate', 'prev:', prevProps, 'current:', this.props)
         if (this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid) {
-            await this.computeRenderData();
+            await this.computeRenderData(this.props.reset);
         }
 
     }
 
-    async computeRenderData() {
-        this.setState({...this.state, 'loading': true, 'facts': [], 'nonFacts': []})
-        // Wait to allow react to render before crypto stuff
-        await timeoutPromise(1)
+    async computeRenderData(reset) {
+        this.setState({'loading': true})
+        console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
-        let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts, this.state.nonFacts))
+
+        const facts = reset ? [] : this.state.facts
+        const nonFacts = reset ? [] : this.state.nonFacts
+        let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
             .map(async (act) => {
                 const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
                 return {...act, 'details': details}
             }))
-        let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, this.state.facts, this.state.nonFacts))
+        let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
             .map(async (act) => {
                 const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
                 return {...act, 'details': details}
             }))
         let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
         this.setState({
-            ...this.state,
+            'facts': facts,
+            'nonFacts': nonFacts,
             'availableActs': availableActs,
             'potentialActs': potentialActs,
             'previousActs': previousActs,
