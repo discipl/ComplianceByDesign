@@ -5,6 +5,12 @@ import EphemeralConnector from "@discipl/core-ephemeral/src/EphemeralConnector";
 
 import ActorView from './ActorView'
 
+const timeoutPromise = (timeoutMillis) => {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => resolve(), timeoutMillis)
+    })
+}
+
 class ModelView extends Component {
   constructor(props) {
     super(props)
@@ -24,7 +30,6 @@ class ModelView extends Component {
 
   async componentDidUpdate(prevProps) {
     if (this.props.model !== prevProps.model) {
-      console.log('ComponentDidUpdate setting state', this.props.model)
       this.setState({
         ...this.state,
         'lb': this.props.model
@@ -35,14 +40,18 @@ class ModelView extends Component {
   }
 
   async reset() {
-    this.setState({
-      'lb': this.props.model,
-      'loading': true
+    console.log('Resetting')
+    const core = this.lawReg.getAbundanceService().getCoreAPI()
+    const timestamp = (+ new Date()).toString()
+    console.log('Reset timestamp', timestamp)
+    let caseLink = await core.claim(this.needSsid, {
+      'need': {
+          'act': '<<leraar vraagt subsidie voor studiekosten aan>>',
+          'DISCIPL_FLINT_MODEL_LINK': this.modelLink,
+      },
+      'timestamp': timestamp
     })
-    console.log('Pre initialize state', this.state)
-
-    await this.initialize(this.state.lb)
-    console.log('Post initialize state', this.state)
+    this.setState({...this.state, 'caseLink': caseLink})
   }
 
   async initialize(model) {
@@ -52,6 +61,8 @@ class ModelView extends Component {
       console.log('Empty model, not initializing')
       this.setState({...this.state, 'loading': false})
     }
+    // Wait to allow react to render before crypto stuff
+    await timeoutPromise(1)
     console.log(new EphemeralConnector().getName())
     const core = this.lawReg.getAbundanceService().getCoreAPI()
     await core.registerConnector('ephemeral', new EphemeralConnector())
@@ -78,10 +89,10 @@ class ModelView extends Component {
     })
 
 
-    let needSsid = await core.newSsid('ephemeral')
+    this.needSsid = await core.newSsid('ephemeral')
 
-    await core.allow(needSsid)
-    let caseLink = await core.claim(needSsid, {
+    await core.allow(this.needSsid)
+    let caseLink = await core.claim(this.needSsid, {
       'need': {
         'act': '<<leraar vraagt subsidie voor studiekosten aan>>',
         'DISCIPL_FLINT_MODEL_LINK': this.modelLink
@@ -94,6 +105,7 @@ class ModelView extends Component {
     console.log('State', this.state)
   }
 
+
   onCaseChange(caseLink) {
     this.setState({...this.state, 'caseLink': caseLink})
   }
@@ -102,7 +114,7 @@ class ModelView extends Component {
     console.log('ModelView render with state', this.state)
     if (this.state.loading === true) {
       console.log('View render loading true')
-      return (<p>Loading...</p>)
+      return (<div><p>Loading...</p></div>)
     }
     return (
         <div>

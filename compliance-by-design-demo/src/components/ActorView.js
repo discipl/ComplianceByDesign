@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './ActorView.css'
 
+const timeoutPromise = (timeoutMillis) => {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => resolve(), timeoutMillis)
+    })
+}
+
 class ActorView extends Component {
     constructor(props) {
         super(props)
@@ -17,6 +23,7 @@ class ActorView extends Component {
     }
 
     async componentDidUpdate(prevProps) {
+        console.log('ComponentDidUpdate', 'prev:', prevProps, 'current:', this.props)
         if (this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid) {
             await this.computeRenderData();
         }
@@ -24,7 +31,9 @@ class ActorView extends Component {
     }
 
     async computeRenderData() {
-        this.setState({...this.state, 'loading': true})
+        this.setState({...this.state, 'loading': true, 'facts': [], 'nonFacts': []})
+        // Wait to allow react to render before crypto stuff
+        await timeoutPromise(1)
         console.log('ComputeRenderData', this.props)
         let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts, this.state.nonFacts))
             .map(async (act) => {

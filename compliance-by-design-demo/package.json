@@ -6,6 +6,7 @@
   "dependencies": {
     "@discipl/core-ephemeral": "0.10.1",
     "@discipl/law-reg": "^0.2.2",
+    "loglevel": "^1.6.3",
     "papaparse": "^5.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
