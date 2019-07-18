@@ -960,6 +960,15 @@
       "explanation": ""
     },
     {
+      "fact": "[aanvrager]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "Added, because it was missing in excel",
+      "explanation": ""
+    },
+    {
       "fact": "[leraar]",
       "function": "[]",
       "version": "",
