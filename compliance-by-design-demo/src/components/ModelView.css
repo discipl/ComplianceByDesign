@@ -5,6 +5,26 @@
 .App-link {
   color: #61dafb;
 }
+.model-header {
+  position: fixed;
+  display: block;
+  width: 99.75%;
+  font-size: 1em;
+  text-shadow: 1px 1px #444;
+  text-align: center;
+  background: #FFF;
+  padding: 10px;
+}
+
+.model-header button {
+  display: inline;
+  padding: 10px;
+}
+.model-header h1 {
+  display: inline;
+  padding: 10px;
+}
+
 
 .grid-container {
   display: grid;

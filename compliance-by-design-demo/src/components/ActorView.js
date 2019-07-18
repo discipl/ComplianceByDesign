@@ -7,27 +7,49 @@ class ActorView extends Component {
         console.log('Constructing ActorView', props)
         this.state = {
             'facts': [],
-            'nonFacts': []
+            'nonFacts': [],
+            'loading': true,
         }
     }
 
+    async componentDidMount() {
+        await this.computeRenderData()
+    }
+
     async componentDidUpdate(prevProps) {
+        console.log('ComponentDidUpdate', 'prev:', prevProps, 'current:', this.props)
         if (this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid) {
-            console.log('Rendering available acts and potential acts with props', this.props)
-            let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, this.state.facts, this.state.nonFacts))
-                .map(async (act) => {
-                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
-                    return {...act, 'details': details}
-                }))
-            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, this.state.facts, this.state.nonFacts))
-                .map(async (act) => {
-                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
-                    return {...act, 'details': details}
-                }))
-            let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
-            this.setState({...this.state, 'availableActs': availableActs, 'potentialActs': potentialActs, 'previousActs': previousActs})
+            await this.computeRenderData(this.props.reset);
         }
 
+    }
+
+    async computeRenderData(reset) {
+        this.setState({'loading': true})
+        console.log('ComputeRenderDataState', this.state)
+        console.log('ComputeRenderData', this.props)
+
+        const facts = reset ? [] : this.state.facts
+        const nonFacts = reset ? [] : this.state.nonFacts
+        let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
+            .map(async (act) => {
+                const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                return {...act, 'details': details}
+            }))
+        let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
+            .map(async (act) => {
+                const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                return {...act, 'details': details}
+            }))
+        let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
+        this.setState({
+            'facts': facts,
+            'nonFacts': nonFacts,
+            'availableActs': availableActs,
+            'potentialActs': potentialActs,
+            'previousActs': previousActs,
+            'loading': false
+        })
     }
 
     async takeAction(act) {
@@ -118,19 +140,22 @@ class ActorView extends Component {
         })
     }
 
-
-
     render() {
-        return <div class="container">
+        console.log('ActorView render with state', this.state)
+        if (this.state.loading === true) {
+            console.log('ActorView render loading true')
+            return <div className="container"><div className="acts"><p>Loading...</p></div></div>
+        }
+        return <div className="container">
 
-            <div class="actorHeader" style={{'background-color': this.props.colorCode}}>
+            <div className="actorHeader" style={{'backgroundColor': this.props.colorCode}}>
               <h3>{this.props.name}</h3>
             </div>
-            <div class="acts">
+            <div className="acts">
                 {this.renderAvailableActs()}
                 {this.renderPotentialActs()}
             </div>
-            <div class="wallet">
+            <div className="wallet">
               <h4>Wallet</h4>
               <ul>
                   {this.renderWallet()}
@@ -138,7 +163,7 @@ class ActorView extends Component {
                   {this.renderFalseFacts()}
               </ul>
             </div>
-            <div class="prevActs">
+            <div className="prevActs">
               <h4>Previous acts</h4>
               <ul>
                   {this.renderPreviousActs()}

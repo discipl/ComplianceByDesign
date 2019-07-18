@@ -6,6 +6,7 @@
 .actorHeader {
   color: #FFF;
   position: fixed;
+  top: 70px;
   height: 70px;
   width: 49.75%;
   font-size: 1.5em;
@@ -14,9 +15,9 @@
 }
 
 .acts {
-  padding-top: 70px;
-  background-color: #ee6;
+  padding-top: 140px;
   word-wrap: inherit;
+  background-color: #fff;
 }
 
 .container {
