@@ -43,7 +43,14 @@ class ActorView extends Component {
                 return {...act, 'details': details}
             }))
         let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
-        let duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
+        let duties
+        try {
+            duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
+        } catch (e) {
+            duties = [{
+                'duty': 'Error while trying to determine duties'
+            }]
+        }
         this.setState({
             'facts': facts,
             'nonFacts': nonFacts,
