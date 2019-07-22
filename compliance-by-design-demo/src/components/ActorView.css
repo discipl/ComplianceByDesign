@@ -40,6 +40,11 @@
   padding-right: 20px;
 }
 
+.removalButton {
+  display: inline-block;
+  float: right;
+}
+
 .available {
   padding-left: 30px;
   background-color: #f5f5a0;
