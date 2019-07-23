@@ -13,24 +13,30 @@ class ActorView extends Component {
     }
 
     async componentDidMount() {
-        await this.computeRenderData()
+        await this.computeRenderData([], [])
     }
 
-    async componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps, prevState) {
         console.log('ComponentDidUpdate', 'prev:', prevProps, 'current:', this.props)
-        if (this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid) {
-            await this.computeRenderData(this.props.reset);
-        }
 
+        const propsChanged = this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid
+        const stateChanged = this.state.facts.length !== prevState.facts.length || this.state.nonFacts.length !== prevState.nonFacts.length
+        if (propsChanged || stateChanged) {
+            console.log(stateChanged)
+            if (propsChanged && this.props.reset) {
+                await this.computeRenderData([], []);
+                this.setState({'facts': [], 'nonFacts': []})
+            } else {
+                await this.computeRenderData(this.state.facts, this.state.nonFacts)
+            }
+        }
     }
 
-    async computeRenderData(reset) {
+    async computeRenderData(facts, nonFacts) {
         this.setState({'loading': true})
         console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
 
-        const facts = reset ? [] : this.state.facts
-        const nonFacts = reset ? [] : this.state.nonFacts
         let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
             .map(async (act) => {
                 const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
@@ -43,8 +49,6 @@ class ActorView extends Component {
             }))
         let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
         this.setState({
-            'facts': facts,
-            'nonFacts': nonFacts,
             'availableActs': availableActs,
             'potentialActs': potentialActs,
             'previousActs': previousActs,
@@ -79,14 +83,23 @@ class ActorView extends Component {
 
         console.log('ActorView', this)
         if (result) {
-            let newFacts = this.state.facts.slice(0)
-            newFacts.push(fact)
-            this.setState({...this.state, 'facts': newFacts})
+
+            this.setState((state) => {
+                let newFacts = state.facts.slice(0)
+                newFacts.push(fact)
+                return {
+                    'facts': newFacts
+                }
+            })
         }
         else {
-            let newNonFacts = this.state.nonFacts.slice(0)
-            newNonFacts.push(fact)
-            this.setState({...this.state, 'nonFacts': newNonFacts})
+            this.setState((state) => {
+                let newNonFacts = state.nonFacts.slice(0)
+                newNonFacts.push(fact)
+                return {
+                    'nonFacts': newNonFacts
+                }
+            })
         }
 
         return result
@@ -122,13 +135,30 @@ class ActorView extends Component {
         })
     }
 
+    async deleteFact(deleteFact) {
+
+        this.setState((state) => {
+            return {
+                'facts': state.facts.filter((fact) => fact !== deleteFact)
+            }
+        })
+    }
+
+    async deleteNonFact(deleteNonFact) {
+        this.setState((state) => {
+            return {
+                'nonFacts': state.nonFacts.filter((nonFact) => nonFact !== deleteNonFact)
+            }
+        })
+    }
+
     renderWallet() {
         console.log('Rendering wallet from', this.state.facts)
-        return this.state.facts.map((fact) => <li><p>{fact}</p></li>)
+        return this.state.facts.map((fact) => <li><p>{fact}<button className='removalButton' onClick={this.deleteFact.bind(this, fact)}>-</button></p></li>)
     }
 
     renderFalseFacts() {
-        return this.state.nonFacts.map((fact) => <li><p>{fact}</p></li>)
+        return this.state.nonFacts.map((fact) => <li><p>{fact}<button className='removalButton' onClick={this.deleteNonFact.bind(this, fact)}>-</button></p></li>)
     }
 
     renderPreviousActs() {
