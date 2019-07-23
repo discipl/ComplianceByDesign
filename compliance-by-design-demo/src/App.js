@@ -6,7 +6,7 @@ import * as log from 'loglevel'
 import UploadModel from "./components/UploadModel";
 class App extends Component {
     render() {
-        log.getLogger('disciplLawReg').setLevel('debug')
+        log.getLogger('disciplLawReg').setLevel('warn')
         return (
             <HashRouter>
             <div>
