@@ -34,6 +34,15 @@
   word-break: break-all;
 }
 
+.duties {
+  background-color: #eee;
+  padding-left: 20px;
+  padding-right: 20px;
+  word-wrap: inherit;
+  word-break: break-all;
+}
+
+
 .wallet {
   background-color: #ddd;
   padding-left: 20px;

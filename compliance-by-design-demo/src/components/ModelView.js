@@ -93,6 +93,7 @@ class ModelView extends Component {
     this.modelLink = await this.lawReg.publish(lawmakerSsid, { ...model, 'model': 'LB' }, {
       '[persoon wiens belang rechtstreeks bij een besluit is betrokken]': 'IS:' + leraarSsid.did,
       '[leraar]': 'IS:' + leraarSsid.did,
+      '[aanvrager]': 'IS:' + leraarSsid.did,
       '[orgaan]': 'IS:' + bestuursorgaanSsid.did,
       '[rechtspersoon die krachtens publiekrecht is ingesteld]': 'IS:' + bestuursorgaanSsid.did,
       '[met enig openbaar gezag bekleed]': 'IS:' + bestuursorgaanSsid.did,

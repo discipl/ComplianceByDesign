@@ -8,6 +8,7 @@ class ActorView extends Component {
         this.state = {
             'facts': [],
             'nonFacts': [],
+            'duties': [],
             'loading': true,
         }
 
@@ -73,10 +74,19 @@ class ActorView extends Component {
                 return {...act, 'details': details}
             }))
         let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
+        let duties
+        try {
+            duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
+        } catch (e) {
+            duties = [{
+                'duty': 'Error while trying to determine duties'
+            }]
+        }
         this.setState({
             'availableActs': availableActs,
             'potentialActs': potentialActs,
             'previousActs': previousActs,
+            'duties': duties,
             'loading': false
         })
     }
@@ -189,6 +199,12 @@ class ActorView extends Component {
         return this.state.nonFacts.map((fact) => <li><p>{fact}<button className='removalButton' onClick={this.deleteNonFact.bind(this, fact)}>-</button></p></li>)
     }
 
+    renderDuties() {
+        return this.state.duties.map((duty) => {
+            return <li><p>{duty.duty}</p></li>
+        })
+    }
+
     renderPreviousActs() {
         if (!this.state.previousActs) {
             return []
@@ -220,6 +236,12 @@ class ActorView extends Component {
                   <h5>False items</h5>
                   {this.renderFalseFacts()}
               </ul>
+            </div>
+            <div className="duties">
+                <h4>Duties</h4>
+                <ul>
+                    {this.renderDuties()}
+                </ul>
             </div>
             <div className="prevActs">
               <h4>Previous acts</h4>
