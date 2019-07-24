@@ -11,10 +11,14 @@ class ActorView extends Component {
             'duties': [],
             'loading': true,
         }
+
+        this.memory = {
+        }
     }
 
     async componentDidMount() {
         await this.computeRenderData([], [])
+        this.memory[this.props.caseLink] = {'facts': [], 'nonFacts': []}
     }
 
     async componentDidUpdate(prevProps, prevState) {
@@ -24,11 +28,23 @@ class ActorView extends Component {
         const stateChanged = this.state.facts.length !== prevState.facts.length || this.state.nonFacts.length !== prevState.nonFacts.length
         if (propsChanged || stateChanged) {
             console.log(stateChanged)
-            if (propsChanged && this.props.reset) {
-                await this.computeRenderData([], []);
-                this.setState({'facts': [], 'nonFacts': []})
+            if (this.props.revert && this.memory[this.props.caseLink] != null) {
+                console.log('ComponentDidUpdate reverting', this.props.name, 'to facts', this.memory[this.props.caseLink])
+
+                await this.computeRenderData(this.memory[this.props.caseLink].facts, this.memory[this.props.caseLink].nonFacts)
+                this.setState({'facts': this.memory[this.props.caseLink].facts, 'nonFacts': this.memory[this.props.caseLink].nonFacts})
             } else {
+                console.log('ComponentDidUpdate normal render')
+                console.log('ComponentDidUpdate revert: ', this.props.revert, this.memory)
+                if (this.memory[this.props.caseLink] == null) {
+                    this.memory[this.props.caseLink] = {
+                        'facts': this.state.facts,
+                        'nonFacts': this.state.nonFacts
+                    }
+                }
+
                 await this.computeRenderData(this.state.facts, this.state.nonFacts)
+
             }
         }
     }
@@ -37,6 +53,7 @@ class ActorView extends Component {
         this.setState({'loading': true})
         console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
+        console.log('ComputeRenderData facts and nonFacts', facts, nonFacts)
 
         let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
             .map(async (act) => {
@@ -69,6 +86,10 @@ class ActorView extends Component {
     async takeAction(act) {
         try {
             let caseLink = await this.props.lawReg.take(this.props.actorSsid, this.props.caseLink, act, this.askFact.bind(this))
+            this.memory[caseLink] = {
+                'facts': this.state.facts,
+                'nonFacts': this.state.nonFacts
+            }
             if (this.props.onCaseChange) {
                 this.props.onCaseChange(caseLink)
             }
@@ -146,7 +167,6 @@ class ActorView extends Component {
     }
 
     async deleteFact(deleteFact) {
-
         this.setState((state) => {
             return {
                 'facts': state.facts.filter((fact) => fact !== deleteFact)
