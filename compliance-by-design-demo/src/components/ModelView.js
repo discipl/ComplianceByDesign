@@ -53,8 +53,19 @@ class ModelView extends Component {
       },
       'timestamp': timestamp
     })
-    this.setState({...this.state, 'caseLink': caseLink, 'reset': true})
+    this.setState({...this.state, 'caseLink': caseLink, 'reset': true, 'revert': false})
   }
+
+  async revert() {
+    const core = this.lawReg.getAbundanceService().getCoreAPI()
+    const caseState = await core.get(this.state.caseLink)
+
+    const previousCaseLink = caseState.data['DISCIPL_FLINT_PREVIOUS_CASE']
+    if (previousCaseLink) {
+      this.setState({'caseLink': previousCaseLink, 'revert': true, 'reset': false})
+    }
+  }
+
 
   async initialize(model) {
     console.log('Initializing with', model)
@@ -109,7 +120,7 @@ class ModelView extends Component {
 
 
   onCaseChange(caseLink) {
-    this.setState({...this.state, 'caseLink': caseLink, 'reset': false})
+    this.setState({...this.state, 'caseLink': caseLink, 'reset': false, 'revert': false})
   }
 
   render() {
@@ -125,13 +136,14 @@ class ModelView extends Component {
             Compliance by Design
           </h1>
           <button onClick={this.reset.bind(this)}>Reset</button>
+          <button onClick={this.revert.bind(this)}>Undo</button>
         </div>
         <div className='grid-container'>
           <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} reset={this.state.reset} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} reset={this.state.reset} revert={this.state.revert} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
           <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} reset={this.state.reset} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} reset={this.state.reset} revert={this.state.revert} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
         </div>
         </div>
