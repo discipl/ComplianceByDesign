@@ -20,7 +20,7 @@ class ModelView extends Component {
     this.state = {
       'lb': this.props.model,
       'loading': true,
-      'reset': false
+      'revert': false
     }
   }
 
@@ -41,19 +41,7 @@ class ModelView extends Component {
   }
 
   async reset() {
-    console.log('Resetting')
-    const core = this.lawReg.getAbundanceService().getCoreAPI()
-    const timestamp = (+ new Date()).toString()
-    console.log('Reset timestamp', timestamp)
-    // The timestamp is included here to force the claim to have a different link which triggers a reload
-    let caseLink = await core.claim(this.needSsid, {
-      'need': {
-          'act': '<<leraar vraagt subsidie voor studiekosten aan>>',
-          'DISCIPL_FLINT_MODEL_LINK': this.modelLink,
-      },
-      'timestamp': timestamp
-    })
-    this.setState({...this.state, 'caseLink': caseLink, 'reset': true, 'revert': false})
+    this.setState({'caseLink': this.needLink, 'revert': true})
   }
 
   async revert() {
@@ -62,7 +50,7 @@ class ModelView extends Component {
 
     const previousCaseLink = caseState.data['DISCIPL_FLINT_PREVIOUS_CASE']
     if (previousCaseLink) {
-      this.setState({'caseLink': previousCaseLink, 'revert': true, 'reset': false})
+      this.setState({'caseLink': previousCaseLink, 'revert': true})
     }
   }
 
@@ -106,14 +94,14 @@ class ModelView extends Component {
     this.needSsid = await core.newSsid('ephemeral')
 
     await core.allow(this.needSsid)
-    let caseLink = await core.claim(this.needSsid, {
+    this.needLink = await core.claim(this.needSsid, {
       'need': {
         'act': '<<leraar vraagt subsidie voor studiekosten aan>>',
         'DISCIPL_FLINT_MODEL_LINK': this.modelLink
       }
     })
 
-    this.setState({...this.state, 'leraarSsid': leraarSsid, 'bestuursorgaanSsid': bestuursorgaanSsid, 'caseLink': caseLink, 'loading': false})
+    this.setState({...this.state, 'leraarSsid': leraarSsid, 'bestuursorgaanSsid': bestuursorgaanSsid, 'caseLink': this.needLink, 'loading': false})
     console.log('State', this.state)
     console.log('Finished initialization')
     console.log('State', this.state)
@@ -121,7 +109,7 @@ class ModelView extends Component {
 
 
   onCaseChange(caseLink) {
-    this.setState({...this.state, 'caseLink': caseLink, 'reset': false, 'revert': false})
+    this.setState({...this.state, 'caseLink': caseLink, 'revert': false})
   }
 
   render() {
@@ -141,10 +129,10 @@ class ModelView extends Component {
         </div>
         <div className='grid-container'>
           <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} reset={this.state.reset} revert={this.state.revert} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} revert={this.state.revert} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
           <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} reset={this.state.reset} revert={this.state.revert} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
+            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} revert={this.state.revert} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
           </div>
         </div>
         </div>

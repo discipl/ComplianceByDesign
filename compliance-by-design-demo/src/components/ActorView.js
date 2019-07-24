@@ -18,6 +18,7 @@ class ActorView extends Component {
 
     async componentDidMount() {
         await this.computeRenderData([], [])
+        this.memory[this.props.caseLink] = {'facts': [], 'nonFacts': []}
     }
 
     async componentDidUpdate(prevProps, prevState) {
@@ -27,16 +28,7 @@ class ActorView extends Component {
         const stateChanged = this.state.facts.length !== prevState.facts.length || this.state.nonFacts.length !== prevState.nonFacts.length
         if (propsChanged || stateChanged) {
             console.log(stateChanged)
-            if (propsChanged && this.props.reset) {
-                console.log('ComponentDidUpdate reset')
-                await this.computeRenderData([], []);
-                this.memory[this.props.caseLink] = {
-                    'facts': [],
-                    'nonFacts': []
-                }
-                this.setState({'facts': [], 'nonFacts': []})
-
-            } else if (this.props.revert && this.memory[this.props.caseLink] != null) {
+            if (this.props.revert && this.memory[this.props.caseLink] != null) {
                 console.log('ComponentDidUpdate reverting', this.props.name, 'to facts', this.memory[this.props.caseLink])
 
                 await this.computeRenderData(this.memory[this.props.caseLink].facts, this.memory[this.props.caseLink].nonFacts)
