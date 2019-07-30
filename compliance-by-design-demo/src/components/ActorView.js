@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './ActorView.css'
 
+import FactModal from './FactModal'
+
 class ActorView extends Component {
     constructor(props) {
         super(props)
@@ -101,7 +103,7 @@ class ActorView extends Component {
 
     }
 
-    askFact (fact) {
+    async askFact (fact) {
         if (this.state.facts.includes(fact)) {
             return true
         }
@@ -110,31 +112,46 @@ class ActorView extends Component {
             return false
         }
 
-        let result = window.confirm('Is ' + fact + ' van toepassing?')
-
-        console.log('ActorView', this)
-        if (result) {
-
-            this.setState((state) => {
-                let newFacts = state.facts.slice(0)
-                newFacts.push(fact)
-                return {
-                    'facts': newFacts
+        const resultPromise = new Promise((resolve, reject) => {
+            const handleAskFactResult = (result) => {
+                if (result) {
+                    this.setState((state) => {
+                        let newFacts = state.facts.slice(0)
+                        newFacts.push(fact)
+                        return {
+                            'facts': newFacts,
+                            'prompt': false
+                        }
+                    })
+                    resolve(true)
                 }
-            })
-        }
-        else {
-            this.setState((state) => {
-                let newNonFacts = state.nonFacts.slice(0)
-                newNonFacts.push(fact)
-                return {
-                    'nonFacts': newNonFacts
+                else {
+                    this.setState((state) => {
+                        let newNonFacts = state.nonFacts.slice(0)
+                        newNonFacts.push(fact)
+                        return {
+                            'nonFacts': newNonFacts,
+                            'prompt': false
+                        }
+                    })
+                    resolve(false)
                 }
-            })
-        }
+            }
 
-        return result
+            this.setState(
+                {
+                    'prompt': true,
+                    'promptFact': fact,
+                    'promptCallback': handleAskFactResult
+                }
+            )
+        })
+
+
+        return resultPromise
     }
+
+
 
     renderAvailableActs() {
         let acts = this.state.availableActs
@@ -241,6 +258,7 @@ class ActorView extends Component {
                   {this.renderPreviousActs()}
               </ul>
             </div>
+            <FactModal show={this.state.prompt} fact={this.state.promptFact} handleResult={this.state.promptCallback}/>
         </div>
     }
 }
