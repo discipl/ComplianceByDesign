@@ -16,8 +16,8 @@ class FactModal extends Component{
             <div className={showHideClassName}>
                 <section className="modal-main">
                     <p>Is {this.props.fact} van toepassing?</p>
-                    <button className="deny" onClick={this.handleDeny.bind(this)}>No</button>
                     <button className="affirm" onClick={this.handleAffirm.bind(this)}>Yes</button>
+                    <button className="deny" onClick={this.handleDeny.bind(this)}>No</button>
                 </section>
             </div>
         );
