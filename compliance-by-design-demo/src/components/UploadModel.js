@@ -3,6 +3,8 @@ import * as Papa from 'papaparse'
 import ModelView from "./ModelView";
 import readXlslxFile from 'read-excel-file'
 
+import { LawReg } from "@discipl/law-reg";
+
 
 class UploadModel extends Component {
     constructor(props){
@@ -15,6 +17,9 @@ class UploadModel extends Component {
         const model = event.target.files[0].name.includes('xls') ?
             await this.processExcel(event.target.files[0]) :
             await this.processCsv(event);
+
+        const lawReg = new LawReg()
+        const validationErrors = await lawReg.validate(model)
         if (this.downloadJson) {
             const filename = 'model.json'
             const contentType = 'application/json;charset=utf-8;'
@@ -28,6 +33,7 @@ class UploadModel extends Component {
         } else {
             this.setState({
                 ...this.state,
+                'errors': validationErrors,
                 'model': model
             })
         }
@@ -102,7 +108,40 @@ class UploadModel extends Component {
         return result
     }
 
+    resetErrors() {
+        this.setState({'errors': []})
+    }
+
+    renderErrors() {
+        const tableRows = this.state.errors.filter((errorLine) => errorLine.type === 'error').concat(this.state.errors.filter((errorLine) => errorLine.type === 'warning')).map((errorLine) => {
+            return (<tr>
+                <td>
+                    {errorLine.type}
+                </td>
+                <td>
+                    {errorLine.field}
+                </td>
+                <td>
+                    {errorLine.identifier}
+                </td>
+                <td>
+                    {errorLine.message}
+                </td>
+            </tr>)
+        })
+
+        return (<div><button onClick={this.resetErrors.bind(this)}>View Model anyway</button><table>
+            <tr><th>Type</th><th>Field</th><th>Identifier</th><th>Error message</th></tr>
+            {tableRows}
+        </table></div>)
+    }
+
+
     render() {
+        if (typeof this.state.errors !== 'undefined' && this.state.errors.length > 0) {
+            console.log('Rendering errors', this.state.errors)
+            return this.renderErrors()
+        }
         if (this.state.model) {
             return (
                 <ModelView model={this.state.model}/>
