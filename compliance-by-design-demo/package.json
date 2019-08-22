@@ -5,7 +5,7 @@
   "homepage": "./",
   "dependencies": {
     "@discipl/core-ephemeral": "0.10.1",
-    "@discipl/law-reg": "^0.2.5",
+    "@discipl/law-reg": "^0.2.6",
     "loglevel": "^1.6.3",
     "papaparse": "^5.0.0",
     "react": "^16.8.6",
@@ -18,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "package": "npm run build && zip -r cbd-alpha.$(git rev-parse HEAD).zip build/"
   },
   "eslintConfig": {
     "extends": "react-app"

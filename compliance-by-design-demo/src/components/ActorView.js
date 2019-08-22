@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './ActorView.css'
-
 import FactModal from './FactModal'
 
 class ActorView extends Component {
@@ -56,20 +55,24 @@ class ActorView extends Component {
         console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
         console.log('ComputeRenderData facts and nonFacts', facts, nonFacts)
-
-        let availableActs = await Promise.all((await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
+        let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts)
+        console.log('Got available act links')
+        let availableActs = await Promise.all(availableActLinks
             .map(async (act) => {
                 const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
                 return {...act, 'details': details}
             }))
+        console.log('Computing potential acts')
         let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
             .map(async (act) => {
                 const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
                 return {...act, 'details': details}
             }))
+        console.log('Getting actions')
         let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
         let duties
         try {
+            console.log('Getting duties')
             duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
         } catch (e) {
             duties = [{
@@ -98,6 +101,8 @@ class ActorView extends Component {
         } catch (e) {
             if (e.message.includes('is not allowed')) {
                 alert(e.message)
+            } else {
+                throw e
             }
         }
 

@@ -7,7 +7,7 @@
       "object": "[verzoek een besluit te nemen]",
       "interested-party": "[bestuursorgaan]",
       "preconditions": "NIET [bij wettelijk voorschrift is anders bepaald]",
-      "create": "[aanvraag];\r\n<schriftelijk indienen aanvraag>;\r\n<aanvraag indienen bij bevoegd bestuursorgaan>;\r\n<aanvraag ondertekenen en naam aanvrager, adres, dagtekening en aanduiding doen bevatten>;\r\n<verschaffen gegevens nodig om besluit te nemen>;\r\n<vergaren nodige kennis>;\r\n<besluit berust op deugdelijke motivering>;\r\n<beschikking geven binnen termijn>",
+      "create": "[aanvraag];\n<schriftelijk indienen aanvraag>;\n<aanvraag indienen bij bevoegd bestuursorgaan>;\n<aanvraag ondertekenen en naam aanvrager, adres, dagtekening en aanduiding doen bevatten>;\n<verschaffen gegevens nodig om besluit te nemen>;\n<vergaren nodige kennis>;\n<besluit berust op deugdelijke motivering>;\n<beschikking geven binnen termijn>",
       "terminate": "-",
       "version": "2-[19980101]-[jjjjmmdd]",
       "reference": "art. 1:3 lid 3 Awb",
@@ -23,12 +23,12 @@
       "interested-party": "[belanghebbende]",
       "preconditions": "[aanvraag]",
       "create": "[besluit treedt in werking]",
-      "terminate": "[aanvraag];\r\n<schriftelijk indienen aanvraag>;\r\n<aanvraag indienen bij bevoegd bestuursorgaan>;\r\n<aanvraag ondertekenen>;\r\n<verschaffen gegevens nodig om besluit te nemen>;\r\n<vergaren nodige kennis>;\r\n<besluit berust op deugdelijke motivering>;\r\n<beschikking geven binnen termijn>",
+      "terminate": "[aanvraag];\n<schriftelijk indienen aanvraag>;\n<aanvraag indienen bij bevoegd bestuursorgaan>;\n<aanvraag ondertekenen>;\n<verschaffen gegevens nodig om besluit te nemen>;\n<vergaren nodige kennis>;\n<besluit berust op deugdelijke motivering>;\n<beschikking geven binnen termijn>;\n<besluit om de aanvraag niet te behandelen wordt bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken>",
       "version": "2-[19940101]-[jjjjmmdd]",
       "reference": "art. 3:40 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=3&afdeling=3.6&artikel=3:40&z=2017-04-01&g=2017-04-01",
       "sourcetext": "{Een besluit treedt niet in werking voordat het is bekendgemaakt.}",
-      "explanation": "Artikel 3.40 Awb impliceert dat het bestuursorgaan dat bevoegd is een besluit te nemen, ook bevoegd is het besluit bekend maken. Ook al staat dat er niet expliciet, dat is de interpretatie die hier gekozen is.\r\n\r\nHet kan natuurlijk altijd dat er regels zijn die andere(n) (bestuursorga(a)n(en)) toestaan om een besluit bekend te maken, of regels die de bevoegdheid om besluiten bekend te maken beperken. Die regels hebben we nog niet gevonden.\r\nArtikel 3.41 Awb gaat over de wijze waarop het bekendmaken gebeurt."
+      "explanation": "Artikel 3.40 Awb impliceert dat het bestuursorgaan dat bevoegd is een besluit te nemen, ook bevoegd is het besluit bekend maken. Ook al staat dat er niet expliciet, dat is de interpretatie die hier gekozen is.\n\nHet kan natuurlijk altijd dat er regels zijn die andere(n) (bestuursorga(a)n(en)) toestaan om een besluit bekend te maken, of regels die de bevoegdheid om besluiten bekend te maken beperken. Die regels hebben we nog niet gevonden.\nArtikel 3.41 Awb gaat over de wijze waarop het bekendmaken gebeurt."
     },
     {
       "act": "<<besluiten de aanvraag niet te behandelen>>",
@@ -36,14 +36,14 @@
       "action": "[besluiten niet te behandelen]",
       "object": "[aanvraag]",
       "interested-party": "[belanghebbende]",
-      "preconditions": "((\r\nNIET [aanvrager heeft voldaan aan enig wettelijk voorschrift voor het in behandeling nemen van de aanvraag])\r\nOF\r\n[aanvraag geheel of gedeeltelijk is geweigerd op grond van artikel 2:15 Awb]\r\nOF\r\n[verstrekte gegevens en bescheiden zijn onvoldoende voor de beoordeling van de aanvraag of voor de voorbereiding van de beschikking]\r\n)\r\nEN\r\n[aanvrager heeft de gelegenheid gehad de aanvraag aan te vullen]\r\nEN\r\n[besluit om de aanvraag niet te behandelen wordt aan de aanvrager bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken]",
-      "create": "[besluit tot niet in behandeling nemen aanvraag]",
+      "preconditions": "((\nNIET [aanvrager heeft voldaan aan enig wettelijk voorschrift voor het in behandeling nemen van de aanvraag])\nOF\n[aanvraag geheel of gedeeltelijk is geweigerd op grond van artikel 2:15 Awb]\nOF\n[verstrekte gegevens en bescheiden zijn onvoldoende voor de beoordeling van de aanvraag of voor de voorbereiding van de beschikking]\n)\nEN\n[aanvrager heeft de gelegenheid gehad de aanvraag aan te vullen]\nEN\n([de aanvraag is binnen de afgelopen 4 weken aangevuld] OF \n[gestelde termijn voor aanvulling is ongebruikt verstreken])",
+      "create": "[besluit tot niet in behandeling nemen aanvraag];\n<besluit om de aanvraag niet te behandelen wordt bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken>",
       "terminate": "[aanvraag]",
       "version": "3-[20040701]-[jjjjmmdd]",
       "reference": "art. 4:5 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.1&afdeling=4.1.1&artikel=4:5&z=2017-03-10&g=2017-03-10",
-      "sourcetext": "{Het bestuursorgaan kan besluiten de aanvraag niet te behandelen, indien:\r\na. de aanvrager niet heeft voldaan aan enig wettelijk voorschrift voor het in behandeling nemen van de aanvraag, of\r\nb. de aanvraag geheel of gedeeltelijk is geweigerd op grond van artikel 2:15, of\r\nc. de verstrekte gegevens en bescheiden onvoldoende zijn voor de beoordeling van de aanvraag of voor de voorbereiding van de beschikking,\r\nmits de aanvrager de gelegenheid heeft gehad de aanvraag binnen een door het bestuursorgaan gestelde termijn aan te vullen.\r\n(...)\r\n4 Een besluit om de aanvraag niet te behandelen wordt aan de aanvrager bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken.}",
-      "explanation": "Hoe omgaan met voorwaarde [besluit om de aanvraag niet te behandelen wordt aan de aanvrager bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken]?\r\n\r\nHet besluit is nog niet bekendgemaakt op het moment dat het wordt genomen. Kan dat dan wel als voorwaarde voor het nemen van een besluit worden gesteld?\r\n(Ik zou zeggen dat dat wel kan. Bij het nemen van het besluit wordt ervan uitgegaan dat het besluit binnen de termijn wordt bekendgemaakt. Als later blijkt dat dat toch niet is gebeurd, kunnen belanghebbenden immuniteit tegen het besluit claimen.)"
+      "sourcetext": "{Het bestuursorgaan kan besluiten de aanvraag niet te behandelen, indien:\na. de aanvrager niet heeft voldaan aan enig wettelijk voorschrift voor het in behandeling nemen van de aanvraag, of\nb. de aanvraag geheel of gedeeltelijk is geweigerd op grond van artikel 2:15, of\nc. de verstrekte gegevens en bescheiden onvoldoende zijn voor de beoordeling van de aanvraag of voor de voorbereiding van de beschikking,\nmits de aanvrager de gelegenheid heeft gehad de aanvraag binnen een door het bestuursorgaan gestelde termijn aan te vullen.\n(...)\n4 Een besluit om de aanvraag niet te behandelen wordt aan de aanvrager bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken.}",
+      "explanation": "Hoe omgaan met voorwaarde [besluit om de aanvraag niet te behandelen wordt aan de aanvrager bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken]?\n\nHet besluit is nog niet bekendgemaakt op het moment dat het wordt genomen. Kan dat dan wel als voorwaarde voor het nemen van een besluit worden gesteld?\n(Ik zou zeggen dat dat wel kan. Bij het nemen van het besluit wordt ervan uitgegaan dat het besluit binnen de termijn wordt bekendgemaakt. Als later blijkt dat dat toch niet is gebeurd, kunnen belanghebbenden immuniteit tegen het besluit claimen.)"
     },
     {
       "act": "<<vaststellen formulier voor verstrekken van gegevens>>",
@@ -51,7 +51,7 @@
       "action": "[vaststellen]",
       "object": "[formulier]",
       "interested-party": "[aanvrager]",
-      "preconditions": "[bestuursorgaan is bevoegd op de aanvraag te beslissen] \r\nEN \r\n(NIET [formulier is bij wettelijk voorschrift voorzien])",
+      "preconditions": "[bestuursorgaan is bevoegd op de aanvraag te beslissen]  \nEN  \n(NIET [formulier is bij wettelijk voorschrift voorzien])",
       "create": "[formulier voor het verstrekken van gegevens]",
       "terminate": "",
       "version": "2-[19940101]-[jjjjmmdd]",
@@ -66,14 +66,14 @@
       "action": "[verstrekken]",
       "object": "[subsidie lerarenbeurs]",
       "interested-party": "[leraar]",
-      "preconditions": "[aanvraag] EN ((\r\n  [subsidie voor bacheloropleiding leraar]\r\n  OF\r\n  [subsidie voor masteropleiding leraar]\r\n  OF\r\n  [subsidie voor deficiÃ«ntieopleidingen leraar]\r\n)\r\nEN\r\n[leraar voldoet aan bevoegdheidseisen]\r\nEN\r\n[leraar voldoet aan de subsidiecriteria]\t \r\nEN\r\n(\r\n  [subsidie wordt verstrekt voor één studiejaar en voor één opleiding]\r\n  OF\r\n  [uitzondering waarbij subsidie wordt verstrekt voor tweede opleiding]\r\n  OF\r\n  [opleiding met studielast van 60 studiepunten waarvoor ten hoogste twee maal subsidie wordt verstrekt]\r\n  OF\r\n  [opleiding met studielast van meer dan 60 studiepunten waarvoor ten hoogste drie maal subsidie wordt verstrekt]\r\n)\r\nEN\r\n(NIET [leraar ontvangt van de minister een tegemoetkoming in de studiekosten voor het volgen van de opleiding])\r\nEN\r\n(\r\n  [minister verdeelt het beschikbare bedrag per doelgroep over de aanvragen]\r\n  EN\r\n  (NIET [budget volledig benut])\r\n))",
+      "preconditions": "[aanvraag] EN ((\n  [subsidie voor bacheloropleiding leraar]\n  OF\n  [subsidie voor masteropleiding leraar]\n  OF\n  [subsidie voor deficiÃ«ntieopleidingen leraar]\n)\nEN\n[leraar voldoet aan bevoegdheidseisen]\nEN\n[leraar voldoet aan de subsidiecriteria]\t \nEN\n(\n  [subsidie wordt verstrekt voor één studiejaar en voor één opleiding]\n  OF\n  [uitzondering waarbij subsidie wordt verstrekt voor tweede opleiding]\n  OF\n  [opleiding met studielast van 60 studiepunten waarvoor ten hoogste twee maal subsidie wordt verstrekt]\n  OF\n  [opleiding met studielast van meer dan 60 studiepunten waarvoor ten hoogste drie maal subsidie wordt verstrekt]\n)\nEN\n(NIET [leraar ontvangt van de minister een tegemoetkoming in de studiekosten voor het volgen van de opleiding])\nEN\n(\n  [minister verdeelt het beschikbare bedrag per doelgroep over de aanvragen]\n  EN\n  (NIET [budget volledig benut])\n))",
       "create": "[besluit]; [besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]; <minister van OCW berekent de hoogte van de subsidie voor studiekosten>; <subsidiebedrag wordt uitbetaald aan subsidieontvanger voordat de opleiding waar de subsidie betrekking op heeft aanvangt>; <minister verstrekt subsidie lerarenbeurs aan bevoegd gezag>",
-      "terminate": "[aanvraag]; \r\n<minister van OCW besluit binnen acht weken na het sluiten van de aanvraagtermijn>",
+      "terminate": "[aanvraag];  \n<minister van OCW besluit binnen acht weken na het sluiten van de aanvraagtermijn>",
       "version": "",
       "reference": "art. 3 lid 1, aanhef en onder a, Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=3&lid=1",
       "sourcetext": "",
-      "explanation": "Definitie bachelor en masteropleidingen in art. 1 definities stellen eisen aan land en status/erkenning opleiding.\r\n\r\nBevat het besluit ook de hoogte van het subsidiebedrag? In de beschikking staat dit bedrag wel, de vraag is of we het modelleren als een aparte handeling.\r\n\r\nDit is een lastig punt:\r\n- om te kunnen besluiten de subsidie te verlenen moet je weten hoe hoog het bedrag is (om vast te stellen of er nog budget is*)\r\n- waarom zou je berekenen hoe hoog de subsidie is als je nog niet weet of iemand in aanmerking komt voor subsidie\r\n- de berekening van de hoogte van het bedrag is in een apart artikel geregeld\r\n- de subsidie voor studieverlof aan bevoegd gezag wordt apart verstrekt, maar dit bedrag is wel nodig om te kunnen vaststellen of er nog budget is.\r\n\r\nEr zijn geen aparte gronden voor afwijzing en buiten behandeling stellen. Impliceert dat, dat wordt afgewezen als niet wordt voldaan aan een voorwaarde voor verstrekken, en alleen buiten behandeling wordt gesteld op grond van art. 4:5 Awb?\r\n\r\nAls de leraar geen subsidie voor studiekosten ontvangt omdat deze al op andere wijze van de minister een tegemoetkoming i de studiekosten ontvangt, wordt dan ook de subsidie op de kosten van studieverlof geweigerd (art. 10 Slb)?\r\n\r\n*)  Het bepalen of er nog budget is, doe je in de praktijk alleen als het budget bijna op is. En alleen als het budget bijna op is, is de volgorde van indienen relevant."
+      "explanation": "Definitie bachelor en masteropleidingen in art. 1 definities stellen eisen aan land en status/erkenning opleiding.\n\nBevat het besluit ook de hoogte van het subsidiebedrag? In de beschikking staat dit bedrag wel, de vraag is of we het modelleren als een aparte handeling.\n\nDit is een lastig punt:\n- om te kunnen besluiten de subsidie te verlenen moet je weten hoe hoog het bedrag is (om vast te stellen of er nog budget is*)\n- waarom zou je berekenen hoe hoog de subsidie is als je nog niet weet of iemand in aanmerking komt voor subsidie\n- de berekening van de hoogte van het bedrag is in een apart artikel geregeld\n- de subsidie voor studieverlof aan bevoegd gezag wordt apart verstrekt, maar dit bedrag is wel nodig om te kunnen vaststellen of er nog budget is.\n\nEr zijn geen aparte gronden voor afwijzing en buiten behandeling stellen. Impliceert dat, dat wordt afgewezen als niet wordt voldaan aan een voorwaarde voor verstrekken, en alleen buiten behandeling wordt gesteld op grond van art. 4:5 Awb?\n\nAls de leraar geen subsidie voor studiekosten ontvangt omdat deze al op andere wijze van de minister een tegemoetkoming i de studiekosten ontvangt, wordt dan ook de subsidie op de kosten van studieverlof geweigerd (art. 10 Slb)?\n\n*)  Het bepalen of er nog budget is, doe je in de praktijk alleen als het budget bijna op is. En alleen als het budget bijna op is, is de volgorde van indienen relevant."
     },
     {
       "act": "<<minister verstrekt subsidie lerarenbeurs aan bevoegd gezag>>",
@@ -81,9 +81,9 @@
       "action": "[verstrekken]",
       "object": "[subsidie lerarenbeurs]",
       "interested-party": "[bevoegd gezag]",
-      "preconditions": "[aanvraag] EN ([besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]\r\nEN\r\n[leraar is in dienst bij bevoegd gezag]\r\nEN\r\n(\r\n[minister verdeelt het beschikbare bedrag per doelgroep over de aanvragen]\r\nEN\r\n(NIET [budget volledig benut])\r\n))",
-      "create": "[besluit tot verlenen subsidie voor kosten in verband met het verlenen van studieverlof aan de leraar]; <subsidiebedrag wordt uitbetaald aan subsidieontvanger voordat de opleiding waar de subsidie betrekking op heeft aanvangt>",
-      "terminate": "[aanvraag]; \r\n<minister van OCW berekent de hoogte van de subsidie voor studieverlof>",
+      "preconditions": "[aanvraag] EN ([besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]\nEN\n[leraar is in dienst bij bevoegd gezag]\nEN\n(\n[minister verdeelt het beschikbare bedrag per doelgroep over de aanvragen]\nEN\n(NIET [budget volledig benut])\n))",
+      "create": "[besluit tot verlenen subsidie voor kosten in verband met het verlenen van studieverlof aan de leraar]; <subsidiebedrag wordt uitbetaald aan subsidieontvanger voordat de opleiding waar de subsidie betrekking op heeft aanvangt>;<bekend maken van een besluit>",
+      "terminate": "[aanvraag];  \n<minister van OCW berekent de hoogte van de subsidie voor studieverlof>",
       "version": "",
       "reference": "art. 3.1 lid 1, aanhef en onder b, Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=3&lid=1",
@@ -96,8 +96,8 @@
       "action": "[vragen]",
       "object": "[ingevuld aanvraagformulier studiekosten op de website van de Dienst Uitvoering Onderwijs]",
       "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
-      "preconditions": "[aanvraagformulieren studiekosten op de website van de Dienst Uitvoering Onderwijs] EN \r\n[indienen 1 april tot en met 30 juni, voorafgaand aan het studiejaar waarvoor subsidie wordt aangevraagd]",
-      "create": "[aanvraag];[aanvraag subsidieverlening];[aanvraag subsidie voor studiekosten];\r\n<minister van OCW besluit binnen acht weken na het sluiten van de aanvraagtermijn>",
+      "preconditions": "[aanvraagformulieren studiekosten op de website van de Dienst Uitvoering Onderwijs] EN \n[indienen 1 april tot en met 30 juni, voorafgaand aan het studiejaar waarvoor subsidie wordt aangevraagd]",
+      "create": "[aanvraag];[aanvraag subsidieverlening];[aanvraag subsidie voor studiekosten];\n<minister van OCW besluit binnen acht weken na het sluiten van de aanvraagtermijn>",
       "terminate": "",
       "version": "",
       "reference": "art. 7 lid 1 Slb",
@@ -111,8 +111,8 @@
       "action": "[vragen]",
       "object": "[ingevuld aanvraagformulier studieverlof op de website van de Dienst Uitvoering Onderwijs]",
       "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
-      "preconditions": "[aanvraagformulieren studieverlof op de website van de Dienst Uitvoering Onderwijs] EN \r\n[indienen 1 april tot en met 30 juni, voorafgaand aan het studiejaar waarvoor subsidie wordt aangevraagd]",
-      "create": "[aanvraag];[aanvraag subsidieverlening];[aanvraag subsidie voor studieverlof];\r\n<minister van OCW besluit binnen acht weken na het sluiten van de aanvraagtermijn>",
+      "preconditions": "[aanvraagformulieren studieverlof op de website van de Dienst Uitvoering Onderwijs] EN \n[indienen 1 april tot en met 30 juni, voorafgaand aan het studiejaar waarvoor subsidie wordt aangevraagd]",
+      "create": "[aanvraag];[aanvraag subsidieverlening];[aanvraag subsidie voor studieverlof];\n<minister van OCW besluit binnen acht weken na het sluiten van de aanvraagtermijn>",
       "terminate": "",
       "version": "",
       "reference": "art. 8 lid 1 Slb",
@@ -126,7 +126,7 @@
       "action": "[terugvorderen]",
       "object": "[subsidie voor studiekosten]",
       "interested-party": "[leraar]",
-      "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
+      "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding] EN \n[leraar heeft minder dan 15 studiepunten behaald]",
       "create": "[terugvordering]",
       "terminate": "",
       "version": "",
@@ -141,14 +141,14 @@
       "action": "[terugvorderen]",
       "object": "[subsidie voor studiekosten]",
       "interested-party": "[leraar]",
-      "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
+      "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding] EN\n[leraar heeft binnen 2 maanden na verstrekking van de subsidie de aanvraag voor subsidie ingetrokken]",
       "create": "[terugvordering]",
       "terminate": "",
       "version": "",
       "reference": "art. 13 lid 2 Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=13&lid=2",
       "sourcetext": "",
-      "explanation": ""
+      "explanation": "[leraar heeft binnen 2 maanden na verstrekking van de subsidie de aanvraag voor subsidie ingetrokken]  is naar mijn mening ook een preconditie. Als de leraar zijn aanvraag niet intrekt binnen 2 maanden, kan de minister geen subsidie terugvorderen."
     },
     {
       "act": "<<minister vordert subsidie voor studieverlof terug>>",
@@ -157,7 +157,7 @@
       "object": "[subsidie voor studieverlof]",
       "interested-party": "[bevoegd gezag]",
       "preconditions": "[besluit tot verlenen subsidie voor kosten in verband met het verlenen van studieverlof aan de leraar]",
-      "create": "[terugvordering]",
+      "create": "[terugvordering]; <bekend maken besluit>",
       "terminate": "",
       "version": "",
       "reference": "art. 13 lid 2 Slb",
@@ -187,7 +187,7 @@
       "object": "[kosten van collegegeld, studiemiddelen en reiskosten]",
       "interested-party": "[leraar]",
       "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
-      "create": "[terugvordering]",
+      "create": "[terugvordering]; <bekend maken besluit>",
       "terminate": "",
       "version": "",
       "reference": "art. 16 Slb",
@@ -231,7 +231,7 @@
       "action": "[overleggen]",
       "object": "[bewijsstuk waaruit blijkt dat hij ten minste vijftien studiepunten heeft gehaald]",
       "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
-      "preconditions": "[verzoek tot bewijs van het behalen van ten minste vijftien studiepunten] EN [subsidiebedrag is uitbetaald aan subsidieontvanger voordat de opleiding waar de subsidie betrekking op heeft aanvangt] \r\nEN \r\n[studiejaar waarop subsidie betrekking heeft is voorbij]",
+      "preconditions": "[verzoek tot bewijs van het behalen van ten minste vijftien studiepunten] EN [subsidiebedrag is uitbetaald aan subsidieontvanger voordat de opleiding waar de subsidie betrekking op heeft aanvangt]  \nEN  \n[studiejaar waarop subsidie betrekking heeft is voorbij]",
       "create": "",
       "terminate": "",
       "version": "",
@@ -246,7 +246,7 @@
       "action": "[overleggen]",
       "object": "[bewijsstuk waaruit blijkt dat hij collegegeld heeft betaald]",
       "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
-      "preconditions": "[verzoek tot bewijs van betaling van collegegeld] EN [subsidiebedrag is uitbetaald aan subsidieontvanger voordat de opleiding waar de subsidie betrekking op heeft aanvangt] \r\nEN \r\n[studiejaar waarop subsidie betrekking heeft is voorbij]",
+      "preconditions": "[verzoek tot bewijs van betaling van collegegeld] EN [subsidiebedrag is uitbetaald aan subsidieontvanger voordat de opleiding waar de subsidie betrekking op heeft aanvangt]  \nEN  \n[studiejaar waarop subsidie betrekking heeft is voorbij]",
       "create": "",
       "terminate": "",
       "version": "",
@@ -306,7 +306,7 @@
       "action": "[verlenen]",
       "object": "[aanvraag]",
       "interested-party": "[leraar]",
-      "preconditions": "",
+      "preconditions": "[de leraar is in dienst bij het bevoegd gezag] EN\n[aan deze leraar is subsidie voor studiekosten verleend tenzij voor een opleiding geen collegegeld verschuldigd is]",
       "create": "",
       "terminate": "",
       "version": "",
@@ -321,7 +321,7 @@
       "action": "[voldoen aan]",
       "object": "[subsidieverplichting voor subsidie voor studieverlof]",
       "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
-      "preconditions": "[bevoegd gezag heeft studieverlof verleend aan de leraar] \r\nEN \r\n[uit de administratie van het bevoegd gezag blijkt dat het studieverlof daadwerkelijk is verleend]",
+      "preconditions": "[bevoegd gezag heeft studieverlof verleend aan de leraar]\nEN\n[uit de administratie van het bevoegd gezag blijkt dat het studieverlof daadwerkelijk is verleend]",
       "create": "",
       "terminate": "<subsidieverplichting voor subsidie voor studieverlof>",
       "version": "",
@@ -336,14 +336,14 @@
       "action": "[buiten toepassing laten]",
       "object": "[een of meer bepalingen van de subsidieregeling lerarenbeurs]",
       "interested-party": "[leraar]",
-      "preconditions": "[voor zover toepassing van deze bepalingen, gelet op het belang dat deze regeling beoogt te beschermen, zal leiden tot onbillijkheid van overwegende aard]",
-      "create": "",
-      "terminate": "",
+      "preconditions": "[nadelige gevolgen van een besluit zijn onevenredig in verhouding tot de met het besluit te dienen doelen]",
+      "create": "<bekend maken van een besluit>",
+      "terminate": "[aanvraag]",
       "version": "",
       "reference": "art. 26 Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=4&artikel=26",
-      "sourcetext": "",
-      "explanation": ""
+      "sourcetext": "{De minister kan een of meer bepalingen van deze regeling buiten toepassing laten of daarvan afwijken voor zover deze toepassing, gelet op het belang dat deze regeling beoogt te beschermen, zal leiden tot onbillijkheid van overwegende aard.}",
+      "explanation": "Heb de tekst in de preconditie gelijkgetrokken met de tekst in de facts"
     },
     {
       "act": "<<minister wijkt af van een of meer bepalingen van de subsidieregeling lerarenbeurs>>",
@@ -351,14 +351,14 @@
       "action": "[afwijken van]",
       "object": "[een of meer bepalingen van de subsidieregeling lerarenbeurs]",
       "interested-party": "[leraar]",
-      "preconditions": "[voor zover toepassing van deze bepalingen, gelet op het belang dat deze regeling beoogt te beschermen, zal leiden tot onbillijkheid van overwegende aard]",
-      "create": "",
-      "terminate": "",
+      "preconditions": "[nadelige gevolgen van een besluit zijn onevenredig in verhouding tot de met het besluit te dienen doelen]",
+      "create": "<bekend maken van een besluit>",
+      "terminate": "[aanvraag]",
       "version": "",
       "reference": "art. 26 Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=4&artikel=26",
-      "sourcetext": "",
-      "explanation": ""
+      "sourcetext": "{De minister kan een of meer bepalingen van deze regeling buiten toepassing laten of daarvan afwijken voor zover deze toepassing, gelet op het belang dat deze regeling beoogt te beschermen, zal leiden tot onbillijkheid van overwegende aard.}",
+      "explanation": "Heb de tekst in de preconditie gelijkgetrokken met de tekst in de facts"
     },
     {
       "act": "<<bestuursorgaan weigert subsidieverlening aan belanghebbende>>",
@@ -366,14 +366,14 @@
       "action": "[weigeren]",
       "object": "[aanvraag subsidieverlening]",
       "interested-party": "[belanghebbende]",
-      "preconditions": "[een gegronde reden bestaat om aan te nemen dat de activiteiten niet of niet geheel zullen plaatsvinden] OF\r\n\r\n[een gegronde reden bestaat om aan te nemen dat de aanvrager niet zal voldoen aan de aan de subsidie verbonden verplichtingen] OF\r\n\r\n[een gegronde reden bestaat om aan te nemen dat de aanvrager niet op een behoorlijke wijze rekening en verantwoording zal afleggen omtrent de verrichte activiteiten en de daaraan verbonden uitgaven en inkomsten, voor zover deze voor de vaststelling van de subsidie van belang zijn]  OF\r\n\r\n([aanvrager heeft in het kader van de aanvraag onjuiste of onvolledige gegevens verstrekt] EN [de verstrekking van deze gegevens tot een onjuiste beschikking op de aanvraag zou hebben geleid]) OF\r\n\r\n([aanvrager is failliet verklaard] OF [aan aanvrager is surséance van betaling verleend] OF [ten aanzien de aanvrager is de schuldsaneringsregeling natuurlijke personen van toepassing verklaard of een verzoek daartoe bij de rechtbank is ingediend]) OF\r\n\r\n[naar het oordeel van het bestuursorgaan is verstrekking van de subsidie niet verenigbaar met het bepaalde in de artikelen 107 en 108 van het Verdrag betreffende de werking van de Europese Unie]",
-      "create": "[besluit]; [besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]; <minister van OCW berekent de hoogte van de subsidie voor studiekosten>; <subsidiebedrag wordt uitbetaald aan subsidieontvanger voorda",
+      "preconditions": "[een gegronde reden bestaat om aan te nemen dat de activiteiten niet of niet geheel zullen plaatsvinden] OF\n\n[een gegronde reden bestaat om aan te nemen dat de aanvrager niet zal voldoen aan de aan de subsidie verbonden verplichtingen] OF\n\n[een gegronde reden bestaat om aan te nemen dat de aanvrager niet op een behoorlijke wijze rekening en verantwoording zal afleggen omtrent de verrichte activiteiten en de daaraan verbonden uitgaven en inkomsten, voor zover deze voor de vaststelling van de subsidie van belang zijn]  OF\n\n([aanvrager heeft in het kader van de aanvraag onjuiste of onvolledige gegevens verstrekt] EN [de verstrekking van deze gegevens tot een onjuiste beschikking op de aanvraag zou hebben geleid]) OF\n\n([aanvrager is failliet verklaard] OF [aan aanvrager is surséance van betaling verleend] OF [ten aanzien de aanvrager is de schuldsaneringsregeling natuurlijke personen van toepassing verklaard of een verzoek daartoe bij de rechtbank is ingediend]) OF\n\n[naar het oordeel van het bestuursorgaan is verstrekking van de subsidie niet verenigbaar met het bepaalde in de artikelen 107 en 108 van het Verdrag betreffende de werking van de Europese Unie]",
+      "create": "[besluit]; [besluit tot weigeren subsidie];<bekend maken van een besluit>",
       "terminate": "[aanvraag]",
       "version": "",
       "reference": "art.4:35 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.2&afdeling=4.2.3&artikel=4:35",
-      "sourcetext": "{1 De subsidieverlening kan in ieder geval worden geweigerd indien een gegronde reden bestaat om aan te nemen dat:\r\n\r\na. de activiteiten niet of niet geheel zullen plaatsvinden;\r\n\r\nb. de aanvrager niet zal voldoen aan de aan de subsidie verbonden verplichtingen;\r\n\r\nc. de aanvrager niet op een behoorlijke wijze rekening en verantwoording zal afleggen omtrent de verrichte activiteiten en de daaraan verbonden uitgaven en inkomsten, voor zover deze voor de vaststelling van de subsidie van belang zijn.\r\n\r\n2 De subsidieverlening kan voorts in ieder geval worden geweigerd indien de aanvrager:\r\n\r\na. in het kader van de aanvraag onjuiste of onvolledige gegevens heeft verstrekt en de verstrekking van deze gegevens tot een onjuiste beschikking op de aanvraag zou hebben geleid, of\r\n\r\nb. failliet is verklaard of aan hem surséance van betaling is verleend of ten aanzien van hem de schuldsaneringsregeling natuurlijke personen van toepassing is verklaard, dan wel een verzoek daartoe bij de rechtbank is ingediend.\r\n\r\n3 De subsidieverlening wordt voorts geweigerd indien de verstrekking van subsidie naar het oordeel van het bestuursorgaan niet verenigbaar is met het bepaalde in de artikelen 107 en 108 van het Verdrag betreffende de werking van de Europese Unie.}",
-      "explanation": "Omdat in artikel 10 Sbl ook de weigeringsgronden van artikel 4:35 Awb genoemd worden als weigeringsgronden, hebben we  artikel 4:35 Awb toegevoegd. Hierbij heb je dus ook een andere actor en geïnteresseerde partij. \r\n19-7 Bij kolom interested party aanvrager gewijzigd in belanghebbende, omdat belanghebbende de wettelijke term is. Er bestaat in de Awb niet zoiets als een aanvrager. De belanghebbende doet een aanvraag"
+      "sourcetext": "{1 De subsidieverlening kan in ieder geval worden geweigerd indien een gegronde reden bestaat om aan te nemen dat:\n\na. de activiteiten niet of niet geheel zullen plaatsvinden;\n\nb. de aanvrager niet zal voldoen aan de aan de subsidie verbonden verplichtingen;\n\nc. de aanvrager niet op een behoorlijke wijze rekening en verantwoording zal afleggen omtrent de verrichte activiteiten en de daaraan verbonden uitgaven en inkomsten, voor zover deze voor de vaststelling van de subsidie van belang zijn.\n\n2 De subsidieverlening kan voorts in ieder geval worden geweigerd indien de aanvrager:\n\na. in het kader van de aanvraag onjuiste of onvolledige gegevens heeft verstrekt en de verstrekking van deze gegevens tot een onjuiste beschikking op de aanvraag zou hebben geleid, of\n\nb. failliet is verklaard of aan hem surséance van betaling is verleend of ten aanzien van hem de schuldsaneringsregeling natuurlijke personen van toepassing is verklaard, dan wel een verzoek daartoe bij de rechtbank is ingediend.\n\n3 De subsidieverlening wordt voorts geweigerd indien de verstrekking van subsidie naar het oordeel van het bestuursorgaan niet verenigbaar is met het bepaalde in de artikelen 107 en 108 van het Verdrag betreffende de werking van de Europese Unie.}",
+      "explanation": "Omdat in artikel 10 Sbl ook de weigeringsgronden van artikel 4:35 Awb genoemd worden als weigeringsgronden, hebben we  artikel 4:35 Awb toegevoegd. Hierbij heb je dus ook een andere actor en geïnteresseerde partij. \n19-7 Bij kolom interested party aanvrager gewijzigd in belanghebbende, omdat belanghebbende de wettelijke term is. Er bestaat in de Awb niet zoiets als een aanvrager. De belanghebbende doet een aanvraag"
     },
     {
       "act": "<<minister van OCW weigert subsidieverlening aan een leraar>>",
@@ -382,7 +382,7 @@
       "object": "[subsidieverlening aan een leraar]",
       "interested-party": "[leraar]",
       "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
-      "create": "",
+      "create": "<bekend maken van een besluit>",
       "terminate": "[aanvraag]",
       "version": "",
       "reference": "art. 10 Slb",
@@ -395,13 +395,28 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verdelen]",
       "object": "[beschikbare bedrag voor de subsidieregeling lerarenbeurs]",
-      "interested-party": "[wetgevende macht]",
+      "interested-party": "[Regering]",
       "preconditions": "",
       "create": "[]",
       "terminate": "",
       "version": "",
       "reference": "art. 6 lid 1 Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=6&lid=1",
+      "sourcetext": "",
+      "explanation": ""
+    },
+    {
+      "act": "<<minister van OCW verdeelt concreet het beschikbare budget in een studiejaar per soort onderwijs>>",
+      "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "action": "[verdelen]",
+      "object": "[concrete verdeling van het beschikbare budget in een studiejaar per soort onderwijs]",
+      "interested-party": "[Regering]",
+      "preconditions": "",
+      "create": "",
+      "terminate": "",
+      "version": "",
+      "reference": "",
+      "juriconnect": "",
       "sourcetext": "",
       "explanation": ""
     },
@@ -430,7 +445,7 @@
       "create": "[vergoeding studieverlof]",
       "terminate": "",
       "version": "",
-      "reference": "Art. 21 Slb \r\nArt. 22 Slb",
+      "reference": "Art. 21 Slb  \nArt. 22 Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=3&artikel=22&z=2019-04-01&g=2019-04-01",
       "sourcetext": "{De aanvraag geschiedt door invulling en inlevering of elektronische verzending van daartoe bestemde door de minister te verstrekken formulieren op de website van de Dienst Uitvoering Onderwijs.}",
       "explanation": ""
@@ -469,38 +484,38 @@
   "facts": [
     {
       "fact": "[bestuursorgaan]",
-      "function": "[orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld] \r\nOF \r\n([persoon of college, met enig openbaar gezag bekleed] \r\nEN (NIET \r\n[organen, personen en colleges die niet als bestuursorgaan worden aangemerkt]))",
+      "function": "[orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld]\nOF\n([persoon of college, met enig openbaar gezag bekleed]\nEN (NIET\n[organen, personen en colleges die niet als bestuursorgaan worden aangemerkt]))",
       "version": "10-[20110223]-[jjjjmmdd]",
       "art": "art. 1:3 lid 1 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=1&titeldeel=1.1&artikel=1:1&lid=1&z=2017-03-10&g=2017-03-10",
-      "sourcetext": "{Onder bestuursorgaan wordt verstaan: \r\na. een orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld, of \r\nb. een ander persoon of college, met enig openbaar gezag bekleed.}",
+      "sourcetext": "{Onder bestuursorgaan wordt verstaan:  \na. een orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld, of  \nb. een ander persoon of college, met enig openbaar gezag bekleed.}",
       "explanation": ""
     },
     {
       "fact": "[orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld]",
-      "function": "[orgaan] \r\nEN \r\n[rechtspersoon die krachtens publiekrecht is ingesteld]",
+      "function": "[orgaan]  \nEN  \n[rechtspersoon die krachtens publiekrecht is ingesteld]",
       "version": "10-[20110223]-[jjjjmmdd]",
       "art": "art. 1:3 lid 1 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=1&titeldeel=1.1&artikel=1:1&lid=1&z=2017-03-10&g=2017-03-10",
-      "sourcetext": "{Onder bestuursorgaan wordt verstaan: \r\na. een orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld, of \r\nb. een ander persoon of college, met enig openbaar gezag bekleed.}",
+      "sourcetext": "{Onder bestuursorgaan wordt verstaan:  \na. een orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld, of  \nb. een ander persoon of college, met enig openbaar gezag bekleed.}",
       "explanation": ""
     },
     {
       "fact": "[persoon of college, met enig openbaar gezag bekleed]",
-      "function": "( \r\n[persoon] \r\nOF \r\n[college] \r\n) \r\nEN \r\n[met enig openbaar gezag bekleed]",
+      "function": "(  \n[persoon]  \nOF  \n[college]  \n)  \nEN  \n[met enig openbaar gezag bekleed]",
       "version": "10-[20110223]-[jjjjmmdd]",
       "art": "art. 1:3 lid 1 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=1&titeldeel=1.1&artikel=1:1&lid=1&z=2017-03-10&g=2017-03-10",
-      "sourcetext": "{Onder bestuursorgaan wordt verstaan: \r\na. een orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld, of \r\nb. een ander persoon of college, met enig openbaar gezag bekleed.}",
+      "sourcetext": "{Onder bestuursorgaan wordt verstaan:  \na. een orgaan van een rechtspersoon die krachtens publiekrecht is ingesteld, of  \nb. een ander persoon of college, met enig openbaar gezag bekleed.}",
       "explanation": ""
     },
     {
       "fact": "[organen, personen en colleges die niet als bestuursorgaan worden aangemerkt]",
-      "function": "[wetgevende macht] OF\r\n [de kamers en de verenigde vergadering der Staten-Generaal] OF\r\n [onafhankelijke, bij de wet ingestelde organen die met rechtspraak zijn belast, alsmede de Raad voor de rechtspraak en het College van afgevaardigden] OF\r\n [Raad van State en zijn afdelingen] OF\r\n [Algemene Rekenkamer] OF\r\n [Nationale ombudsman en de substituut-ombudsmannen als bedoeld in artikel 9, eerste lid, van de Wet Nationale ombudsman, en ombudsmannen en ombudscommissies als bedoeld in artikel 9:17, onderdeel b] OF\r\n [voorzitters, leden, griffiers en secretarissen van de in de onderdelen b tot en met f bedoelde organen, de procureur-generaal, de plaatsvervangend procureur-generaal en de advocaten-generaal bij de Hoge Raad, de besturen van de in onderdeel c bedoelde organen alsmede de voorzitters van die besturen, alsmede de commissies uit het midden van de in de onderdelen b tot en met f bedoelde organen] OF\r\n [commissie van toezicht betreffende de inlichtingen- en veiligheidsdiensten, bedoeld in artikel 97 van de Wet op de inlichtingen- en veiligheidsdiensten 2017] OF\r\n[de toetsingscommissie inzet bevoegdheden, bedoeld in artikel 32 van de Wet op de inlichtingen- en veiligheidsdiensten 2017]",
+      "function": "[wetgevende macht] OF\n [de kamers en de verenigde vergadering der Staten-Generaal] OF\n [onafhankelijke, bij de wet ingestelde organen die met rechtspraak zijn belast, alsmede de Raad voor de rechtspraak en het College van afgevaardigden] OF\n [Raad van State en zijn afdelingen] OF\n [Algemene Rekenkamer] OF\n [Nationale ombudsman en de substituut-ombudsmannen als bedoeld in artikel 9, eerste lid, van de Wet Nationale ombudsman, en ombudsmannen en ombudscommissies als bedoeld in artikel 9:17, onderdeel b] OF\n [voorzitters, leden, griffiers en secretarissen van de in de onderdelen b tot en met f bedoelde organen, de procureur-generaal, de plaatsvervangend procureur-generaal en de advocaten-generaal bij de Hoge Raad, de besturen van de in onderdeel c bedoelde organen alsmede de voorzitters van die besturen, alsmede de commissies uit het midden van de in de onderdelen b tot en met f bedoelde organen] OF\n [commissie van toezicht betreffende de inlichtingen- en veiligheidsdiensten, bedoeld in artikel 97 van de Wet op de inlichtingen- en veiligheidsdiensten 2017] OF\n[de toetsingscommissie inzet bevoegdheden, bedoeld in artikel 32 van de Wet op de inlichtingen- en veiligheidsdiensten 2017]",
       "version": "10-[20110223]-[jjjjmmdd]",
       "art": "art. 1:1 lid 2 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=1&titeldeel=1.1&artikel=1:1&lid=2&z=2017-03-10&g=2017-03-10",
-      "sourcetext": "{2.\tDe volgende organen, personen en colleges worden niet als bestuursorgaan aangemerkt:\r\na.\tde wetgevende macht;\r\nb.\tde kamers en de verenigde vergadering der Staten-Generaal;\r\nc.\tonafhankelijke, bij de wet ingestelde organen die met rechtspraak zijn belast, alsmede de Raad voor de rechtspraak en het College van afgevaardigden;\r\nd.\tde Raad van State en zijn afdelingen;\r\ne.\tde Algemene Rekenkamer;\r\nf.\tde Nationale ombudsman en de substituut-ombudsmannen als bedoeld in artikel 9, eerste lid, van de Wet Nationale ombudsman, en ombudsmannen en ombudscommissies als bedoeld in artikel 9:17, onderdeel b;\r\ng.\tde voorzitters, leden, griffiers en secretarissen van de in de onderdelen b tot en met f bedoelde organen, de procureur-generaal, de plaatsvervangend procureur-generaal en de advocaten-generaal bij de Hoge Raad, de besturen van de in onderdeel c bedoelde organen alsmede de voorzitters van die besturen, alsmede de commissies uit het midden van de in de onderdelen b tot en met f bedoelde organen;\r\nh.\tde commissie van toezicht op de inlichtingen- en veiligheidsdiensten en haar afdelingen, bedoeld in artikel 97 van de Wet op de inlichtingen- en veiligheidsdiensten 2017;\r\ni.\tde toetsingscommissie inzet bevoegdheden, bedoeld in artikel 32 van de Wet op de inlichtingen- en veiligheidsdiensten 2017.}",
+      "sourcetext": "{2.\tDe volgende organen, personen en colleges worden niet als bestuursorgaan aangemerkt:\na.\tde wetgevende macht;\nb.\tde kamers en de verenigde vergadering der Staten-Generaal;\nc.\tonafhankelijke, bij de wet ingestelde organen die met rechtspraak zijn belast, alsmede de Raad voor de rechtspraak en het College van afgevaardigden;\nd.\tde Raad van State en zijn afdelingen;\ne.\tde Algemene Rekenkamer;\nf.\tde Nationale ombudsman en de substituut-ombudsmannen als bedoeld in artikel 9, eerste lid, van de Wet Nationale ombudsman, en ombudsmannen en ombudscommissies als bedoeld in artikel 9:17, onderdeel b;\ng.\tde voorzitters, leden, griffiers en secretarissen van de in de onderdelen b tot en met f bedoelde organen, de procureur-generaal, de plaatsvervangend procureur-generaal en de advocaten-generaal bij de Hoge Raad, de besturen van de in onderdeel c bedoelde organen alsmede de voorzitters van die besturen, alsmede de commissies uit het midden van de in de onderdelen b tot en met f bedoelde organen;\nh.\tde commissie van toezicht op de inlichtingen- en veiligheidsdiensten en haar afdelingen, bedoeld in artikel 97 van de Wet op de inlichtingen- en veiligheidsdiensten 2017;\ni.\tde toetsingscommissie inzet bevoegdheden, bedoeld in artikel 32 van de Wet op de inlichtingen- en veiligheidsdiensten 2017.}",
       "explanation": "Functio aangepast qua layout (met alt-enter) gewerkt, omdat de wetgeving is aangepast. Als je hier met opsomming werkt, zie je dat ook eerder. Wijziging is verwijzing naar nieuwe  wetgeving"
     },
     {
@@ -532,7 +547,7 @@
     },
     {
       "fact": "[beschikking]",
-      "function": "[besluit] \r\nEN NIET \r\n[besluit dat van algemene strekking is]",
+      "function": "[besluit]\nEN (NIET\n[besluit dat van algemene strekking is])",
       "version": "2-[19980101]-[jjjjmmdd]",
       "art": "art. 1:3 lid 2 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=1&titeldeel=1.1&artikel=1:3&lid=2&z=2017-03-01&g=2017-03-01",
@@ -549,8 +564,26 @@
       "explanation": "Dit concept beschrijft het verzoek voordat het is ingediend bij een bestuursorgaan."
     },
     {
+      "fact": "[de aanvraag is binnen de afgelopen 4 weken aangevuld]",
+      "function": "[]",
+      "version": "",
+      "art": "art.4:5, lid 4 Awb",
+      "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.1&afdeling=4.1.1&artikel=4:5&lid=4",
+      "sourcetext": "{Een besluit om de aanvraag niet te behandelen wordt aan de aanvrager bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken.}",
+      "explanation": "Toegevoegd, omdat buitenbehandelingstelling aan een termijn is verbonden"
+    },
+    {
+      "fact": "[gestelde termijn voor aanvulling is ongebruikt verstreken]",
+      "function": "[]",
+      "version": "",
+      "art": "art.4:5, lid 4 Awb",
+      "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.1&afdeling=4.1.1&artikel=4:5&lid=4",
+      "sourcetext": "{Een besluit om de aanvraag niet te behandelen wordt aan de aanvrager bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken.}",
+      "explanation": "Toegevoegd, omdat buitenbehandelingstelling aan een termijn is verbonden"
+    },
+    {
       "fact": "[beleidsregel]",
-      "function": "[bij besluit vastgestelde algemene regel] \r\nEN NIET \r\n[algemeen verbindend voorschrift, omtrent de afweging van belangen, de vaststelling van feiten of de uitleg van wettelijke voorschriften bij het gebruik van een bevoegdheid van een bestuursorgaan]",
+      "function": "[bij besluit vastgestelde algemene regel]\nEN (NIET\n[algemeen verbindend voorschrift, omtrent de afweging van belangen, de vaststelling van feiten of de uitleg van wettelijke voorschriften bij het gebruik van een bevoegdheid van een bestuursorgaan])",
       "version": "2-[19980101]-[jjjjmmdd]",
       "art": "art. 1:3 lid 4 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=1&titeldeel=1.1&artikel=1:3&lid=4&z=2017-03-01&g=2017-03-01",
@@ -563,7 +596,7 @@
       "version": "2-[19980101]-[jjjjmmdd]",
       "art": "art. 1:3 lid 1 en 3 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=1&titeldeel=1.1&artikel=1:3&lid=3&z=2017-03-01&g=2017-03-01",
-      "sourcetext": "{Onder aanvraag wordt verstaan: een verzoek van een belanghebbende, een besluit te nemen.} \r\n(â€¦) \r\n{Onder besluit wordt verstaan: een schriftelijke beslissing van een bestuursorgaan, inhoudende een publiekrechtelijke rechtshandeling.}",
+      "sourcetext": "{Onder aanvraag wordt verstaan: een verzoek van een belanghebbende, een besluit te nemen.}  \n(â€¦)  \n{Onder besluit wordt verstaan: een schriftelijke beslissing van een bestuursorgaan, inhoudende een publiekrechtelijke rechtshandeling.}",
       "explanation": ""
     },
     {
@@ -572,7 +605,7 @@
       "version": "",
       "art": "art. 4:35 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.2&afdeling=4.2.3&artikel=4:35",
-      "sourcetext": "{1 De subsidieverlening kan in ieder geval worden geweigerd indien een gegronde reden bestaat om aan te nemen dat:\r\n\r\na. de activiteiten niet of niet geheel zullen plaatsvinden;\r\n\r\nb. de aanvrager niet zal voldoen aan de aan de subsidie verbonden verplichtingen;\r\n\r\nc. de aanvrager niet op een behoorlijke wijze rekening en verantwoording zal afleggen omtrent de verrichte activiteiten en de daaraan verbonden uitgaven en inkomsten, voor zover deze voor de vaststelling van de subsidie van belang zijn.\r\n\r\n2 De subsidieverlening kan voorts in ieder geval worden geweigerd indien de aanvrager:\r\n\r\na. in het kader van de aanvraag onjuiste of onvolledige gegevens heeft verstrekt en de verstrekking van deze gegevens tot een onjuiste beschikking op de aanvraag zou hebben geleid, of\r\n\r\nb. failliet is verklaard of aan hem surséance van betaling is verleend of ten aanzien van hem de schuldsaneringsregeling natuurlijke personen van toepassing is verklaard, dan wel een verzoek daartoe bij de rechtbank is ingediend.\r\n\r\n3 De subsidieverlening wordt voorts geweigerd indien de verstrekking van subsidie naar het oordeel van het bestuursorgaan niet verenigbaar is met het bepaalde in de artikelen 107 en 108 van het Verdrag betreffende de werking van de Europese Unie.}",
+      "sourcetext": "{1 De subsidieverlening kan in ieder geval worden geweigerd indien een gegronde reden bestaat om aan te nemen dat:\n\na. de activiteiten niet of niet geheel zullen plaatsvinden;\n\nb. de aanvrager niet zal voldoen aan de aan de subsidie verbonden verplichtingen;\n\nc. de aanvrager niet op een behoorlijke wijze rekening en verantwoording zal afleggen omtrent de verrichte activiteiten en de daaraan verbonden uitgaven en inkomsten, voor zover deze voor de vaststelling van de subsidie van belang zijn.\n\n2 De subsidieverlening kan voorts in ieder geval worden geweigerd indien de aanvrager:\n\na. in het kader van de aanvraag onjuiste of onvolledige gegevens heeft verstrekt en de verstrekking van deze gegevens tot een onjuiste beschikking op de aanvraag zou hebben geleid, of\n\nb. failliet is verklaard of aan hem surséance van betaling is verleend of ten aanzien van hem de schuldsaneringsregeling natuurlijke personen van toepassing is verklaard, dan wel een verzoek daartoe bij de rechtbank is ingediend.\n\n3 De subsidieverlening wordt voorts geweigerd indien de verstrekking van subsidie naar het oordeel van het bestuursorgaan niet verenigbaar is met het bepaalde in de artikelen 107 en 108 van het Verdrag betreffende de werking van de Europese Unie.}",
       "explanation": ""
     },
     {
@@ -689,7 +722,7 @@
       "version": "3-[20040701]-[jjjjmmdd]",
       "art": "art. 4:5 lid 1, onder a, Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.1&afdeling=4.1.1&artikel=4:5&lid=1",
-      "sourcetext": "{Het bestuursorgaan kan besluiten de aanvraag niet te behandelen, indien: \r\na. de aanvrager niet heeft voldaan aan enig wettelijk voorschrift voor het in behandeling nemen van de aanvraag, of}",
+      "sourcetext": "{Het bestuursorgaan kan besluiten de aanvraag niet te behandelen, indien:  \na. de aanvrager niet heeft voldaan aan enig wettelijk voorschrift voor het in behandeling nemen van de aanvraag, of}",
       "explanation": ""
     },
     {
@@ -774,6 +807,24 @@
       "explanation": ""
     },
     {
+      "fact": "[de leraar is in dienst bij het bevoegd gezag]",
+      "function": "[]",
+      "version": "",
+      "art": "art. 20, onder a Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=3&artikel=20",
+      "sourcetext": "{de leraar in dienst is bij het bevoegd gezag}",
+      "explanation": "Fact toegevoegd, omdat dit een preconditie is bij de act verlenen subsidie studieverlof"
+    },
+    {
+      "fact": "[aan de leraar is subsidie voor studiekosten verleend tenzij voor een opleiding geen collegegeld verschuldigd is]",
+      "function": "[]",
+      "version": "",
+      "art": "art. 20, onder b Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=3&artikel=20",
+      "sourcetext": "{aan deze leraar subsidie voor studiekosten is verleend tenzij voor een opleiding geen collegegeld verschuldigd is}",
+      "explanation": "Fact toegevoegd, omdat dit een preconditie is bij de act verlenen subsidie studieverlof"
+    },
+    {
       "fact": "[subsidie voor bacheloropleiding]",
       "function": "[]",
       "version": "",
@@ -798,7 +849,7 @@
       "art": "art. 3 lid 2 Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=3&lid=2",
       "sourcetext": "{De subsidie kan worden verstrekt voor bachelor-, master- en deficiëntieopleidingen.}",
-      "explanation": "Omdat ik niet wist wat een deficiëntie-opleiding is: Heb je een havo-, vwo- of een 'oud' mbo-lang-diploma waarmee je niet toelaatbaar bent omdat één of meer verplichte eindexamenvakken ontbreken? Dan heb je (een) deficiëntie(s). Deze deficiëntie(s) moet je opheffen vóórdat je met de opleiding start.  Bron: https://www.hogeschoolrotterdam.nl/voorlichting/toelatingsvoorwaarden/deficienties/ \r\nIn artikel 1 van de regeling wordt deficiëntie-opleiding gedefiniteerd"
+      "explanation": "Omdat ik niet wist wat een deficiëntie-opleiding is: Heb je een havo-, vwo- of een 'oud' mbo-lang-diploma waarmee je niet toelaatbaar bent omdat één of meer verplichte eindexamenvakken ontbreken? Dan heb je (een) deficiëntie(s). Deze deficiëntie(s) moet je opheffen vóórdat je met de opleiding start.  Bron: https://www.hogeschoolrotterdam.nl/voorlichting/toelatingsvoorwaarden/deficienties/ \nIn artikel 1 van de regeling wordt deficiëntie-opleiding gedefiniteerd"
     },
     {
       "fact": "[subsidie wordt verstrekt voor één studiejaar en voor één opleiding]",
@@ -811,57 +862,48 @@
     },
     {
       "fact": "[vergoeding kosten collegegeld]",
-      "function": "MIN ([verschuldigde collegegeld], [â‚¬ 7.000])",
+      "function": "[]",
       "version": "",
       "art": "art. 15, onder a, Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=2&artikel=15",
       "sourcetext": "{De subsidie voor studiekosten bedraagt de som van een vergoeding voor: a. de kosten van collegegeld tot een maximum van € 7000;}",
-      "explanation": ""
+      "explanation": "MIN ([verschuldigde collegegeld], [maximaal 7.000] Moet nog gedaan worden"
     },
     {
       "fact": "[vergoeding studiemiddelen]",
-      "function": "MIN (PRODUCT ([10%],[verschuldigde collegegeld]), [â‚¬ 350])",
+      "function": "[]",
       "version": "",
       "art": "art. 15, onder b, Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=2&artikel=15",
       "sourcetext": "{De subsidie voor studiekosten bedraagt de som van een vergoeding voor: b. de kosten van studiemiddelen van tien procent van het verschuldigde collegegeld tot een maximum van € 350}",
-      "explanation": ""
+      "explanation": "MIN (PRODUCT ([10%],[verschuldigde collegegeld]), [â‚¬ 350]) Moet nog gedaan worden"
     },
     {
       "fact": "[vergoeding reiskosten]",
-      "function": "MIN (PRODUCT ([verschuldigde collegegeld], [10%)], [â‚¬ 350])",
+      "function": "[]",
       "version": "",
       "art": "art. 15, onder c, Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=2&artikel=15",
       "sourcetext": "{De subsidie voor studiekosten bedraagt de som van een vergoeding voor: c. reiskosten van tien procent van het verschuldigde collegegeld tot een maximum van € 350.}",
-      "explanation": ""
+      "explanation": "MIN (PRODUCT ([verschuldigde collegegeld], [10%)], [â‚¬ 350]) Moet nog gedaan worden"
     },
     {
       "fact": "[vergoeding studieverlof]",
-      "function": "berekening voor [aantal uur] x [bedrag per uur] met varianten voor: \r\n- voltijd- en deeltijdaanstelling; \r\n- bachelor en master; \r\n- basisonderwijs, voortgezet onderwijs, beroepsonderwijs, hoger beroepsonderwijs",
+      "function": "[]",
       "version": "",
       "art": "art. 21 en 22 Slb",
       "juriconnect": "",
-      "sourcetext": "Voor subsidiëring komt per jaar voor een voltijdsaanstelling, of voor een deeltijdsaanstelling een evenredig deel, ten hoogste het volgende aantal studieverlofuren in aanmerking:\r\na. voor een bacheloropleiding: 160 uur; en\r\nb. voor een masteropleiding voor een subsidieontvanger in de sector:\r\n1. basisonderwijs: 320 uur;\r\n2. speciaal onderwijs of voortgezet speciaal onderwijs: 320 uur;\r\n3. voortgezet onderwijs: 240 uur;\r\n4. beroepsonderwijs en educatie: 240 uur; en\r\n5. hoger beroepsonderwijs: 320 uur.\r\n\r\nDe subsidiebedragen voor een studieverlofuur zijn voor een subsidieontvanger in de sector:\r\na. basisonderwijs: â‚¬ 37,79;\r\nb. speciaal onderwijs of voortgezet speciaal onderwijs: â‚¬ 39,58;\r\nc. voortgezet onderwijs: â‚¬ 42,86;\r\nd. beroepsonderwijs en educatie: â‚¬ 44,07; en\r\ne. hoger beroepsonderwijs: â‚¬ 48,00.",
-      "explanation": ""
+      "sourcetext": "Voor subsidiëring komt per jaar voor een voltijdsaanstelling, of voor een deeltijdsaanstelling een evenredig deel, ten hoogste het volgende aantal studieverlofuren in aanmerking:\na. voor een bacheloropleiding: 160 uur; en\nb. voor een masteropleiding voor een subsidieontvanger in de sector:\n1. basisonderwijs: 320 uur;\n2. speciaal onderwijs of voortgezet speciaal onderwijs: 320 uur;\n3. voortgezet onderwijs: 240 uur;\n4. beroepsonderwijs en educatie: 240 uur; en\n5. hoger beroepsonderwijs: 320 uur.\n\nDe subsidiebedragen voor een studieverlofuur zijn voor een subsidieontvanger in de sector:\na. basisonderwijs: â‚¬ 37,79;\nb. speciaal onderwijs of voortgezet speciaal onderwijs: â‚¬ 39,58;\nc. voortgezet onderwijs: â‚¬ 42,86;\nd. beroepsonderwijs en educatie: â‚¬ 44,07; en\ne. hoger beroepsonderwijs: â‚¬ 48,00.",
+      "explanation": "berekening voor [aantal uur] x [bedrag per uur] met varianten voor:\n- voltijd- en deeltijdaanstelling;\n- bachelor en master;\n- basisonderwijs, voortgezet onderwijs, beroepsonderwijs, hoger beroepsonderwijs \n\nDit moet nog gedaan worden"
     },
     {
       "fact": "[leraar voldoet aan de subsidiecriteria]",
-      "function": "[leraar die bij aanvang van het studiejaar waarvoor de subsidie bestemd de graad Bachelor mag voeren] \r\nEN \r\n[leraar die op het moment van de subsidieaanvraag in dienst is bij een werkgever] \r\nEN \r\n( \r\n[leraar werkt bij een of meer bekostigde onderwijsinstellingen] \r\nOF \r\n[leraar werkt in een of meer orthopedagogisch-didactische centra] \r\n) \r\nEN \r\n[leraar die voor minimaal twintig procent van zijn werktijd is belast met lesgebonden taken] \r\nEN \r\n[leraar die pedagogisch-didactisch verantwoordelijk is voor het onderwijs] \r\nEN \r\n(NIET [leraar is aangesteld als ambulant begeleider]) \r\nEN \r\n(NIET [leraar is aangesteld als zorgcoördinator]) \r\nEN \r\n(NIET [leraar is aangesteld als intern begeleider]) \r\nEN \r\n(NIET [leraar is aangesteld als remedial teacher]) \r\nEN \r\n[leraar die ingeschreven staat in registerleraar.nl]",
+      "function": "[leraar die bij aanvang van het studiejaar waarvoor de subsidie bestemd de graad Bachelor mag voeren]\nEN\n[leraar die op het moment van de subsidieaanvraag in dienst is bij een werkgever]\nEN\n(\n[leraar werkt bij een of meer bekostigde onderwijsinstellingen]\nOF\n[leraar werkt in een of meer orthopedagogisch-didactische centra]\n)\nEN\n[leraar die voor minimaal twintig procent van zijn werktijd is belast met lesgebonden taken]\nEN\n[leraar die pedagogisch-didactisch verantwoordelijk is voor het onderwijs]\nEN\n(NIET [leraar is aangesteld als ambulant begeleider])\nEN\n(NIET [leraar is aangesteld als zorgcoördinator])\nEN\n(NIET [leraar is aangesteld als intern begeleider])\nEN\n(NIET [leraar is aangesteld als remedial teacher])\nEN\n[leraar die ingeschreven staat in registerleraar.nl]",
       "version": "",
       "art": "art. 14 Slb",
       "juriconnect": "",
       "sourcetext": "",
-      "explanation": "Wat betekent werkt, of werkte in de twaalf maanden voorafgaand aan de subsidieaanvraag. Betekent dat , dat de leraar op het moment van de subsidieaanvraag niet meer bij de werkgever hoeft te werken. En zo ja, hoe lang geleden mag het dan zijn dat de leraar twaalf maanden in het onderwijs heeft gewerkt? \r\nEr is geen art 20, lid 1. Er is artikel 20, sub a en b Slb. En je moet aan beide vereisten voldoen, dus volstaat hier, naar mijn mening,  een verwijzing naar het gehele artikel 20 Slb., zonder nadere aanduiding."
-    },
-    {
-      "fact": "[De subsidie wordt verstrekt voor één studiejaar en voor één opleiding.]",
-      "function": "[]",
-      "version": "",
-      "art": "art. 3 lid 3 Slb",
-      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=3&lid=3",
-      "sourcetext": "{De subsidie wordt verstrekt voor één studiejaar en voor één opleiding.}",
-      "explanation": "Tekst in fact veranderd. Stond 2 keer opleiding"
+      "explanation": "Wat betekent werkt, of werkte in de twaalf maanden voorafgaand aan de subsidieaanvraag. Betekent dat , dat de leraar op het moment van de subsidieaanvraag niet meer bij de werkgever hoeft te werken. En zo ja, hoe lang geleden mag het dan zijn dat de leraar twaalf maanden in het onderwijs heeft gewerkt? \nEr is geen art 20, lid 1. Er is artikel 20, sub a en b Slb. En je moet aan beide vereisten voldoen, dus volstaat hier, naar mijn mening,  een verwijzing naar het gehele artikel 20 Slb., zonder nadere aanduiding."
     },
     {
       "fact": "[3 uitzonderingen waarbij subsidie wordt verstrekt voor tweede opleiding]",
@@ -869,7 +911,7 @@
       "version": "",
       "art": "art. 3 lid 4 Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=3&lid=4",
-      "sourcetext": "{n afwijking van het derde lid kan subsidie worden verstrekt voor een tweede opleiding indien:\r\na. subsidie wordt aangevraagd voor een masteropleiding en reeds subsidie is ontvangen voor een bacheloropleiding;\r\nb. subsidie wordt aangevraagd voor een masteropleiding en reeds subsidie is ontvangen voor een deficiëntieopleiding, met dien verstande dat indien reeds subsidie voor het volgen van een deficiëntieopleiding is verleend, voor een opleiding van meer dan 60 studiepunten ten hoogste twee maal subsidie wordt verleend; en\r\nc. subsidie is ontvangen op basis van deRegeling lerarenbeurs voor scholing, zij-instroom en bewegingsonderwijs 2009–2017zoals deze gold vóór 1 april 2013 voor een opleiding anders dan een deficiëntie-, bachelor- of masteropleiding.}",
+      "sourcetext": "{n afwijking van het derde lid kan subsidie worden verstrekt voor een tweede opleiding indien:\na. subsidie wordt aangevraagd voor een masteropleiding en reeds subsidie is ontvangen voor een bacheloropleiding;\nb. subsidie wordt aangevraagd voor een masteropleiding en reeds subsidie is ontvangen voor een deficiëntieopleiding, met dien verstande dat indien reeds subsidie voor het volgen van een deficiëntieopleiding is verleend, voor een opleiding van meer dan 60 studiepunten ten hoogste twee maal subsidie wordt verleend; en\nc. subsidie is ontvangen op basis van deRegeling lerarenbeurs voor scholing, zij-instroom en bewegingsonderwijs 2009–2017zoals deze gold vóór 1 april 2013 voor een opleiding anders dan een deficiëntie-, bachelor- of masteropleiding.}",
       "explanation": ""
     },
     {
@@ -914,8 +956,8 @@
       "version": "",
       "art": "art. 6 lid 4 Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=6&lid=4",
-      "sourcetext": "{De verdeling van het beschikbare bedrag voor het studiejaar 2018–2019 over de verschillende doelgroepen geschiedt als volgt:\r\na. € 27.800.000 is beschikbaar voor opleidingen van leraren werkzaam in het basisonderwijs, het speciaal onderwijs en het voortgezet speciaal onderwijs;\r\nb. € 39.000.000 is beschikbaar voor opleidingen van leraren werkzaam in het voortgezet onderwijs;\r\nc. € 11.375.000 is beschikbaar voor opleidingen van leraren werkzaam in het beroepsonderwijs en educatie; en\r\nd. € 16.125.000 is beschikbaar voor opleidingen van leraren werkzaam in het hoger beroepsonderwijs.}",
-      "explanation": "In deze afleiding is het een beetje schipperen tussen letterlijk opnemen van bronteksten en het maken van een helder gestructureerde interpretatie\r\nWijziging: Concrete verdeling van het beschikbare budget in een studiejaar per soort onderwijs. Originele tekst van fact: budget volledig benut"
+      "sourcetext": "{De verdeling van het beschikbare bedrag voor het studiejaar 2018–2019 over de verschillende doelgroepen geschiedt als volgt:\na. € 27.800.000 is beschikbaar voor opleidingen van leraren werkzaam in het basisonderwijs, het speciaal onderwijs en het voortgezet speciaal onderwijs;\nb. € 39.000.000 is beschikbaar voor opleidingen van leraren werkzaam in het voortgezet onderwijs;\nc. € 11.375.000 is beschikbaar voor opleidingen van leraren werkzaam in het beroepsonderwijs en educatie; en\nd. € 16.125.000 is beschikbaar voor opleidingen van leraren werkzaam in het hoger beroepsonderwijs.}",
+      "explanation": "In deze afleiding is het een beetje schipperen tussen letterlijk opnemen van bronteksten en het maken van een helder gestructureerde interpretatie\nWijziging: Concrete verdeling van het beschikbare budget in een studiejaar per soort onderwijs. Originele tekst van fact: budget volledig benut\nartikel 6, vierde lid Slb:\nDe verdeling van het beschikbare bedrag voor het studiejaar 2018–2019 over de verschillende doelgroepen geschiedt als volgt: \na. € 27.800.000 is beschikbaar voor opleidingen van leraren werkzaam in het basisonderwijs, het speciaal onderwijs en het voortgezet speciaal onderwijs;\n\n b. € 39.000.000 is beschikbaar voor opleidingen van leraren werkzaam in het voortgezet onderwijs;\n\n c. € 11.375.000 is beschikbaar voor opleidingen van leraren werkzaam in het beroepsonderwijs en educatie; en\n\n d. € 16.125.000 is beschikbaar voor opleidingen van leraren werkzaam in het hoger beroepsonderwijs."
     },
     {
       "fact": "[studiejaar waarop subsidie betrekking heeft is voorbij]",
@@ -964,21 +1006,156 @@
     },
     {
       "fact": "[bevoegd gezag]",
-      "function": "[]",
+      "function": "([artikel 1 van de Wet op het primair onderwijs] OF\n[artikel 1 van de Wet op de expertisecentra] OF \n[artikel 1 van de Wet op het voortgezet onderwijs] OF\n[artikel 1.1.1., onderdeel w, van de Wet educatie en beroepsonderwijs] OF \n[artikel 1 van de Wet primair onderwijs BES] OF\n[artikel 1 van de Wet voortgezet onderwijs BES] OF \n[artikel 1.1.1, van de Wet educatie en beroepsonderwijs BES]  OF \n[instellingsbestuur bedoeld in artikel 1.1, onderdeel j, van de Wet op het hoger onderwijs en wetenschappelijk onderzoek])",
       "version": "",
       "art": "art. 1, vijfde gedachtenstreepje Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=1",
       "sourcetext": "{bevoegd gezag als bedoeld inartikel 1 van de Wet op het primair onderwijs,artikel 1 van de Wet op de expertisecentra,artikel 1 van de Wet op het voortgezet onderwijs,artikel 1.1.1., onderdeel w, van de Wet educatie en beroepsonderwijs,artikel 1 van de Wet primair onderwijs BES,artikel 1 van de Wet voortgezet onderwijs BES,artikel 1.1.1, van de Wet educatie en beroepsonderwijs BES, of instellingsbestuur bedoeld inartikel 1.1, onderdeel j, van de Wet op het hoger onderwijs en wetenschappelijk onderzoek}",
-      "explanation": "Added, because it was missing in excel. \r\nIn de definitie van de Subsidieregeling (artikel 1) staan verwijzingen naar andere wetgeving. Als we het netjes doen, modelleren we dit. We kunnen er ook mee wachten tot het relevant wordt"
+      "explanation": "Deze definitie is bewust ontkoppeld van de onderliggende definities. De hier gebruikte facts zijn als [] gedefinieerd en worden door een ssid ingevuld"
+    },
+    {
+      "fact": "[bevoegd gezag van door Wet primair onderwijs bekostigde scholen]",
+      "function": "([een openbare school] EN\n[burgemeester en wethouders, voor zover de raad niet anders bepaalt, en, indien de raad dit besluit, met inachtneming van door hem te stellen regelen]) OF\n([het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan] EN\n([de openbare rechtspersoon, bedoeld in artikel 47] OF\n[de stichting, bedoeld in artikel 17 of artikel 48])) OF\n[een bijzondere school: de rechtspersoon bedoeld in artikel 55]OF\n[een samenwerkingsschool: de stichting, bedoeld in artikel 17d]",
+      "version": "",
+      "art": "Art. 1 Wet op het primair onderwijs",
+      "juriconnect": "jci1.3:c:BWBR0003420&hoofdstuk=I&titeldeel=I&artikel=1",
+      "sourcetext": "{bevoegd gezag van volgens deze wet bekostigde scholen:voor wat betreft\na. een openbare school:\n1°. burgemeester en wethouders, voor zover de raad niet anders bepaalt, en, indien de raad dit besluit, met inachtneming van door hem te stellen regelen;\n2°. het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan;\n3°. de openbare rechtspersoon, bedoeld inartikel 47; dan wel\n4°. de stichting, bedoeld inartikel 17ofartikel 48;\nb. een bijzondere school: de rechtspersoon bedoeld inartikel 55;\nc. een samenwerkingsschool: de stichting, bedoeld inartikel 17d;}",
+      "explanation": ""
+    },
+    {
+      "fact": "[bevoegd gezag van door Wet expertisecentra bekostigde scholen]",
+      "function": "([een openbare school] EN\n[burgemeester en wethouders, voor zover de raad niet anders bepaalt, en, indien de raad dit besluit, met inachtneming van door hem te stellen regelen]) OF\n([het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan] EN\n([de openbare rechtspersoon, bedoeld in artikel 50] OF\n[de stichting, bedoeld in artikel 28 of artikel 51])) OF\n[een bijzondere school: de rechtspersoon bedoeld in artikel 57] OF\n[een samenwerkingsschool: de stichting, bedoeld in artikel 28j]",
+      "version": "",
+      "art": "Art. 1 Wet expertisecentra",
+      "juriconnect": "jci1.3:c:BWBR0003549&titeldeel=I&artikel=1",
+      "sourcetext": "{bevoegd gezag van volgens deze wet bekostigde scholenvoor wat betreft:\na. een openbare school:\n1°. het college van burgemeester en wethouders, voor zover de raad niet anders bepaalt, en, indien de raad dit besluit, met inachtneming van door hem te stellen regelen;\n2°. het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan;\n 3°. de openbare rechtspersoon, bedoeld inartikel 50; dan wel\n4°. de stichting, bedoeld inartikel 28ofartikel 51;\n b. een bijzondere school: de rechtspersoon bedoeld inartikel 57;\nc. een samenwerkingsschool: de stichting, bedoeld inartikel 28j;}",
+      "explanation": ""
+    },
+    {
+      "fact": "[bevoegd gezag Wet op het voorgezet onderwijs]",
+      "function": "([een openbare school] EN\n[burgemeester en wethouders, voor zover de raad niet anders bepaalt, en, indien de raad dit besluit, met inachtneming van door hem te stellen regelen]) OF\n([het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan] EN\n([de openbare rechtspersoon, bedoeld in artikel 42a] OF\n[de stichting, bedoeld in artikel 42b of artikel 53c])) OF\n[een bijzondere school: de rechtspersoon, bedoeld in artikel 49, eerste lid] OF\n[een samenwerkingsschool: de stichting, bedoeld in artikel 53d]",
+      "version": "",
+      "art": "art. 1 Wet op het voortgezet onderwijs",
+      "juriconnect": "jci1.3:c:BWBR0002399&titeldeel=I&artikel=1",
+      "sourcetext": "{het bevoegd gezag : voor wat betreft:\na. een openbare school:\n1°. het college van burgemeester en wethouders, voor zover de raad niet anders bepaalt, en, indien de raad dit besluit, met inachtneming van door hem te stellen regelen;\n2°. het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan;\n3°. de openbare rechtspersoon, bedoeld inartikel 42a; dan wel\n 4°. de stichting, bedoeld inartikel 42bofartikel 53c;\nb. een bijzondere school: de rechtspersoon, bedoeld inartikel 49, eerste lid;\nc. een samenwerkingsschool: de stichting, bedoeld inartikel 53d;",
+      "explanation": ""
+    },
+    {
+      "fact": "[bevoegd gezag Wet educatie en beroepsonderwijs]",
+      "function": "([wat een openbare instelling betreft] EN\n([het college van burgemeester en wethouders, voor zover de raad niet anders bepaalt, en, indien de raad dit wenselijk oordeelt, met inachtneming van door hem te stellen regelen]OF\n[dan wel het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan])) OF\n[wat een bijzondere instelling betreft: het college van bestuur, of indien artikel 9.1.8 is toegepast, het bestuur van de rechtspersoon waarvan de instelling uitgaat] OF\n[wat een instelling als bedoeld in de artikelen 1.4.1 dan wel 1.4a.1 betreft: het bestuur van de rechtspersoon waarvan de instelling uitgaat, dan wel de natuurlijke persoon die de instelling in stand houdt] OF\n[wat een exameninstelling als bedoeld in artikel 1.6.1 betreft: het bestuur van de rechtspersoon waarvan de instelling uitgaat]",
+      "version": "",
+      "art": "art. 1 Wet educatie en beroepsonderwijs",
+      "juriconnect": "jci1.3:c:BWBR0007625&hoofdstuk=I&titeldeel=1&artikel=1.1.1",
+      "sourcetext": "{bevoegd gezag:\n1. wat een openbare instelling betreft: het college van burgemeester en wethouders, voor zover de raad niet anders bepaalt, en, indien de raad dit wenselijk oordeelt, met inachtneming van door hem te stellen regelen, dan wel het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan;\n2. wat een bijzondere instelling betreft: het college van bestuur, of indienartikel 9.1.8is toegepast, het bestuur van de rechtspersoon waarvan de instelling uitgaat;\n3. wat een instelling als bedoeld in deartikelen 1.4.1dan wel1.4a.1betreft: het bestuur van de rechtspersoon waarvan de instelling uitgaat, dan wel de natuurlijke persoon die de instelling in stand houdt;\n4. wat een exameninstelling als bedoeld inartikel 1.6.1betreft: het bestuur van de rechtspersoon waarvan de instelling uitgaat}",
+      "explanation": ""
+    },
+    {
+      "fact": "[bevoegd gezag Wet primair onderwijs BES]",
+      "function": "([openbare school] EN\n([het bestuurscollege van het betreffende openbaar lichaam, voor zover de eilandsraad niet anders bepaalt, en, indien de eilandsraad dit besluit, met inachtneming van door hem te stellen regelen])) OF\n[de openbare rechtspersoon, bedoeld in artikel 53] OF\n[de stichting, bedoeld in artikel 54] OF\n[een bijzondere school: de rechtspersoon, bedoeld in artikel 60]",
+      "version": "",
+      "art": "Art. 1 Wet op het primair onderwijs BES",
+      "juriconnect": "jci1.3:c:BWBR0030280&hoofdstuk=I&titeldeel=I&artikel=1",
+      "sourcetext": "{bevoegd gezag: voor wat betreft\na. een openbare school:\n1°. het bestuurscollege van het betreffende openbaar lichaam, voor zover de eilandsraad niet anders bepaalt, en, indien de eilandsraad dit besluit, met inachtneming van door hem te stellen regelen;\n2°. de openbare rechtspersoon, bedoeld inartikel 53; dan wel\n3°. de stichting, bedoeld inartikel 54;\nb. een bijzondere school: de rechtspersoon, bedoeld inartikel 60}",
+      "explanation": ""
+    },
+    {
+      "fact": "[bevoegd gezag Wet op het voorgezet onderwijs BES]",
+      "function": "([openbare school] EN\n[het bestuurscollege van het betreffende openbaar lichaam, voor zover de eilandsraad niet anders bepaalt, en, indien de eilandsraad dit besluit, met inachtneming van door hem te stellen regelen]) OF\n[de openbare rechtspersoon, bedoeld in artikel 97] OF\n[de stichting, bedoeld in artikel 98 of artikel 109] OF\n[een bijzondere school: de rechtspersoon, bedoeld in artikel 105, eerste lid]",
+      "version": "",
+      "art": "Art 1 Wet op het voortgezet onderwijs BES",
+      "juriconnect": "jci1.3:c:BWBR0030284&titeldeel=I&artikel=1",
+      "sourcetext": "{bevoegd gezag: voor wat betreft:\na. een openbare school:\n1°. het bestuurscollege van het betreffende openbaar lichaam, voor zover de raad niet anders bepaalt, en, indien de raad dit besluit, met inachtneming van door hem te stellen regelen;\n2°. de openbare rechtspersoon, bedoeld inartikel 97; dan wel\nb. een bijzondere school: de rechtspersoon, bedoeld inartikel 105, eerste lid}",
+      "explanation": ""
+    },
+    {
+      "fact": "[bevoegd gezag Wet educatie en beroepsonderwijs BES]",
+      "function": "([wat een openbare instelling betreft] EN \n([het bestuurscollege, voor zover de eilandsraad niet anders bepaalt, en, indien de eilandsraad dit wenselijk oordeelt, met inachtneming van door hem te stellen regelen] OF [het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan])) OF\n[wat een bijzondere instelling betreft: de natuurlijke persoon of het bestuur] OF \n[wat een exameninstelling als bedoeld in artikel 1.6.1 betreft: het bestuur van de rechtspersoon waarvan de instelling uitgaat]",
+      "version": "",
+      "art": "Art. 1 Wet educatie en beroepsonderwijs BES",
+      "juriconnect": "/jci1.3:c:BWBR0028395&hoofdstuk=1&titeldeel=1&artikel=1.1.1",
+      "sourcetext": "{bevoegd gezag:\n1. wat een openbare instelling betreft: het bestuurscollege, voor zover de eilandsraad niet anders bepaalt, en, indien de eilandsraad dit wenselijk oordeelt, met inachtneming van door hem te stellen regelen, dan wel het krachtens de desbetreffende gemeenschappelijke regeling bevoegde orgaan;\n2. wat een bijzondere instelling betreft: de natuurlijke persoon of het bestuur;\n3. wat een exameninstelling als bedoeld inartikel 1.6.1betreft: het bestuur van de rechtspersoon waarvan de instelling uitgaat}",
+      "explanation": ""
+    },
+    {
+      "fact": "[bevoegd gezag, instellingbestuur Wet op het hoger onderwijs en wetenschappelijk onderzoek]",
+      "function": "[het college van bestuur, tenzij anders bepaald] OF\n[het orgaan dat als zodanig in de statuten is aangewezen]",
+      "version": "",
+      "art": "Art. 1.1 Wet op het hoger onderwijs en wetenschappelijk onderzoek",
+      "juriconnect": "jci1.3:c:BWBR0005682&hoofdstuk=1&titeldeel=1&artikel=1.1",
+      "sourcetext": "{instellingsbestuur:\n – van een bekostigde instelling: het college van bestuur, tenzij anders bepaald;\n  – van een rechtspersoon met volledige rechtsbevoegdheid die geaccrediteerde opleidingen verzorgt: het orgaan dat als zodanig in de statuten is aangewezen}",
+      "explanation": "Dit kan mogelijk verder uitgewerkt worden. Heb me niet helemaal aan de wettekst gehouden."
     },
     {
       "fact": "[leraar]",
-      "function": "[]",
+      "function": "[degene die voldoet aan bevoegdheidseisen gesteld in] OF \n[artikel 3 van de Wet op het primair onderwijs] OF\n[artikel 3 van de Wet op de expertisecentra] OF \n[artikel XI van de Wet op de beroepen in het onderwijs] OF \n[artikel 3 van de Wet primair onderwijs BES] OF\n[is benoemd of tewerkgesteld zonder benoeming als bedoeld in artikel 33 van de Wet op het voortgezet onderwijs] OF\n[artikel 4.2.1. van de Wet educatie en beroepsonderwijs] OF \n[artikel 80 van de Wet voortgezet onderwijs BES] OF \n[artikel 4.2.1 van de Wet educatie beroepsonderwijs BES] OF \n[die lesgeeft in het hoger onderwijs]",
       "version": "",
       "art": "Art. 1, tiende gedachtenstreepje Slb",
       "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=1",
-      "sourcetext": "{leraar:degene die voldoet aan bevoegdheidseisen gesteld inartikel 3 van de Wet op het primair onderwijs,artikel 3 van de Wet op de expertisecentra,artikel XI van de Wet op de beroepen in het onderwijsofartikel 3 van de Wet primair onderwijs BES, dan wel kan worden benoemd of tewerk kan worden gesteld zonder benoeming als bedoeld inartikel 33 van de Wet op het voortgezet onderwijs,artikel 4.2.1. van de Wet educatie en beroepsonderwijs,artikel 80 van de Wet voortgezet onderwijs BESofartikel 4.2.1 van de Wet educatie beroepsonderwijs BES, of die lesgeeft in het hoger onderwijs;}",
-      "explanation": "Added, because it was missing in excel. \r\nIn de definitie van de Subsidieregeling (artikel 1) staan verwijzingen naar andere wetgeving. Als we het netjes doen, modelleren we dit. We kunnen er ook mee wachten tot het relevant wordt"
+      "sourcetext": "{leraar:degene die voldoet aan bevoegdheidseisen gesteld in artikel 3 van de Wet op het primair onderwijs,artikel 3 van de Wet op de expertisecentra,artikel XI van de Wet op de beroepen in het onderwijsofartikel 3 van de Wet primair onderwijs BES, dan wel kan worden benoemd of tewerk kan worden gesteld zonder benoeming als bedoeld inartikel 33 van de Wet op het voortgezet onderwijs,artikel 4.2.1. van de Wet educatie en beroepsonderwijs,artikel 80 van de Wet voortgezet onderwijs BESofartikel 4.2.1 van de Wet educatie beroepsonderwijs BES, of die lesgeeft in het hoger onderwijs}",
+      "explanation": "artikel XI van de Wet op de beroepen in het onderwijs. Dit is overgangsrecht en modelleer ik hier niet. Artikel zegt zoveel als dat bestaande bevoegdheden blijven. Verder heb ik ook de leraren lichamelijke opvoeding nog niet meegenomen. Deze definitie is bewust ontkoppeld van de onderliggende definities. De hier gebruikte facts zijn als [] gedefinieerd en worden door een ssid ingevuld"
+    },
+    {
+      "fact": "[leraar primair onderwijs]",
+      "function": "[in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens de Wet justitiële en strafvorderlijke gegevens]  EN ([in het bezit is van] \nOF [een getuigschrift, afgegeven krachtens de Wet op het hoger onderwijs en wetenschappelijk onderzoek] \nOF [een erkenning van beroepskwalificaties als bedoeld in artikel 5 van de Algemene wet erkenning EU-beroepskwalificaties, verleend ten aanzien van het onderwijs dat betrokkene zal geven] \nOF [een geschiktheidsverklaring als bedoeld in artikel 176b])\nEN [niet krachtens rechterlijke uitspraak van het geven van onderwijs is uitgesloten]",
+      "version": "",
+      "art": "Art. 3, lid 1 Wet op het primaire onderwijs",
+      "juriconnect": "jci1.3:c:BWBR0003420&hoofdstuk=I&titeldeel=I&artikel=3&lid=1",
+      "sourcetext": "{Schoolonderwijs mag, onverminderd het derde lid, slechts worden gegeven door degene die:\na. in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens de Wet justitiële en strafvorderlijke gegevens,\nb. in het bezit is van:\n1°. een getuigschrift, afgegeven krachtens de Wet op het hoger onderwijs en wetenschappelijk onderzoek, waaruit blijkt dat ten aanzien van dat onderwijs of ten aanzien van een of meer bij algemene maatregel van bestuur aan te wijzen daartoe behorende onderwijsactiviteiten als bedoeld inartikel 9is voldaan aan de bekwaamheidseisen die zijn vastgesteld krachtensartikel 32a, eerste lid, van deze wet, of krachtensartikel 36, eerste lid, van de Wet op het voortgezet onderwijs, of\n2°. een erkenning van beroepskwalificaties als bedoeld inartikel 5 van de Algemene wet erkenning EU-beroepskwalificaties, verleend ten aanzien van het onderwijs dat betrokkene zal geven, of\n3°. een geschiktheidsverklaring als bedoeld inartikel 176b, en\nc. niet krachtens rechterlijke uitspraak van het geven van onderwijs is uitgesloten.}",
+      "explanation": "Ik heb er voor gekozen om alleen de verschillende subleden van het artikel te scheiden met 'of'. Als er binnen een artikelsublid nog een onderverdeling is gemaakt, heb ik die niet gemodelleerd, omdat die ten tijde van modelleren (190806) niet relevant is. Voor de definitie van leraar is alleen relevant welk soort leraren je hebt. De rest van artikel 3 heb ik niet gemodelleerd, omdat ik de hoofdregel wil modelleren en niet de uitzonderingen op dit moment"
+    },
+    {
+      "fact": "[leraar speciaal en voortgezet onderwijs]",
+      "function": "[n het bezit is van een verklaring omtrent het gedrag, afgegeven volgens de Wet justitiële en strafvorderlijke gegevens] EN ([in het bezit is van]\nOF [een getuigschrift, afgegeven krachtens de Wet op het hoger onderwijs en wetenschappelijk onderzoek,] OF\n[een erkenning van beroepskwalificaties]) EN\n[niet krachtens rechterlijke uitspraak van het geven van onderwijs is uitgesloten]",
+      "version": "",
+      "art": "Art. 3, lid 1 Wet op de expertisecentra",
+      "juriconnect": "jci1.3:c:BWBR0003549&titeldeel=I&artikel=3&lid=1",
+      "sourcetext": "{Speciaal onderwijs en voortgezet speciaal onderwijs mag, onverminderd het derde en vierde lid, slechts worden gegeven door degene die:\na. in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens deWet justitiële en strafvorderlijke gegevens,\nb. in het bezit is van:\n1°. een getuigschrift, afgegeven krachtens deWet op het hoger onderwijs en wetenschappelijk onderzoek, waaruit blijkt dat ten aanzien van dat onderwijs of ten aanzien van een of meer bij algemene maatregel van bestuur aan te wijzen onderdelen daarvan of vakken ingevolge deartikelen 13, eerste, tweede, vijfde en zesde lid,14a, tweede lid,14cen14f, is voldaan aan de bekwaamheidseisen die zijn vastgesteld krachtensartikel 32a, eerste lid, of krachtensartikel 36, eerste lid, van de Wet op het voortgezet onderwijs, of\n2°. een erkenning van beroepskwalificaties als bedoeld inartikel 5 van de Algemene wet erkenning EU-beroepskwalificaties, verleend ten aanzien van het onderwijs dat betrokkene zal geven, of\n3°. een geschiktheidsverklaring als bedoeld inartikel 162e, en\nc. niet krachtens rechterlijke uitspraak van het geven van onderwijs is uitgesloten.",
+      "explanation": "Ik heb er voor gekozen om alleen de verschillende subleden van het artikel te scheiden met 'of'. Als er binnen een artikelsublid nog een onderverdeling is gemaakt, heb ik die niet gemodelleerd, omdat die ten tijde van modelleren (190806) niet relevant is. Voor de definitie van leraar is alleen relevant welk soort leraren je hebt. \nDe rest van artikel 3 heb ik niet gemodelleerd, omdat ik de hoofdregel wil modelleren en niet de uitzonderingen op dit moment"
+    },
+    {
+      "fact": "[leraar primair onderwijs BES]",
+      "function": "[in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens de Wet op de justitiële documentatie en op de verklaringen omtrent het gedrag BES, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan zes maanden] EN \n([een getuigschrift, afgegeven krachtens de Wet op het hoger onderwijs en wetenschappelijk onderzoek, waaruit blijkt dat ten aanzien van dat onderwijs of ten aanzien van een of meer bij algemene maatregel van bestuur aan te wijzen daartoe behorende onderwijsactiviteiten als bedoeld in de artikelen 11 of 12 is voldaan aan de bekwaamheidseisen die zijn vastgesteld krachtens artikel 35, eerste lid, van deze wet, of krachtens artikel 86, eerste lid, van de Wet voortgezet onderwijs BES] OF\n[een erkenning van beroepskwalificaties als bedoeld in artikel 5 van de Algemene wet erkenning EU-beroepskwalificaties, verleend ten aanzien van het onderwijs dat betrokkene zal geven] OF\n[een geschiktheidsverklaring als bedoeld in artikel 137]) EN\n[niet krachtens rechterlijke uitspraak van het geven van onderwijs is uitgesloten]",
+      "version": "",
+      "art": "Art. 3, lid 1 Wet op het primaire onderwijs BES",
+      "juriconnect": "jci1.3:c:BWBR0030280&hoofdstuk=I&titeldeel=I&artikel=3&lid=1",
+      "sourcetext": "{Schoolonderwijs mag, onverminderd het derde lid, slechts worden gegeven door degene die:\na. in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens deWet op de justitiële documentatie en op de verklaringen omtrent het gedrag BES, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan zes maanden,\nb. in het bezit is van:\n1°. een getuigschrift, afgegeven krachtens de Wet op het hoger onderwijs en wetenschappelijk onderzoek, waaruit blijkt dat ten aanzien van dat onderwijs of ten aanzien van een of meer bij algemene maatregel van bestuur aan te wijzen daartoe behorende onderwijsactiviteiten als bedoeld in deartikelen 11of12is voldaan aan de bekwaamheidseisen die zijn vastgesteld krachtensartikel 35, eerste lid, van deze wet, of krachtensartikel 86, eerste lid, van de Wet voortgezet onderwijs BES,\n2°. een erkenning van beroepskwalificaties als bedoeld inartikel 5 van de Algemene wet erkenning EU-beroepskwalificaties, verleend ten aanzien van het onderwijs dat betrokkene zal geven, of\n3°. een geschiktheidsverklaring als bedoeld inartikel 137, en\nc. niet krachtens rechterlijke uitspraak van het geven van onderwijs is uitgesloten.",
+      "explanation": "Ik heb er voor gekozen om alleen de verschillende subleden van het artikel te scheiden met 'of'. Als er binnen een artikelsublid nog een onderverdeling is gemaakt, heb ik die niet gemodelleerd, omdat die ten tijde van modelleren (190806) niet relevant is. Voor de definitie van leraar is alleen relevant welk soort leraren je hebt. \nDe rest van artikel 3 heb ik niet gemodelleerd, omdat ik de hoofdregel wil modelleren en niet de uitzonderingen op dit moment"
+    },
+    {
+      "fact": "[Leraar voortgezet onderwijs, zonder benoeming]",
+      "function": "[]",
+      "version": "",
+      "art": "Art. 33, lid 1 Wet op het voortgezet onderwijs",
+      "juriconnect": "jci1.3:c:BWBR0002399&titeldeel=II&afdeling=I&hoofdstuk=I&paragraaf=3&artikel=33&lid=1",
+      "sourcetext": "{Leraren worden door het bevoegd gezag benoemd dan wel tewerkgesteld zonder benoeming. Om tot leraar te kunnen worden benoemd of tewerkgesteld zonder benoeming dient de betrokkene:\na. in het bezit te zijn van een verklaring omtrent het gedrag, afgegeven volgens deWet justitiële en strafvorderlijke gegevens, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan 6 maanden,\nb. in het bezit te zijn van:\n1°. een getuigschrift, afgegeven krachtens deWet op het hoger onderwijs en wetenschappelijk onderzoek, waaruit blijkt dat is voldaan aan de bekwaamheidseisen die zijn vastgesteld krachtensartikel 36, eerste lid, of\n2°. een erkenning van beroepskwalificaties als bedoeld inartikel 5 van de Algemene wet erkenning EU-beroepskwalificaties, verleend ten aanzien van het onderwijs dat betrokkene zal geven, of\n3°. een geschiktheidsverklaring als bedoeld inartikel 118k, en\nc. niet krachtens rechterlijke uitspraak van het geven van onderwijs te zijn uitgesloten.\nDe eerste en tweede volzin zijn niet van toepassing op benoeming of tewerkstelling van leraren voor het verzorgen van een vak of ander programmaonderdeel dat door het bevoegd gezag is vastgesteld, uitgezonderd godsdienstonderwijs en levensbeschouwelijk vormingsonderwijs.}",
+      "explanation": "Ik weet nog niet hoe ik dit ga modelleren"
+    },
+    {
+      "fact": "[Leraar educatie en beroepsonderwijs]",
+      "function": "[in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens de Wet justitiële en strafvorderlijke gegevens, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan 6 maanden] EN ([in het bezit zijn van] OF\n[een getuigschrift als bedoeld in artikel 7.11, eerste lid, van de Wet op het hoger onderwijs en wetenschappelijk onderzoek van een met goed gevolg afgelegd afsluitend examen van een aan een hogeschool verbonden opleiding gericht op het beroep van leraar in het voortgezet onderwijs] OF\n[een getuigschrift als bedoeld in artikel 175 van de Wet op het hoger beroepsonderwijs van een met goed gevolg afgelegd staatsexamen, voor zover overeenkomend met een getuigschrift als bedoeld onder 1°] OF\n[een getuigschrift als bedoeld in artikel 7.11, eerste lid, van de Wet op het hoger onderwijs en wetenschappelijk onderzoek van een met goed gevolg afgelegd afsluitend examen van een universitaire lerarenopleiding] OF\n[een getuigschrift of diploma van een opleiding die vóór 1 augustus 1991 was gericht op het beroep van leraar in het voortgezet onderwijs] OF\n[een ten aanzien van het door hem te geven onderwijs verleende erkenning van beroepskwalificaties als bedoeld in artikel 5 van de Algemene wet erkenning EU-beroepskwalificaties] OF\n[een gelijkwaardig buitenlands getuigschrift of diploma, behaald in een land dat niet behoort tot de Lid-Staten van de EU, dan wel een gelijkwaardig Nederlands-Antilliaans of Arubaans getuigschrift of diploma] OF\n[in het bezit is van een door het bevoegd gezag afgegeven geschiktheidsverklaring als bedoeld in artikel 4.2.4])  EN\n[niet krachtens rechterlijke uitspraak is uitgesloten van het geven van onderwijs]",
+      "version": "",
+      "art": "Art. 4.2.1. lid 2 Wet educatie en beroepsonderwijs",
+      "juriconnect": "jci1.3:c:BWBR0007625&hoofdstuk=4&titeldeel=2&artikel=4.2.1&lid=2",
+      "sourcetext": "{Tot docent aan een instelling kan slechts worden benoemd of tewerkgesteld zonder benoeming degene die:\na. in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens deWet justitiële en strafvorderlijke gegevens, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan 6 maanden, en\nb. voldoet aan de bekwaamheidseisen, bedoeld inartikel 4.2.3, eerste lid, blijkend uit het bezit van:\n1°. een getuigschrift als bedoeld inartikel 7.11, eerste lid, van de Wet op het hoger onderwijs en wetenschappelijk onderzoekvan een met goed gevolg afgelegd afsluitend examen van een aan een hogeschool verbonden opleiding gericht op het beroep van leraar in het voortgezet onderwijs,\n2°. een getuigschrift als bedoeld in artikel 175 van de Wet op het hoger beroepsonderwijs van een met goed gevolg afgelegd staatsexamen, voor zover overeenkomend met een getuigschrift als bedoeld onder 1°,\n3°. een getuigschrift als bedoeld inartikel 7.11, eerste lid, van de Wet op het hoger onderwijs en wetenschappelijk onderzoekvan een met goed gevolg afgelegd afsluitend examen van een universitaire lerarenopleiding,\n4°. een getuigschrift of diploma van een opleiding die vóór 1 augustus 1991 was gericht op het beroep van leraar in het voortgezet onderwijs,\n5°. een ten aanzien van het door hem te geven onderwijs verleende erkenning van beroepskwalificaties als bedoeld inartikel 5 van de Algemene wet erkenning EU-beroepskwalificaties,\n6°. een gelijkwaardig buitenlands getuigschrift of diploma, behaald in een land dat niet behoort tot de Lid-Staten van de EU, dan wel een gelijkwaardig Nederlands-Antilliaans of Arubaans getuigschrift of diploma, of\n c. in het bezit is van een door het bevoegd gezag afgegeven geschiktheidsverklaring als bedoeld inartikel 4.2.4, en\nd. niet krachtens rechterlijke uitspraak is uitgesloten van het geven van onderwijs.",
+      "explanation": ""
+    },
+    {
+      "fact": "[Leraar voortgezet onderwijs BES]",
+      "function": "[n het bezit te zijn van een verklaring omtrent het gedrag, afgegeven volgens de Wet op de justitiële documentatie en op de verklaringen omtrent het gedrag BES, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan 6 maanden] EN ([ in het bezit is van] OF\n[een getuigschrift, afgegeven krachtens de Wet op het hoger onderwijs en wetenschappelijk onderzoek, waaruit blijkt dat is voldaan aan de bekwaamheidseisen die zijn vastgesteld krachtens artikel 86, eerste lid] OF\n[een erkenning van beroepskwalificaties als bedoeld in artikel 5 van de Algemene wet erkenning EU-beroepskwalificaties, verleend ten aanzien van het onderwijs dat betrokkene zal geven] OF\n[een geschiktheidsverklaring als bedoeld in artikel 197]) EN\n[niet krachtens rechterlijke uitspraak van het geven van onderwijs te zijn uitgesloten]",
+      "version": "",
+      "art": "Art. 80, lid 1, Wet voortgezet onderwijs BES",
+      "juriconnect": "jci1.3:c:BWBR0030284&titeldeel=II&afdeling=I&hoofdstuk=I&paragraaf=4&artikel=80&lid=1",
+      "sourcetext": "{Leraren worden door het bevoegd gezag benoemd dan wel tewerkgesteld zonder benoeming. Om tot leraar te kunnen worden benoemd of tewerkgesteld zonder benoeming dient de betrokkene:\na. in het bezit te zijn van een verklaring omtrent het gedrag, afgegeven volgens deWet op de justitiële documentatie en op de verklaringen omtrent het gedrag BES, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan 6 maanden,\nb. in het bezit te zijn van:\n 1°. een getuigschrift, afgegeven krachtens deWet op het hoger onderwijs en wetenschappelijk onderzoek, waaruit blijkt dat is voldaan aan de bekwaamheidseisen die zijn vastgesteld krachtensartikel 86, eerste lid, of\n  2°. een erkenning van beroepskwalificaties als bedoeld inartikel 5 van de Algemene wet erkenning EU-beroepskwalificaties, verleend ten aanzien van het onderwijs dat betrokkene zal geven, of\n3°. een geschiktheidsverklaring als bedoeld inartikel 197, en\n c. niet krachtens rechterlijke uitspraak van het geven van onderwijs te zijn uitgesloten.\nDe eerste en tweede volzin zijn niet van toepassing op benoeming of tewerkstelling van leraren voor het verzorgen van een vak of ander programmaonderdeel dat door het bevoegd gezag is vastgesteld, uitgezonderd godsdienstonderwijs en levensbeschouwelijk vormingsonderwijs.",
+      "explanation": ""
+    },
+    {
+      "fact": "[Leraar educatie en beroepsonderwijs BES]",
+      "function": "[in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens de Wet op de justitiële documentatie en op de verklaringen omtrent het gedrag BES, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan 6 maanden] EN ([voldoet aan bekwaamheidseisen blijkend uit het bezit van] OF\n[een getuigschrift als bedoeld in artikel 7.11, eerste lid, van de Wet op het hoger onderwijs en wetenschappelijk onderzoek van een met goed gevolg afgelegd afsluitend examen van een aan een hogeschool verbonden opleiding gericht op het beroep van leraar in het voortgezet onderwijs] OF\n[een getuigschrift als bedoeld in artikel 175 van de Wet op het hoger beroepsonderwijs van een met goed gevolg afgelegd staatsexamen, voor zover overeenkomend met een getuigschrift als bedoeld onder 1°] OF\n[een getuigschrift als bedoeld in artikel 7.11, eerste lid, van de Wet op het hoger onderwijs en wetenschappelijk onderzoek van een met goed gevolg afgelegd afsluitend examen van een universitaire lerarenopleiding] OF\n[een getuigschrift of diploma van een opleiding die vóór 1 augustus 1991 was gericht op het beroep van leraar in het voortgezet onderwijs] OF\n[een ten aanzien van het door hem te geven onderwijs verleende erkenning van beroepskwalificaties als bedoeld in artikel 5 van de Algemene wet erkenning EU-beroepskwalificaties] OF\n[een gelijkwaardig buitenlands getuigschrift of diploma, behaald in een land dat niet behoort tot de Lid-Staten van de EU, dan wel een gelijkwaardig diploma of getuigschrift behaald in Aruba, Curaçao, Sint Maarten, Bonaire, Sint Eustatius of Saba] OF\n[in het bezit is van een door het bevoegd gezag afgegeven geschiktheidsverklaring als bedoeld in artikel 4.2.5]) EN\n[niet krachtens rechterlijke uitspraak is uitgesloten van het geven van onderwijs]",
+      "version": "",
+      "art": "Art. 4.2.1. lid 2 Wet educatie en beroepsonderwijs BES",
+      "juriconnect": "jci1.3:c:BWBR0028395&hoofdstuk=4&titeldeel=2&artikel=4.2.1&lid=2",
+      "sourcetext": "{ot docent aan een instelling kan slechts worden benoemd of tewerkgesteld zonder benoeming degene die: \na. in het bezit is van een verklaring omtrent het gedrag, afgegeven volgens deWet op de justitiële documentatie en op de verklaringen omtrent het gedrag BES, die op het tijdstip van overlegging aan het bevoegd gezag niet ouder is dan 6 maanden, en\nb. voldoet aan de bekwaamheidseisen, bedoeld inartikel 4.2.3, eerste lid, blijkend uit het bezit van:\n1°. een getuigschrift als bedoeld inartikel 7.11, eerste lid, van de Wet op het hoger onderwijs en wetenschappelijk onderzoekvan een met goed gevolg afgelegd afsluitend examen van een aan een hogeschool verbonden opleiding gericht op het beroep van leraar in het voortgezet onderwijs,\n2°. een getuigschrift als bedoeld in artikel 175 van de Wet op het hoger beroepsonderwijs van een met goed gevolg afgelegd staatsexamen, voor zover overeenkomend met een getuigschrift als bedoeld onder 1°,\n3°. een getuigschrift als bedoeld inartikel 7.11, eerste lid, van de Wet op het hoger onderwijs en wetenschappelijk onderzoekvan een met goed gevolg afgelegd afsluitend examen van een universitaire lerarenopleiding,\n4°. een getuigschrift of diploma van een opleiding die vóór 1 augustus 1991 was gericht op het beroep van leraar in het voortgezet onderwijs,\n5°. een ten aanzien van het door hem te geven onderwijs verleende erkenning van beroepskwalificaties als bedoeld inartikel 5 van de Algemene wet erkenning EU-beroepskwalificaties,\n6°. een gelijkwaardig buitenlands getuigschrift of diploma, behaald in een land dat niet behoort tot de Lid-Staten van de EU, dan wel een gelijkwaardig diploma of getuigschrift behaald in Aruba, Curaçao, Sint Maarten, Bonaire, Sint Eustatius of Saba, of\nc. in het bezit is van een door het bevoegd gezag afgegeven geschiktheidsverklaring als bedoeld inartikel 4.2.5, en\n d. niet krachtens rechterlijke uitspraak is uitgesloten van het geven van onderwijs.}",
+      "explanation": ""
     },
     {
       "fact": "[minister van Onderwijs, Cultuur en Wetenschap]",
@@ -1011,19 +1188,19 @@
       "fact": "[besluit tot verlenen subsidie voor kosten in verband met het verlenen van studieverlof aan de leraar]",
       "function": "<<>>",
       "version": "",
-      "art": "art.3 lid,1, onder b Slb",
+      "art": "art.3 lid 1, onder b Slb",
       "juriconnect": "",
       "sourcetext": "",
-      "explanation": "Added, because it was missing in excel. \r\nArtikel 20 Slb regelt het verlenen van subsidie voor studieverlof aan het bevoegd gezag. Artikel 24, eerste lid Slb regelt het verlenen van studieverlof aan de leraar door het bevoegd gezag."
+      "explanation": "Added, because it was missing in excel. \nArtikel 20 Slb regelt het verlenen van subsidie voor studieverlof aan het bevoegd gezag. Artikel 24, eerste lid Slb regelt het verlenen van studieverlof aan de leraar door het bevoegd gezag."
     },
     {
       "fact": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
       "function": "<<>>",
       "version": "",
-      "art": "",
-      "juriconnect": "",
-      "sourcetext": "",
-      "explanation": "Added, because it was missing in excel. \r\nIk zie wel dat de Minister van alles doet/mag doen, beslissen binnen een termijn, hoogte subsidie bepalen enz. Weet bij dit specifieke fact niet zo snel ene wetsverwijzing"
+      "art": "art. 4:23, lid 1 Awb",
+      "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.2&afdeling=4.2.1&artikel=4:23&lid=1",
+      "sourcetext": "{Een bestuursorgaan verstrekt slechts subsidie op grond van een wettelijk voorschrift dat regelt voor welke activiteiten subsidie kan worden verstrekt}",
+      "explanation": "Added, because it was missing in excel. \nIk zie wel dat de Minister van alles doet/mag doen, beslissen binnen een termijn, hoogte subsidie bepalen enz. Weet bij dit specifieke fact niet zo snel ene wetsverwijzing. Heb nu volstaan met de algemene bevoegdheid uit de Awb."
     },
     {
       "fact": "[verzoek tot bewijs van het behalen van ten minste vijftien studiepunten]",
@@ -1045,12 +1222,48 @@
     },
     {
       "fact": "[terugvordering]",
+      "function": "[leraar heeft minder dan 15 studiepunten gehaald] OF\n[leraar heeft binnen 2 maanden na verstrekking van de subsidie de aanvraag voor subsidie ingetrokken] OF\n[bevoegd gezag heeft geen studieverlof verleend]",
+      "version": "",
+      "art": "Art. 13, lid 1 en 2 Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=13&lid=1",
+      "sourcetext": "{De minister kan de subsidie voor studiekosten terugvorderen indien de leraar in de subsidieperiode minder dan vijftien studiepunten behaalt. De minister kan de subsidie voor studieverlof terugvorderen indien:\na. de leraar binnen twee maanden na het verstrekken van de subsidie de aanvraag voor studieverlof of de aanvraag voor studiekosten intrekt; of\nb. het bevoegd gezag geen studieverlof heeft verleend.}",
+      "explanation": "Added, because it was missing in excel."
+    },
+    {
+      "fact": "[leraar heeft minder dan 15 studiepunten behaald]",
       "function": "<<>>",
       "version": "",
-      "art": "Art. 13 Slb Art. 16 Slb",
-      "juriconnect": "",
-      "sourcetext": "",
-      "explanation": "Added, because it was missing in excel. Bij acts staat hier nog een onderverdeling (gelijk met de wet). Hier dan ook doen, of is dat hier niet nodig?"
+      "art": "Art. 13, lid 1  Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=13&lid=1",
+      "sourcetext": "{De minister kan de subsidie voor studiekosten terugvorderen indien de leraar in de subsidieperiode minder dan vijftien studiepunten behaalt.}",
+      "explanation": "Toegevoegd, want is preconditie voor het terugvorderen van subsidie studiekosten"
+    },
+    {
+      "fact": "[terugvordering subsidie studieverlof]",
+      "function": "[leraar heeft binnen 2 maanden na verstrekking van de subsidie de aanvraag voor subsidie ingetrokken] OF\n[bevoegd gezag heeft geen studieverlof verleend]",
+      "version": "",
+      "art": "Art. 13, lid 2 Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=13&lid=2",
+      "sourcetext": "{De minister kan de subsidie voor studieverlof terugvorderen indien:\na. de leraar binnen twee maanden na het verstrekken van de subsidie de aanvraag voor studieverlof of de aanvraag voor studiekosten intrekt; of\nb. het bevoegd gezag geen studieverlof heeft verleend.}",
+      "explanation": "Toegevoegd, want is preconditie voor het terugvorderen van subsidie studieverlof"
+    },
+    {
+      "fact": "[bevoegd gezag weigert studieverlof]",
+      "function": "[]",
+      "version": "",
+      "art": "Art. 13, lid 2 Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=13&lid=2",
+      "sourcetext": "{De minister kan de subsidie voor studieverlof terugvorderen indien:\na. de leraar binnen twee maanden na het verstrekken van de subsidie de aanvraag voor studieverlof of de aanvraag voor studiekosten intrekt; of\nb. het bevoegd gezag geen studieverlof heeft verleend.}",
+      "explanation": ""
+    },
+    {
+      "fact": "[terugvordering collegegeld]",
+      "function": "[studiekosten zijn lager dan de toegekende subsidie]",
+      "version": "",
+      "art": "Art. 16 Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=2&artikel=16",
+      "sourcetext": "{Als het daadwerkelijk betaalde bedrag aan collegegeld lager is dan de verstrekte subsidie voor de kosten van collegegeld, kan de minister de subsidie voor de kosten van collegegeld, en naar rato de subsidie voor de kosten van studiemiddelen en reiskosten, terugvorderen, onverminderdartikel 13.}",
+      "explanation": ""
     },
     {
       "fact": "[subsidieontvanger]",
@@ -1058,8 +1271,188 @@
       "version": "",
       "art": "art. 5.7 lid 1, aanhef en onder b. Kaderregeling subsidies OCW, SZW en VWS",
       "juriconnect": "jci1.3:c:BWBR0037603&hoofdstuk=5&artikel=5.7&lid=1",
-      "sourcetext": "{1 De subsidieontvanger meldt onverwijld schriftelijk aan de minister indien:\r\na. aannemelijk is geworden dat de activiteiten waarvoor de subsidie is verstrekt niet, niet tijdig of niet geheel zullen worden verricht,\r\nb. aannemelijk is geworden dat niet, niet tijdig of niet geheel aan de subsidieverplichtingen zal worden voldaan, of\r\nc. zich andere omstandigheden voordoen of zullen voordoen die van belang kunnen zijn voor een beslissing tot wijziging, intrekking of vaststelling van de subsidie.\r\n2 De melding wordt voorzien van een toelichting. Bij de melding worden de relevante stukken overgelegd.}",
+      "sourcetext": "{1 De subsidieontvanger meldt onverwijld schriftelijk aan de minister indien:\na. aannemelijk is geworden dat de activiteiten waarvoor de subsidie is verstrekt niet, niet tijdig of niet geheel zullen worden verricht,\nb. aannemelijk is geworden dat niet, niet tijdig of niet geheel aan de subsidieverplichtingen zal worden voldaan, of\nc. zich andere omstandigheden voordoen of zullen voordoen die van belang kunnen zijn voor een beslissing tot wijziging, intrekking of vaststelling van de subsidie.\n2 De melding wordt voorzien van een toelichting. Bij de melding worden de relevante stukken overgelegd.}",
       "explanation": "Toegevoegd, omdat deze bepaling uit de Kaderregeling ook regels bevat voor de Slb. Had deze er in eerste instantie uitgehaald"
+    },
+    {
+      "fact": "[minister OCW heeft een of meer bepalingen van de subsidieregeling lerarenbeurs buiten toepassing gelaten]",
+      "function": "[]",
+      "version": "[]",
+      "art": "art. 26 Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=4&artikel=26",
+      "sourcetext": "{De minister kan een of meer bepalingen van deze regeling buiten toepassing laten of daarvan afwijken voor zover deze toepassing, gelet op het belang dat deze regeling beoogt te beschermen, zal leiden tot onbillijkheid van overwegende aard.}",
+      "explanation": ""
+    },
+    {
+      "fact": "[minister OCW is afgeweken van een of meer bepalingen van de subsidieregeling lerarenbeurs ]",
+      "function": "[]",
+      "version": "",
+      "art": "art. 26 Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=4&artikel=26",
+      "sourcetext": "{De minister kan een of meer bepalingen van deze regeling buiten toepassing laten of daarvan afwijken voor zover deze toepassing, gelet op het belang dat deze regeling beoogt te beschermen, zal leiden tot onbillijkheid van overwegende aard.}",
+      "explanation": ""
+    },
+    {
+      "fact": "[artikel 1 van de Wet op het primair onderwijs]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 1 van de Wet op de expertisecentra]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 1 van de Wet op het voortgezet onderwijs]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 1.1.1., onderdeel w, van de Wet educatie en beroepsonderwijs]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 1 van de Wet primair onderwijs BES]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 1 van de Wet voortgezet onderwijs BES]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 1.1.1, van de Wet educatie en beroepsonderwijs BES]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[instellingsbestuur bedoeld in artikel 1.1, onderdeel j, van de Wet op het hoger onderwijs en wetenschappelijk onderzoek]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 3 van de Wet op het primair onderwijs]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 3 van de Wet op de expertisecentra]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel XI van de Wet op de beroepen in het onderwijs]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 3 van de Wet primair onderwijs BES]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[is benoemd of tewerkgesteld zonder benoeming als bedoeld in artikel 33 van de Wet op het voortgezet onderwijs]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 4.2.1. van de Wet educatie en beroepsonderwijs]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 80 van de Wet voortgezet onderwijs BES]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[artikel 4.2.1 van de Wet educatie beroepsonderwijs BES]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[die lesgeeft in het hoger onderwijs]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
+    },
+    {
+      "fact": "[degene die voldoet aan bevoegdheidseisen gesteld in]",
+      "function": "[]",
+      "version": "",
+      "art": "",
+      "juriconnect": "",
+      "sourcetext": "",
+      "explanation": "Toegevoegd, omdat deze dan gekoppeld kan worden aan een ssid"
     }
   ],
   "duties": [
@@ -1091,7 +1484,7 @@
     },
     {
       "duty": "<aanvraag ondertekenen en naam aanvrager, adres, dagtekening en aanduiding doen bevatten>",
-      "duty-components": "<aanvraag ondertekenen> \r\nEN \r\n<aanvraag bevat de naam> \r\nEN \r\n<aanvraag bevat adres van de aanvrager> \r\nEN \r\n<aanvraag bevat dagtekening> \r\nEN \r\n<aanvraag bevat aanduiding van de beschikking die wordt gevraagd>",
+      "duty-components": "<aanvraag ondertekenen>  \nEN  \n<aanvraag bevat de naam>  \nEN  \n<aanvraag bevat adres van de aanvrager>  \nEN  \n<aanvraag bevat dagtekening>  \nEN  \n<aanvraag bevat aanduiding van de beschikking die wordt gevraagd>",
       "duty-holder": "[aanvrager]",
       "claimant": "[bestuursorgaan]",
       "create": "<<indienen aanvraag>>",
@@ -1099,8 +1492,21 @@
       "version": "2-[19940101]-[jjjjmmdd]",
       "reference": "art. 4:2 lid 1 Awb",
       "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.1&afdeling=4.1.1&artikel=4:2&lid=1&z=2017-03-10&g=2017-03-10",
-      "sourcetext": "{De aanvraag wordt ondertekend en bevat ten minste: \r\na. de naam en het adres van de aanvrager; \r\nb. de dagtekening; \r\nc. een aanduiding van de beschikking die wordt gevraagd.}",
+      "sourcetext": "{De aanvraag wordt ondertekend en bevat ten minste:  \na. de naam en het adres van de aanvrager;  \nb. de dagtekening;  \nc. een aanduiding van de beschikking die wordt gevraagd.}",
       "explanation": "Bekendmaken beschikking"
+    },
+    {
+      "duty": "<besluit om de aanvraag niet te behandelen wordt bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken>",
+      "duty-components": "",
+      "duty-holder": "[bestuursorgaan]",
+      "claimant": "[aanvrager]",
+      "create": "<<besluiten de aanvraag niet te behandelen>>",
+      "terminate": "<<bekendmaken besluit>>",
+      "version": "",
+      "reference": "art. 4:5 lid 4 Awb",
+      "juriconnect": "jci1.3:c:BWBR0005537&hoofdstuk=4&titeldeel=4.1&afdeling=4.1.1&artikel=4:5&lid=4",
+      "sourcetext": "{Een besluit om de aanvraag niet te behandelen wordt aan de aanvrager bekendgemaakt binnen vier weken nadat de aanvraag is aangevuld of nadat de daarvoor gestelde termijn ongebruikt is verstreken.}",
+      "explanation": ""
     },
     {
       "duty": "<verschaffen gegevens nodig om besluit te nemen>",
@@ -1117,7 +1523,7 @@
     },
     {
       "duty": "<vergaren nodige kennis>",
-      "duty-components": "<vergaren nodige kennis omtrent de relevante feiten> \r\nEN \r\n<vergaren nodige kennis omtrent  de af te wegen belangen >",
+      "duty-components": "<vergaren nodige kennis omtrent de relevante feiten>  \nEN  \n<vergaren nodige kennis omtrent  de af te wegen belangen >",
       "duty-holder": "[bestuursorgaan]",
       "claimant": "[belanghebbende]",
       "create": "<<indienen aanvraag>>",
@@ -1194,7 +1600,20 @@
       "explanation": ""
     },
     {
-      "duty": "??? \r\n<minister trek Tijdelijke regeling lerarenbeurs in> \r\n???",
+      "duty": "<minister van OCW betaalt subsidie studiekosten aan leraar>",
+      "duty-components": "",
+      "duty-holder": "[bestuursorgaan]",
+      "claimant": "[leraar]",
+      "create": "<verplichting behalen 15 studiepunten>",
+      "terminate": "<betalingsverplichting>",
+      "version": "",
+      "reference": "art. 12 Slb",
+      "juriconnect": "jci1.3:c:BWBR0039319&hoofdstuk=1&artikel=12",
+      "sourcetext": "{Het subsidiebedrag wordt voordat de opleiding waar de subsidie betrekking op heeft aanvangt, aan de subsidieontvanger uitbetaald}",
+      "explanation": "verplichting tot behalen 15 studiepunten bij create is strikt genomen een verplichting van de leraar. Ik vind em voor het uitwerken van de duty bestuursorgaan betaalt subsidie wel wat ver gaan."
+    },
+    {
+      "duty": "<minister trek Tijdelijke regeling lerarenbeurs in>",
       "duty-components": "",
       "duty-holder": "",
       "claimant": "",
@@ -1207,7 +1626,7 @@
       "explanation": ""
     },
     {
-      "duty": "??? \r\n<Regeling BWBR0039319 wordt aangehaald als Subsidieregeling lerarenbeurs> \r\n???",
+      "duty": "<Regeling BWBR0039319 wordt aangehaald als Subsidieregeling lerarenbeurs>",
       "duty-components": "",
       "duty-holder": "",
       "claimant": "",
@@ -1220,7 +1639,7 @@
       "explanation": ""
     },
     {
-      "duty": "???\r\n<de Subsidieregeling lerarenberus wordt met toelichting in de Staatscourant geplaatst>\r\n???",
+      "duty": "<de Subsidieregeling lerarenberus wordt met toelichting in de Staatscourant geplaatst>",
       "duty-components": "",
       "duty-holder": "",
       "claimant": "",
