@@ -11,6 +11,7 @@
 # production
 /build
 /out
+*.vsix
 
 # misc
 .DS_Store
