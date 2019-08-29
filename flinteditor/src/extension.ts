@@ -2,7 +2,6 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { FlintNodeProvider as FlintNodeProvider } from './flintNodeProvider';
-import { FlintFactNodeProvider } from './flintFactNodeProvider';
 import { FlintDefinitionProvider } from './flintDefinitionProvider';
 import { JsonInfo } from './jsonInfo';
 
