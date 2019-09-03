@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { FlintNodeProvider as FlintNodeProvider } from './flintNodeProvider';
 import { FlintDefinitionProvider } from './flintDefinitionProvider';
 import { JsonInfo } from './jsonInfo';
+import { FlintReferenceProvider } from './flintReferenceProvider';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -21,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	console.log("registering defintion provider");
 	vscode.languages.registerDefinitionProvider({ language: 'json' , scheme: 'file'}, new FlintDefinitionProvider(jsonInfo));
+	vscode.languages.registerReferenceProvider({ language: 'json' , scheme: 'file'}, new FlintReferenceProvider(jsonInfo));
 
 	vscode.commands.registerCommand('extension.navToLine', line => vscode.commands.executeCommand('revealLine', {lineNumber: line, at: 'top'}));
 	// The command has been defined in the package.json file

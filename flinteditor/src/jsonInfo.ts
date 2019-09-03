@@ -1,14 +1,17 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as jsonc from 'jsonc-parser';
+import { extractIdentifiersFromString } from './identifierUtil';
 
 export interface IdentifierPaths { [s: string]: [string, number, string]; }
+export interface ReferencePaths { [s: string]: [string, number, string][]; }
 
 export class JsonInfo {
-    public tree : jsonc.Node;
-    public model : any;
-    public raw : string;
-    public identifierPaths : IdentifierPaths;
+    public tree : jsonc.Node = jsonc.parseTree("{}");
+    public model : any = {};
+    public raw : string = "";
+    public identifierPaths : IdentifierPaths = {};
+    public referencePaths : ReferencePaths = {};
 
     constructor() {
         if (vscode.window.activeTextEditor) {
@@ -19,32 +22,48 @@ export class JsonInfo {
             this.model = JSON.parse(flintJson);
             this.raw = flintJson;
 
-            this.identifierPaths = this.model.facts.reduce((acc: any, fact: any, index: number) => {
-                const node = jsonc.findNodeAtLocation(this.tree, ["facts", index, "fact"]);
-                acc[node!.value] = ["facts", index, "fact"];
-                return acc;
-            }, {});
+            const identifierFields = [["acts", "act"], ["facts", "fact"], ["duties", "duty"]];
 
-            this.identifierPaths = this.model.acts.reduce((acc: any, act: any, index: number) => {
-                const node = jsonc.findNodeAtLocation(this.tree, ["acts", index, "act"]);
-
-                acc[node!.value] = ["acts", index, "act"];
-                return acc;
-            }, this.identifierPaths);
-
-            this.identifierPaths = this.model.duties.reduce((acc: any, duty: any, index: number) => {
-                const node = jsonc.findNodeAtLocation(this.tree, ["duties", index, "duty"]);
-                acc[node!.value] = ["duties", index, "duty"];
-                return acc;
-            }, this.identifierPaths);
+            for (let identifierField of identifierFields) {
+                this.identifierPaths = this.model[identifierField[0]].reduce((acc: any, _item: any, index: number) => {
+                    const path = [identifierField[0], index, identifierField[1]];
+                    const node = jsonc.findNodeAtLocation(this.tree, path);
+                    acc[node!.value] = path;
+                    return acc;
+                }, this.identifierPaths);
+            }
 
             console.log('IdentifierLocations', this.identifierPaths);
-        }
-        else {
-            this.model = {};
-            this.raw = "";
-            this.tree = jsonc.parseTree("{}");
-            this.identifierPaths = {};
+
+            const indexedFields = [['acts', 'actor'], ['acts', 'object'], ['acts', 'interested-party'], 
+            ['acts', 'preconditions'], ['acts', 'create'], ['acts', 'terminate'], 
+            ['facts', 'function'], 
+            ['duties', 'duty-components'], ['duties', 'duty-holder'], ['duties', 'duty-holder'], ['duties', 'claimant'], ['duties', 'create'], ['duties', 'terminate']];
+
+
+            for (let indexField of indexedFields) {
+                this.referencePaths = this.model[indexField[0]].reduce((acc: ReferencePaths, item: any, index: number) => {
+                    console.log("Reducing");
+                    const path : [string, number, string] = [indexField[0], index, indexField[1]];  
+
+                    const node = jsonc.findNodeAtLocation(this.tree, path);
+                    const identifiers = extractIdentifiersFromString(node!.value);
+
+                    if (identifiers) {
+                        for (let identifer of identifiers) {
+                            if (acc[identifer]) {
+                                acc[identifer].push(path);
+                            }
+                            else {
+                                acc[identifer] = [path];
+                            }
+                        }
+                    }
+                    
+                    return acc;
+                }, this.referencePaths);
+            }
+
         }
     }
 }

@@ -16,7 +16,7 @@ class UploadModel extends Component {
     async processModel(event) {
         const model = event.target.files[0].name.includes('xls') ?
             await this.processExcel(event.target.files[0]) :
-            await this.processCsv(event);
+            event.target.files[0].name.includes('json') ? await this.processJson(event.target.files[0]): await this.processCsv(event);
 
         const lawReg = new LawReg()
         const validationErrors = await lawReg.validate(model)
@@ -38,6 +38,17 @@ class UploadModel extends Component {
             })
         }
 
+    }
+
+    async processJson(file) {
+        const fileReader = new FileReader();
+        return new Promise((resolve, reject) => {
+            fileReader.onload = event => {
+                console.log(event.target.result)
+                return resolve(JSON.parse(event.target.result));
+            }
+            fileReader.readAsText(file);
+        });
     }
 
     async processCsv(event) {
