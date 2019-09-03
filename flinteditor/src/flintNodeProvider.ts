@@ -8,7 +8,7 @@ export class FlintNodeProvider implements vscode.TreeDataProvider<ActNode> {
 	readonly onDidChangeTreeData: vscode.Event<ActNode | undefined> = this._onDidChangeTreeData.event;
     
     constructor(private jsonInfo : JsonInfo, private type : string) {
-
+        this.jsonInfo.dataUpdated(() => {this._onDidChangeTreeData.fire();}, this);
     }
     
     getTreeItem(element: ActNode): vscode.TreeItem | Thenable<vscode.TreeItem> {
@@ -32,7 +32,7 @@ export class FlintNodeProvider implements vscode.TreeDataProvider<ActNode> {
                 //console.log("Considering identifier with path", identifierPath);
                 return identifierPath[1][0] === this.type;
             }).map((identifierPath) => {
-                console.log('Setting command for', identifierPath);
+                //console.log('Setting command for', identifierPath);
                 const node = jsonc.findNodeAtLocation(parsedJson, identifierPath[1]);
                 const linePosition = vscode.window.activeTextEditor!.document.positionAt(node!.offset);
                 
