@@ -14,6 +14,8 @@ export class JsonInfo {
     public identifierPaths : IdentifierPaths = {};
     public referencePaths : ReferencePaths = {};
 
+    private document : vscode.TextDocument | undefined;
+
     private _dataUpdated : vscode.EventEmitter<null> = new vscode.EventEmitter<null>();
     public dataUpdated : vscode.Event<null> = this._dataUpdated.event;
 
@@ -26,6 +28,7 @@ export class JsonInfo {
     private computeData() {
         if (vscode.window.activeTextEditor) {
             const flintModelDocument = vscode.window.activeTextEditor.document;
+            this.document = flintModelDocument;
             const flintJson = fs.readFileSync(flintModelDocument.fileName, 'utf-8');
             this.tree = jsonc.parseTree(flintJson);
             this.model = JSON.parse(flintJson);

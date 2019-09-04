@@ -70,6 +70,7 @@
 		"vscode-test": "^1.0.2"
 	},
 	"dependencies": {
+		"@discipl/law-reg": "^0.2.6",
 		"jsonc-parser": "^2.1.1"
 	}
 }
