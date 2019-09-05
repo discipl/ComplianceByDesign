@@ -55,8 +55,8 @@ export class FlintDiagnosticManager {
             const createNode = jsonc.findNodeAtLocation(this.jsonInfo.tree, [basePath[0], basePath[1], 'create']);
             const terminateNode = jsonc.findNodeAtLocation(this.jsonInfo.tree, [basePath[0], basePath[1], 'terminate']);
 
-            const createErrors = this.checkCreateTerminate(act.create, document, createNode!.offset);
-            const terminateErrors = this.checkCreateTerminate(act.terminate, document, terminateNode!.offset);
+            const createErrors = createNode ? this.checkCreateTerminate(act.create, document, createNode.offset) : [];
+            const terminateErrors = terminateNode ? this.checkCreateTerminate(act.terminate, document, terminateNode.offset) : [];
             return createErrors.concat(terminateErrors);
         });
 
@@ -69,7 +69,7 @@ export class FlintDiagnosticManager {
         const expressionErrors = expressionCheckInfo.flatMap((expressionCheckPath : [string, string, string[]]) => {
             return this.jsonInfo.model[expressionCheckPath[0]].flatMap((item: any, index: number) => {
                 const node = jsonc.findNodeAtLocation(this.jsonInfo.tree, [expressionCheckPath[0], index, expressionCheckPath[1]]);
-                console.log("ExpCheck en index", expressionCheckPath, index);
+                // console.log("ExpCheck en index", expressionCheckPath, index);
                 return this.validateExpression(node!.value, document, node!.offset, expressionCheckPath[2]);
             });
         })

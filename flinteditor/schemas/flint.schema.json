@@ -1,0 +1,120 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "acts": {
+            "type": "array",
+            "items":  {
+                "type": "object",
+                "properties": {
+                    "act": { "type": "string"},
+                    "actor": { "type": "string"},
+                    "action": { "type": "string"},
+                    "object": { "type": "string"},
+                    "interested-party": { "type": "string"},
+                    "preconditions": { "type": "string"},
+                    "create": { "type": "string"},
+                    "terminate": { "type": "string"},
+                    "version": { "type": "string"},
+                    "reference": { "type": "string"},
+                    "juriconnect": { "type": "string"},
+                    "sourcetext": { "type": "string"},
+                    "explanation": { "type": "string"}
+                },
+                "required": ["act", "actor", "action", "object", "interested-party", "preconditions",
+                "create", "terminate", "version", "reference", "juriconnect", "sourcetext", "explanation"],
+                "defaultSnippets": [
+                    {
+                        "label": "New Act",
+                        "description": "Insert a new act",
+                        "body": {
+                            "act": "<<$1>>",
+                            "actor": "[$2]",
+                            "action": "[$3]",
+                            "object": "[$4]",
+                            "interested-party": "[$5]",
+                            "preconditions": "$6",
+                            "create": "$7",
+                            "tminate": "$8",
+                            "version": "$9",
+                            "reference": "$10",
+                            "juriconnect": "$11",
+                            "sourcetext": "$12",
+                            "explanation": "$13"
+                        }
+                    }
+                ]
+            }
+        },
+        "facts": {
+            "type": "array",
+            "items":  {
+                "type": "object",
+                "properties": {
+                    "fact": { "type": "string"},
+                    "function": { "type": "string"},
+                    "version": { "type": "string"},
+                    "juriconnect": { "type": "string"},
+                    "sourcetext": { "type": "string"},
+                    "explanation": { "type": "string"}
+                },
+                "required": ["fact", "function", "version", "juriconnect", "sourcetext", "explanation"],
+                "defaultSnippets": [
+                    {
+                        "label": "New Fact",
+                        "description": "Insert a new fact",
+                        "body": {
+                            "fact": "[$1]",
+                            "function": "[$2]",
+                            "version": "$3",
+                            "juriconnect": "$4",
+                            "sourcetext": "$5",
+                            "explanation": "$6"
+                        }
+                    }
+                ]
+            }
+        },
+        "duties": {
+            "type": "array",
+            "items":  {
+                "type": "object",
+                "properties": {
+                    "duty": { "type": "string"},
+                    "duty-components": { "type": "string"},
+                    "duty-holder": { "type": "string"},
+                    "claimant": { "type": "string"},
+                    "create": { "type": "string"},
+                    "terminate": { "type": "string"},
+                    "version": { "type": "string"},
+                    "reference": { "type": "string"},
+                    "juriconnect": { "type": "string"},
+                    "sourcetext": { "type": "string"},
+                    "explanation": { "type": "string"}
+                },
+                "required": ["duty", "duty-components", "duty-holder", "claimant",
+                "create", "terminate", "version", "reference", "juriconnect", "sourcetext", "explanation"],
+                "defaultSnippets": [
+                    {
+                        "label": "New Duty",
+                        "description": "Insert a new duty",
+                        "body": {
+                            "duty": "<$1>",
+                            "duty-components": "$2",
+                            "duty-holder": "[$3]",
+                            "claimant": "[$4]",
+                            "create": "$5",
+                            "terminate": "$6",
+                            "version": "$7",
+                            "reference": "$8",
+                            "juriconnect": "$9",
+                            "sourcetext": "$10",
+                            "explanation": "$11"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "required": ["acts", "facts", "duties"]
+}

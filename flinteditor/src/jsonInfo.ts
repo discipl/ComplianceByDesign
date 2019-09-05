@@ -54,17 +54,20 @@ export class JsonInfo {
                     //console.log("Reducing");
                     const path: [string, number, string] = [indexField[0], index, indexField[1]];
                     const node = jsonc.findNodeAtLocation(this.tree, path);
-                    const identifiers = extractIdentifiersFromString(node!.value);
-                    if (identifiers) {
-                        for (let identifer of identifiers) {
-                            if (acc[identifer]) {
-                                acc[identifer].push(path);
-                            }
-                            else {
-                                acc[identifer] = [path];
+                    if (node) {
+                        const identifiers = extractIdentifiersFromString(node.value);
+                        if (identifiers) {
+                            for (let identifer of identifiers) {
+                                if (acc[identifer]) {
+                                    acc[identifer].push(path);
+                                }
+                                else {
+                                    acc[identifer] = [path];
+                                }
                             }
                         }
                     }
+                    
                     return acc;
                 }, this.referencePaths);
             }

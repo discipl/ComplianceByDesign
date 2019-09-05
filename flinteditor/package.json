@@ -24,6 +24,10 @@
 				"title": "Hello World"
 			}
 		],
+		"jsonValidation": [{
+			"fileMatch": "**.flint.json",
+			"url": "./schemas/flint.schema.json"
+		}],
 		"viewsContainers": {
 			"activitybar": [
 				{
