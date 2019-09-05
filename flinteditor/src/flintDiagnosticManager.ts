@@ -70,7 +70,14 @@ export class FlintDiagnosticManager {
             return this.jsonInfo.model[expressionCheckPath[0]].flatMap((item: any, index: number) => {
                 const node = jsonc.findNodeAtLocation(this.jsonInfo.tree, [expressionCheckPath[0], index, expressionCheckPath[1]]);
                 // console.log("ExpCheck en index", expressionCheckPath, index);
-                return this.validateExpression(node!.value, document, node!.offset, expressionCheckPath[2]);
+                if (node && typeof node.value === 'string') {
+                    console.log("Node", node);
+                    return this.validateExpression(node!.value, document, node!.offset, expressionCheckPath[2]);
+                }
+                else {
+                    return this.validateParsedExpressionNode(node!, document);
+                }
+                
             });
         })
 
@@ -109,6 +116,32 @@ export class FlintDiagnosticManager {
                 relatedInformation: []
             }
         }
+    }
+
+    private validateParsedExpressionNode(expression: jsonc.Node, document: vscode.TextDocument) : vscode.Diagnostic[] {
+        let errors : vscode.Diagnostic[] = [];
+        const operandsNode = jsonc.findNodeAtLocation(expression, ["operands"]);
+
+        if (operandsNode) {
+            for (let subNode of operandsNode.children!) {
+                errors = errors.concat(this.validateParsedExpressionNode(subNode, document));
+            }
+        }
+
+        const operandNode = jsonc.findNodeAtLocation(expression, ["operand"]);
+
+        if (operandNode) {
+            errors = errors.concat(this.validateParsedExpressionNode(operandNode!.value, document));
+        }
+
+        if (expression.type === 'string') {
+            const error = this.validateReference(expression.value, document, expression.offset);
+            if (error) {
+                errors.push(error);
+            }
+        }
+
+        return errors;
     }
 
     private validateParsedExpression(expression: any, document: vscode.TextDocument, beginOffset: number, originalExpression: string) : vscode.Diagnostic[] {

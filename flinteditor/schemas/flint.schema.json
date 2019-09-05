@@ -1,6 +1,78 @@
 {
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
+    "definitions": {
+        "expression": {
+            "anyOf": [
+                {"$ref": "#/definitions/multi"},
+                {"$ref": "#/definitions/not"},
+                {"type": "string",
+                 "defaultSnippets": [{
+                    "label": "Fact",
+                    "description": "Insert fact",
+                    "body": "[$1]"
+                    }
+                 ]
+                }
+            ]
+        },
+        "multi": {
+            "type": "object",
+            "properties": {
+                "expression": {
+                    "type": "string", 
+                    "pattern": "^(AND)|(OR)$"
+                },
+                "operands": {
+                    "type": "array", 
+                    "items": {"$ref": "#/definitions/expression"}
+                }
+            },
+            "defaultSnippets": [
+                {
+                    "label": "AND",
+                    "description": "Insert AND",
+                    "body": {
+                        "expression": "AND",
+                        "operands": [
+                            "^$1"
+                        ]
+                    }
+                },
+                {
+                    "label": "OR",
+                    "description": "Insert OR",
+                    "body": {
+                        "expression": "OR",
+                        "operands": [
+                            "^$1"
+                        ]
+                    }
+                }
+            ]
+        },
+        "not": {
+            "type": "object",
+            "properties": {
+                "expression": {
+                    "type": "string", 
+                    "pattern": "^NOT$"
+                },
+                "operand": {"$ref": "#/definitions/expression"}
+            },
+            "defaultSnippets": [
+                {
+                    "label": "NOT",
+                    "description": "Insert NOT",
+                    "body": {
+                        "expression": "NOT",
+                        "operand": "^$1"
+                        
+                    }
+                }
+            ]
+        }
+    },
     "properties": {
         "acts": {
             "type": "array",
@@ -12,7 +84,7 @@
                     "action": { "type": "string"},
                     "object": { "type": "string"},
                     "interested-party": { "type": "string"},
-                    "preconditions": { "type": "string"},
+                    "preconditions": { "$ref": "#/definitions/expression"},
                     "create": { "type": "string"},
                     "terminate": { "type": "string"},
                     "version": { "type": "string"},
@@ -52,8 +124,9 @@
                 "type": "object",
                 "properties": {
                     "fact": { "type": "string"},
-                    "function": { "type": "string"},
+                    "function": { "$ref": "#/definitions/expression"},
                     "version": { "type": "string"},
+                    "art": { "type": "string"},
                     "juriconnect": { "type": "string"},
                     "sourcetext": { "type": "string"},
                     "explanation": { "type": "string"}
@@ -65,11 +138,12 @@
                         "description": "Insert a new fact",
                         "body": {
                             "fact": "[$1]",
-                            "function": "[$2]",
+                            "function": "$2",
                             "version": "$3",
-                            "juriconnect": "$4",
-                            "sourcetext": "$5",
-                            "explanation": "$6"
+                            "art": "$4",
+                            "juriconnect": "$5",
+                            "sourcetext": "$6",
+                            "explanation": "$7"
                         }
                     }
                 ]
