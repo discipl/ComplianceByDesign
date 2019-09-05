@@ -3,7 +3,10 @@ import { JsonInfo } from './jsonInfo';
 
 import * as jsonc from 'jsonc-parser';
 
+import { LawReg } from '@discipl/law-reg';
+
 export class FlintDiagnosticManager {
+    private lawReg : any = new LawReg();
     constructor(private collection: vscode.DiagnosticCollection, private jsonInfo: JsonInfo) {
         console.log("Initialized manager");
         this.computeDiagnostics();
@@ -13,13 +16,24 @@ export class FlintDiagnosticManager {
     private computeDiagnostics() {
         console.log("Computing errors");
         const document = vscode.window.activeTextEditor!.document;
-        const errors = [];
+        
 
-        const actNameValidationErrors : vscode.Diagnostic[] = this.jsonInfo.model.acts
-        .filter((act: any) => typeof act.act !== 'string' || !act.act.match(/^<<.*>>$/))
-        .map((act: any) => {
-            const node = jsonc.findNodeAtLocation(this.jsonInfo.tree, this.jsonInfo.identifierPaths[act]);
-            const beginPosition = document.positionAt(node!.colonOffset!+2); 
+        const actNameValidationErrors = this.checkIdentifiers(document, "acts", "act", /^<<.*>>$/);
+        const factNameValidationErrors = this.checkIdentifiers(document, "facts", "fact", /^\[.*\]$/);
+        const dutyNameValidationErrors = this.checkIdentifiers(document, "duties", "duty", /^<.*>$/);
+
+        const referenceErrors = this.checkReferences(document);
+
+        const errors = actNameValidationErrors.concat(factNameValidationErrors, dutyNameValidationErrors, referenceErrors);
+        this.collection.set(document.uri, errors);
+    }
+
+    private checkIdentifiers(document: vscode.TextDocument, flintItems: string, flintItem: string, pattern: RegExp) : vscode.Diagnostic[] {
+        const identifierValidationErrors : vscode.Diagnostic[] = this.jsonInfo.model[flintItems]
+        .filter((item: any) => typeof item[flintItem] !== 'string' || !item[flintItem].match(pattern))
+        .map((item: any) => {
+            const node = jsonc.findNodeAtLocation(this.jsonInfo.tree, this.jsonInfo.identifierPaths[item[flintItem]]);
+            const beginPosition = document.positionAt(node!.offset); 
             const endPosition = document.positionAt(node!.offset + node!.length);
 
             return {
@@ -27,151 +41,122 @@ export class FlintDiagnosticManager {
                 message: 'Invalid name',
                 range: new vscode.Range(beginPosition, endPosition),
                 severity: vscode.DiagnosticSeverity.Error,
-                source: act.act.toString(),
+                source: item[flintItem].toString(),
                 relatedInformation: []
             };
         });
 
-        this.collection.set(document.uri, actNameValidationErrors);
+        return identifierValidationErrors;
     }
 
-    // validate (model : any) {
-    //     const errors = []
-    
-    //     // The defined acts are not actually used, but the syntax is checked here
-    //     model.acts.reduce((map, act) => {
-    //       if (typeof act.act === 'string' && act.act.startsWith('<<') && act.act.endsWith('>>')) {
-    //         map[act.act] = true
-    //       } else {
-    //         errors.push({
-    //           'type': 'error',
-    //           'field': 'act/act',
-    //           'message': 'Invalid name:' + act.act.toString()
-    //         })
-    //       }
-    //       return map
-    //     }, {})
-    //     const definedFacts = model.facts.reduce((map, fact) => {
-    //       if (typeof fact.fact === 'string' && fact.fact.startsWith('[') && fact.fact.endsWith(']')) {
-    //         map[fact.fact] = true
-    //       } else {
-    //         errors.push({
-    //           'type': 'error',
-    //           'field': 'fact/fact',
-    //           'message': 'Invalid name:' + fact.fact.toString()
-    //         })
-    //       }
-    //       return map
-    //     }, {})
-    //     const definedDuties = model.duties.reduce((map, duty) => {
-    //       if (typeof duty.duty === 'string' && duty.duty.startsWith('<') && duty.duty.endsWith('>')) {
-    //         map[duty.duty] = true
-    //       } else {
-    //         errors.push({
-    //           'type': 'error',
-    //           'field': 'duty/duty',
-    //           'message': 'Invalid name:' + duty.duty.toString()
-    //         })
-    //       }
-    //       return map
-    //     }, {})
-    
-    //     const validateCreateTerminate = (referenceString, field, identifier) => {
-    //       const createTerminateErrors = []
-    //       const parsedReferences = referenceString.split(';').map(item => item.trim())
-    
-    //       for (let reference of parsedReferences) {
-    //         if (!definedFacts[reference] && !definedDuties[reference]) {
-    //           createTerminateErrors.push(
-    //             {
-    //               'type': 'warning',
-    //               'field': field,
-    //               'identifier': identifier,
-    //               'message': 'Undefined item: ' + reference
-    //             }
-    //           )
-    //         }
-    //       }
-    
-    //       return createTerminateErrors
-    //     }
-    
-    //     const validateAtomicFact = (fact, field, identifier) => {
-    //       if (!definedFacts[fact]) {
-    //         errors.push({
-    //           'type': 'warning',
-    //           'field': field,
-    //           'identifier': identifier,
-    //           'message': 'Undefined fact: ' + fact
-    //         })
-    //       }
-    //     }
-    
-    //     const validateParsedExpression = (expression, field, identifier) => {
-    //       if (typeof expression === 'string') {
-    //         validateAtomicFact(expression, field, identifier)
-    //       }
-    
-    //       if (expression.operands) {
-    //         for (let operand of expression.operands) {
-    //           validateParsedExpression(operand, field, identifier)
-    //         }
-    //       }
-    
-    //       if (expression.operand) {
-    //         validateParsedExpression(expression.operand, field, identifier)
-    //       }
-    //     }
-    
-    //     const validateExpression = (expression, field, identifier) => {
-    //       try {
-    //         let parsedFact = this.factParser.parse(expression)
-    //         validateParsedExpression(parsedFact, field, identifier)
-    //       } catch (e) {
-    //         if (e.name === 'SyntaxError') {
-    //           errors.push({
-    //             'type': 'error',
-    //             'field': field,
-    //             'identifier': identifier,
-    //             'message': "Could not parse: '" + expression + "' due to " + e.message
-    
-    //           })
-    //         } else {
-    //           throw e
-    //         }
-    //       }
-    //     }
-    
-    //     for (let act of model.acts) {
-    //       for (let item of ['actor', 'object', 'interested-party']) {
-    //         if (typeof act[item] !== 'undefined') {
-    //           validateAtomicFact(act[item], 'act/' + item, act.act)
-    //         }
-    //       }
-    
-    //       if (typeof act.create === 'string' && act.create !== '') {
-    //         // Check if facts being referred are <<>>
-    //         errors.push.apply(errors, validateCreateTerminate(act.create, 'act/create', act.act))
-    //       }
-    
-    //       if (typeof act.terminate === 'string' && act.terminate !== '') {
-    //         errors.push.apply(errors, validateCreateTerminate(act.terminate, 'act/terminate', act.act))
-    //       }
-    
-    //       if (typeof act.preconditions === 'string' && act.preconditions.trim() !== '') {
-    //         validateExpression(act.preconditions, 'act/preconditions', act.act)
-    //       }
-    //     }
-    
-    //     for (let fact of model.facts) {
-    //       // TODO: Check if fact function <<>> has referring act
-    //       if (typeof fact.function === 'string' && fact.function !== '[]' && fact.function !== '<<>>') {
-    //         validateExpression(fact.function, 'fact/function', fact.fact)
-    //       }
-    //     }
-    
-    //     return errors
-    //   }
+    private checkReferences(document: vscode.TextDocument) : vscode.Diagnostic[] {
+        const createTerminateErrors = this.jsonInfo.model.acts.flatMap((act: any) => {
+            const basePath = this.jsonInfo.identifierPaths[act.act];
+            const createNode = jsonc.findNodeAtLocation(this.jsonInfo.tree, [basePath[0], basePath[1], 'create']);
+            const terminateNode = jsonc.findNodeAtLocation(this.jsonInfo.tree, [basePath[0], basePath[1], 'terminate']);
 
+            const createErrors = this.checkCreateTerminate(act.create, document, createNode!.offset);
+            const terminateErrors = this.checkCreateTerminate(act.terminate, document, terminateNode!.offset);
+            return createErrors.concat(terminateErrors);
+        });
+
+        const veryStrict : string[] = [];
+        const lessStrict = [""];
+        const factStrict = ["<<>>", "[]"];
+        const expressionCheckInfo : [string, string, string[]][] = [['acts', 'actor', veryStrict], ['acts', 'object', veryStrict], ['acts', 'interested-party', veryStrict], 
+                        ['acts', 'preconditions', lessStrict], ['facts', 'function', factStrict]];
+
+        const expressionErrors = expressionCheckInfo.flatMap((expressionCheckPath : [string, string, string[]]) => {
+            return this.jsonInfo.model[expressionCheckPath[0]].flatMap((item: any, index: number) => {
+                const node = jsonc.findNodeAtLocation(this.jsonInfo.tree, [expressionCheckPath[0], index, expressionCheckPath[1]]);
+                console.log("ExpCheck en index", expressionCheckPath, index);
+                return this.validateExpression(node!.value, document, node!.offset, expressionCheckPath[2]);
+            });
+        })
+
+        return createTerminateErrors.concat(expressionErrors);
+    }
+
+    private checkCreateTerminate(referenceString: string, document: vscode.TextDocument, beginOffset: number) : vscode.Diagnostic[] {
+        const createTerminateErrors = [];
+        const parsedReferences = referenceString.split(';').map(item => item.trim());
+  
+        for (let reference of parsedReferences) {
+            if (reference.trim() === "") {
+                continue;
+            }
+            const subPosition = referenceString.indexOf(reference);
+            const error = this.validateReference(reference, document, beginOffset + subPosition);
+
+            if (error) {
+                createTerminateErrors.push(error);
+            }
+        }
+  
+        return createTerminateErrors;
+    }
+
+    private validateReference(reference: string, document: vscode.TextDocument, beginOffset: number): vscode.Diagnostic | undefined {
+        if (!this.jsonInfo.identifierPaths[reference]) {
+            const beginPosition = document.positionAt(beginOffset);
+            const endPosition = document.positionAt(beginOffset + reference.length);
+            return {
+                code: '',
+                message: 'Undefined fact',
+                range: new vscode.Range(beginPosition, endPosition),
+                severity: vscode.DiagnosticSeverity.Warning,
+                source: reference,
+                relatedInformation: []
+            }
+        }
+    }
+
+    private validateParsedExpression(expression: any, document: vscode.TextDocument, beginOffset: number, originalExpression: string) : vscode.Diagnostic[] {
+        let errors = [];
+        if (typeof expression === 'string') {
+            const extraOffset = JSON.stringify(originalExpression).indexOf(expression);
+            const error = this.validateReference(expression, document, beginOffset + extraOffset);
+            if (error) {
+                errors.push(error);
+            }
+        }
+
+        if (expression.operands) {
+            for (let operand of expression.operands) {
+                errors = errors.concat(this.validateParsedExpression(operand, document, beginOffset, originalExpression));
+            }
+        }
+
+        if (expression.operand) {
+            errors = errors.concat(this.validateParsedExpression(expression.operand, document, beginOffset, originalExpression));
+        }
+
+        return errors;
+    }
+
+    private validateExpression(expression: string, document: vscode.TextDocument, beginOffset: number, exceptions: string[]) : vscode.Diagnostic[] {
+          try {
+              if (exceptions.includes(expression.trim())) {
+                  return [];
+              }
+            let parsedFact = this.lawReg.factParser.parse(expression);
+            return this.validateParsedExpression(parsedFact, document, beginOffset, expression);
+          } catch (e) {
+            if (e.name === 'SyntaxError') {
+                const beginPosition = document.positionAt(beginOffset);
+            const endPosition = document.positionAt(beginOffset + expression.length);
+                return [{
+                    code: '',
+                    message: 'Syntax Error: ' + e.message,
+                    range: new vscode.Range(beginPosition, endPosition),
+                    severity: vscode.DiagnosticSeverity.Error,
+                    source: expression,
+                    relatedInformation: []
+                }];
+            } else {
+              throw e;
+            }
+          }
+        }
 
 }
