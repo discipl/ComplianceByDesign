@@ -14,7 +14,7 @@ export class FlintDiagnosticManager {
     }
 
     private computeDiagnostics() {
-        console.log("Computing errors");
+        // console.log("Computing errors");
         const document = vscode.window.activeTextEditor!.document;
         
 
@@ -71,7 +71,7 @@ export class FlintDiagnosticManager {
                 const node = jsonc.findNodeAtLocation(this.jsonInfo.tree, [expressionCheckPath[0], index, expressionCheckPath[1]]);
                 // console.log("ExpCheck en index", expressionCheckPath, index);
                 if (node && typeof node.value === 'string') {
-                    console.log("Node", node);
+                    // console.log("Node", node);
                     return this.validateExpression(node!.value, document, node!.offset, expressionCheckPath[2]);
                 }
                 else {

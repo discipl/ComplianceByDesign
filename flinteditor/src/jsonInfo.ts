@@ -44,7 +44,7 @@ export class JsonInfo {
                     return acc;
                 }, this.identifierPaths);
             }
-            console.log('IdentifierLocations', this.identifierPaths);
+            // console.log('IdentifierLocations', this.identifierPaths);
             const indexedFields = [['acts', 'actor'], ['acts', 'object'], ['acts', 'interested-party'],
             ['acts', 'preconditions'], ['acts', 'create'], ['acts', 'terminate'],
             ['facts', 'function'],

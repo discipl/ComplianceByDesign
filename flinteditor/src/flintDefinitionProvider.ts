@@ -13,7 +13,7 @@ export class FlintDefinitionProvider implements vscode.DefinitionProvider {
 
         const identifier = extractIdentifier(document, position, this.jsonInfo);
         if (identifier.length > 0) {
-            console.log("Checking presence in identifierLocations");
+            // console.log("Checking presence in identifierLocations");
             if (this.jsonInfo.identifierPaths[identifier]) {
                 const node = jsonc.findNodeAtLocation(this.jsonInfo.tree, this.jsonInfo.identifierPaths[identifier]);
 

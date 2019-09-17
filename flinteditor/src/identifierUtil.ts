@@ -13,21 +13,21 @@ export function extractIdentifier(document: vscode.TextDocument, position: vscod
     const value = location.previousNode!.value;
     const offsetInValue = offset - location.previousNode!.offset;
 
-    console.log("Finding factidentifiers in value", value);
+    // console.log("Finding factidentifiers in value", value);
     const regex = /(\[.*\])|(<<.*>>)|(<.*>)/g;
     let identifier : string = "";
     let m = null;
     while (m = regex.exec(value)) {
-        console.log(m);
-        console.log("index", m.index);
-        console.log("offsetInValue", offsetInValue);
+        // console.log(m);
+        // console.log("index", m.index);
+        // console.log("offsetInValue", offsetInValue);
         if (m.index <= offsetInValue && m.index + m[0].length >= offsetInValue) {
             identifier = m[0];
             break;
         }
 
     }
-    console.log("Identifier", identifier);
+    // console.log("Identifier", identifier);
     return identifier;
 }
 
