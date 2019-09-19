@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as jsonc from 'jsonc-parser';
+import { ModelValidator } from '@discipl/law-reg';
 import { extractIdentifiersFromString } from './identifierUtil';
 import { EventEmitter } from 'events';
 
@@ -13,6 +14,7 @@ export class JsonInfo {
     public raw : string = "";
     public identifierPaths : IdentifierPaths = {};
     public referencePaths : ReferencePaths = {};
+    public modelValidator : any = {};
 
     private document : vscode.TextDocument | undefined;
 
@@ -35,6 +37,7 @@ export class JsonInfo {
             this.raw = flintJson;
             this.identifierPaths = {};
             this.referencePaths = {};
+            this.modelValidator = new ModelValidator(flintJson);
             const identifierFields = [["acts", "act"], ["facts", "fact"], ["duties", "duty"]];
             for (let identifierField of identifierFields) {
                 this.identifierPaths = this.model[identifierField[0]].reduce((acc: any, _item: any, index: number) => {

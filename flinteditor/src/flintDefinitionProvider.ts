@@ -9,20 +9,15 @@ export class FlintDefinitionProvider implements vscode.DefinitionProvider {
     }
 
     provideDefinition(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken): vscode.ProviderResult<vscode.Location | vscode.Location[] | vscode.LocationLink[]> {
-        const tree = this.jsonInfo.tree;
+        const offset = document.offsetAt(position);
 
-        const identifier = extractIdentifier(document, position, this.jsonInfo);
-        if (identifier.length > 0) {
-            // console.log("Checking presence in identifierLocations");
-            if (this.jsonInfo.identifierPaths[identifier]) {
-                const node = jsonc.findNodeAtLocation(this.jsonInfo.tree, this.jsonInfo.identifierPaths[identifier]);
+        const definition = this.jsonInfo.modelValidator.getDefintionForOffset(offset);
 
-                const linePosition = document.positionAt(node!.offset);
-
-                return Promise.resolve(new vscode.Location(document.uri, linePosition));   
-            }
+        if (definition) {
+            const linePosition = document.positionAt(definition.offset);
+            return Promise.resolve(new vscode.Location(document.uri, linePosition));  
         }
-
+        
         return Promise.resolve(null);
     }
 
