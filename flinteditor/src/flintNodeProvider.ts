@@ -25,26 +25,15 @@ export class FlintNodeProvider implements vscode.TreeDataProvider<ActNode> {
     }
 
     private async getActsFromJson(): Promise<ActNode[]> {
-        if (vscode.window.activeTextEditor) {
-            const parsedJson = this.jsonInfo.tree;
-
-            return Object.entries(this.jsonInfo.identifierPaths).filter((identifierPath) => {
-                //console.log("Considering identifier with path", identifierPath);
-                return identifierPath[1][0] === this.type;
-            }).map((identifierPath) => {
-                //console.log('Setting command for', identifierPath);
-                const node = jsonc.findNodeAtLocation(parsedJson, identifierPath[1]);
-                const linePosition = vscode.window.activeTextEditor!.document.positionAt(node!.offset);
-                
-                return new ActNode(identifierPath[0], vscode.TreeItemCollapsibleState.None, {
-                    command: 'extension.navToLine',
+        return this.jsonInfo.modelValidator.getDefinitionsForType(this.type)
+        .map((definitionIdentifierInfo: { offset: number; identifier: string; }) => {
+            const linePosition = vscode.window.activeTextEditor!.document.positionAt(definitionIdentifierInfo.offset);
+            return new ActNode(definitionIdentifierInfo.identifier, vscode.TreeItemCollapsibleState.None, {
+                command: 'extension.navToLine',
                     title: '',
                     arguments: [linePosition.line]
-                });
             });
-        }
-        
-        return [];
+        });
     }
 }
 
