@@ -76,7 +76,7 @@
 		"vscode-test": "^1.0.2"
 	},
 	"dependencies": {
-		"@discipl/law-reg": "file:../../../packages/discipl-law-reg-0.2.7.tgz",
+		"@discipl/law-reg": "file:../../../packages/discipl-law-reg-0.3.0.tgz",
 		"jsonc-parser": "^2.1.1"
 	}
 }

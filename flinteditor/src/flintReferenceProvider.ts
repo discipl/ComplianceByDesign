@@ -8,7 +8,6 @@ export class FlintReferenceProvider implements vscode.ReferenceProvider {
     }
     
     provideReferences(document: vscode.TextDocument, position: vscode.Position, context: vscode.ReferenceContext, token: vscode.CancellationToken): vscode.ProviderResult<vscode.Location[]> {
-        console.log("Finding references");
         
         const offset = document.offsetAt(position);
 
