@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "./scripts/build-non-split.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "package": "npm run build && zip -r cbd-alpha.$(git rev-parse HEAD).zip build/"
@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^3.4.1"
+    "cypress": "^3.4.1",
+    "rewire": "^4.0.1"
   }
 }

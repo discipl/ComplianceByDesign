@@ -20,8 +20,8 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "extension.run",
+				"title": "Run Flint"
 			}
 		],
 		"jsonValidation": [
