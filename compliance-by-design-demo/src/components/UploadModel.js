@@ -3,7 +3,7 @@ import * as Papa from 'papaparse'
 import ModelView from "./ModelView";
 import readXlslxFile from 'read-excel-file'
 
-import { LawReg } from "@discipl/law-reg";
+import { ModelValidator } from "@discipl/law-reg";
 
 
 class UploadModel extends Component {
@@ -18,8 +18,7 @@ class UploadModel extends Component {
             await this.processExcel(event.target.files[0]) :
             event.target.files[0].name.includes('json') ? await this.processJson(event.target.files[0]): await this.processCsv(event);
 
-        const lawReg = new LawReg()
-        const validationErrors = await lawReg.validate(model)
+        const validationErrors = new ModelValidator(JSON.stringify(model)).getDiagnostics();
         if (this.downloadJson) {
             const filename = 'model.json'
             const contentType = 'application/json;charset=utf-8;'
@@ -124,16 +123,17 @@ class UploadModel extends Component {
     }
 
     renderErrors() {
-        const tableRows = this.state.errors.filter((errorLine) => errorLine.type === 'error').concat(this.state.errors.filter((errorLine) => errorLine.type === 'warning')).map((errorLine) => {
+        const tableRows = this.state.errors.filter((errorLine) => errorLine.severity === 'ERROR').concat(this.state.errors.filter((errorLine) => errorLine.severity === 'WARNING')).map((errorLine) => {
+            console.log(errorLine)
             return (<tr>
                 <td>
-                    {errorLine.type}
+                    {errorLine.severity}
                 </td>
                 <td>
-                    {errorLine.field}
+                    {errorLine.path ? errorLine.path[0] + '/' + errorLine.path[2] : ''}
                 </td>
                 <td>
-                    {errorLine.identifier}
+                    {errorLine.source}
                 </td>
                 <td>
                     {errorLine.message}
@@ -142,7 +142,7 @@ class UploadModel extends Component {
         })
 
         return (<div><button onClick={this.resetErrors.bind(this)}>View Model anyway</button><table>
-            <tr><th>Type</th><th>Field</th><th>Identifier</th><th>Error message</th></tr>
+            <tr><th>Type</th><th>Field</th><th>Source</th><th>Error message</th></tr>
             {tableRows}
         </table></div>)
     }
