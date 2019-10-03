@@ -1,29 +1,31 @@
 {
-  "name": "compliance-by-design-demo",
+  "name": "@discipl/compliance-by-design",
   "version": "0.1.0",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "./",
   "dependencies": {
     "@discipl/core-ephemeral": "0.10.1",
     "@discipl/law-reg": "^0.3.0",
     "loglevel": "^1.6.3",
     "papaparse": "^5.0.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
     "read-excel-file": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "./scripts/build-non-split.js",
+    "prepack": "./scripts/build-non-split.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "package": "npm run build && zip -r cbd-alpha.$(git rev-parse HEAD).zip build/"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "files": [
+    "src/",
+    "public/",
+    "build/"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
@@ -38,6 +40,10 @@
   },
   "devDependencies": {
     "cypress": "^3.4.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
     "rewire": "^4.0.1"
   }
 }
