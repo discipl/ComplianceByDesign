@@ -7,6 +7,7 @@ import { JsonInfo } from './jsonInfo';
 import { FlintReferenceProvider } from './flintReferenceProvider';
 import { FlintDiagnosticManager } from './flintDiagnosticManager';
 import { FlintPanel } from './flintPanel';
+import { FlintCompletionItemProvider } from './flintCompletionItemProvider';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -25,6 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log("registering defintion provider");
 	vscode.languages.registerDefinitionProvider({ language: 'json' , scheme: 'file'}, new FlintDefinitionProvider(jsonInfo));
 	vscode.languages.registerReferenceProvider({ language: 'json' , scheme: 'file'}, new FlintReferenceProvider(jsonInfo));
+	vscode.languages.registerCompletionItemProvider({ language: 'json' , scheme: 'file'}, new FlintCompletionItemProvider(jsonInfo));
 
 	const collection = vscode.languages.createDiagnosticCollection('Flint');
 	const manager = new FlintDiagnosticManager(collection, jsonInfo);
