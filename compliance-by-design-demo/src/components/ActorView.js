@@ -75,9 +75,8 @@ class ActorView extends Component {
             console.log('Getting duties')
             duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
         } catch (e) {
-            duties = [{
-                'duty': 'Error while trying to determine duties'
-            }]
+            console.log('Error', e, ' while determining duties')
+            duties = []
         }
         this.setState({
             'availableActs': availableActs,
