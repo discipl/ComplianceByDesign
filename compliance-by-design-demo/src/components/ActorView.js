@@ -29,37 +29,42 @@ class ActorView extends Component {
         this.setState({'loading': true})
         console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
-
-        let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, [], [])
-        console.log('Got available act links')
-        let availableActs = await Promise.all(availableActLinks
-            .map(async (act) => {
-                const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
-                return {...act, 'details': details}
-            }))
-        console.log('Computing potential acts')
-        let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, [], []))
-            .map(async (act) => {
-                const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
-                return {...act, 'details': details}
-            }))
-        console.log('Getting actions')
-        let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
-        let duties
         try {
-            console.log('Getting duties')
-            duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
-        } catch (e) {
-            console.log('Error', e, ' while determining duties')
-            duties = []
+            let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, [], [])
+            console.log('Got available act links')
+            let availableActs = await Promise.all(availableActLinks
+                .map(async (act) => {
+                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                    return {...act, 'details': details}
+                }))
+            console.log('Computing potential acts')
+            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, [], []))
+                .map(async (act) => {
+                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                    return {...act, 'details': details}
+                }))
+            console.log('Getting actions')
+            let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
+            let duties
+            try {
+                console.log('Getting duties')
+                duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
+            } catch (e) {
+                console.log('Error', e, ' while determining duties')
+                duties = []
+            }
+            this.setState({
+                'availableActs': availableActs,
+                'potentialActs': potentialActs,
+                'previousActs': previousActs,
+                'duties': duties,
+                'loading': false
+            })
         }
-        this.setState({
-            'availableActs': availableActs,
-            'potentialActs': potentialActs,
-            'previousActs': previousActs,
-            'duties': duties,
-            'loading': false
-        })
+        catch (e) {
+            console.error("Caught ex", e)
+        }
+
     }
 
     async takeAction(act) {
@@ -156,6 +161,7 @@ class ActorView extends Component {
             console.log('ActorView render loading true')
             return <div className="container"><div className="acts"><p>Loading...</p></div></div>
         }
+        console.log('Props when actorview rendering', this.props)
         return <div className="container">
 
             <div className="actorHeader" style={{'backgroundColor': this.props.colorCode}}>
