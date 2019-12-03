@@ -7,55 +7,30 @@ class ActorView extends Component {
         super(props)
         console.log('Constructing ActorView', props)
         this.state = {
-            'facts': [],
-            'nonFacts': [],
             'duties': [],
             'loading': true,
-        }
-
-        this.memory = {
         }
     }
 
     async componentDidMount() {
         await this.computeRenderData([], [])
-        this.memory[this.props.caseLink] = {'facts': [], 'nonFacts': []}
     }
 
     async componentDidUpdate(prevProps, prevState) {
         console.log('ComponentDidUpdate', 'prev:', prevProps, 'current:', this.props)
 
         const propsChanged = this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid
-        const stateChanged = this.state.facts.length !== prevState.facts.length || this.state.nonFacts.length !== prevState.nonFacts.length
-        if (propsChanged || stateChanged) {
-            console.log(stateChanged)
-            if (this.props.revert && this.memory[this.props.caseLink] != null) {
-                console.log('ComponentDidUpdate reverting', this.props.name, 'to facts', this.memory[this.props.caseLink])
-
-                await this.computeRenderData(this.memory[this.props.caseLink].facts, this.memory[this.props.caseLink].nonFacts)
-                this.setState({'facts': this.memory[this.props.caseLink].facts, 'nonFacts': this.memory[this.props.caseLink].nonFacts})
-            } else {
-                console.log('ComponentDidUpdate normal render')
-                console.log('ComponentDidUpdate revert: ', this.props.revert, this.memory)
-                if (this.memory[this.props.caseLink] == null) {
-                    this.memory[this.props.caseLink] = {
-                        'facts': this.state.facts,
-                        'nonFacts': this.state.nonFacts
-                    }
-                }
-
-                await this.computeRenderData(this.state.facts, this.state.nonFacts)
-
-            }
+        if (propsChanged) {
+            await this.computeRenderData()
         }
     }
 
-    async computeRenderData(facts, nonFacts) {
+    async computeRenderData() {
         this.setState({'loading': true})
         console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
-        console.log('ComputeRenderData facts and nonFacts', facts, nonFacts)
-        let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts)
+
+        let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, [], [])
         console.log('Got available act links')
         let availableActs = await Promise.all(availableActLinks
             .map(async (act) => {
@@ -63,7 +38,7 @@ class ActorView extends Component {
                 return {...act, 'details': details}
             }))
         console.log('Computing potential acts')
-        let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, facts, nonFacts))
+        let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, [], []))
             .map(async (act) => {
                 const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
                 return {...act, 'details': details}
@@ -90,10 +65,6 @@ class ActorView extends Component {
     async takeAction(act) {
         try {
             let caseLink = await this.props.lawReg.take(this.props.actorSsid, this.props.caseLink, act, this.askFact.bind(this))
-            this.memory[caseLink] = {
-                'facts': this.state.facts,
-                'nonFacts': this.state.nonFacts
-            }
             if (this.props.onCaseChange) {
                 this.props.onCaseChange(caseLink)
             }
@@ -108,36 +79,13 @@ class ActorView extends Component {
     }
 
     async askFact (fact) {
-        if (this.state.facts.includes(fact)) {
-            return true
-        }
-
-        if (this.state.nonFacts.includes(fact)) {
-            return false
-        }
-
         const resultPromise = new Promise((resolve, reject) => {
             const handleAskFactResult = (result) => {
+                this.setState({'prompt': false})
                 if (result) {
-                    this.setState((state) => {
-                        let newFacts = state.facts.slice(0)
-                        newFacts.push(fact)
-                        return {
-                            'facts': newFacts,
-                            'prompt': false
-                        }
-                    })
-                    resolve(true)
+                    resolve(result)
                 }
                 else {
-                    this.setState((state) => {
-                        let newNonFacts = state.nonFacts.slice(0)
-                        newNonFacts.push(fact)
-                        return {
-                            'nonFacts': newNonFacts,
-                            'prompt': false
-                        }
-                    })
                     resolve(false)
                 }
             }
@@ -187,31 +135,6 @@ class ActorView extends Component {
         })
     }
 
-    async deleteFact(deleteFact) {
-        this.setState((state) => {
-            return {
-                'facts': state.facts.filter((fact) => fact !== deleteFact)
-            }
-        })
-    }
-
-    async deleteNonFact(deleteNonFact) {
-        this.setState((state) => {
-            return {
-                'nonFacts': state.nonFacts.filter((nonFact) => nonFact !== deleteNonFact)
-            }
-        })
-    }
-
-    renderWallet() {
-        console.log('Rendering wallet from', this.state.facts)
-        return this.state.facts.map((fact) => <li><p>{fact}<button className='removalButton' onClick={this.deleteFact.bind(this, fact)}>-</button></p></li>)
-    }
-
-    renderFalseFacts() {
-        return this.state.nonFacts.map((fact) => <li><p>{fact}<button className='removalButton' onClick={this.deleteNonFact.bind(this, fact)}>-</button></p></li>)
-    }
-
     renderDuties() {
         return this.state.duties.map((duty) => {
             return <li><p>{duty.duty}</p></li>
@@ -241,14 +164,6 @@ class ActorView extends Component {
             <div className="acts">
                 {this.renderAvailableActs()}
                 {this.renderPotentialActs()}
-            </div>
-            <div className="wallet">
-              <h4>Wallet</h4>
-              <ul>
-                  {this.renderWallet()}
-                  <h5>False items</h5>
-                  {this.renderFalseFacts()}
-              </ul>
             </div>
             <div className="duties">
                 <h4>Duties</h4>
