@@ -45,6 +45,13 @@ class ActorView extends Component {
                 }))
             console.log('Getting actions')
             let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
+            const core = this.props.lawReg.getAbundanceService().getCoreAPI();
+            const enrichedPreviousActs = await Promise.all(previousActs.map(async (prevAct) => {
+                let claim = await core.get(prevAct.link, this.props.actorSsid)
+                console.log('claim', claim)
+                prevAct.facts = claim.data['DISCIPL_FLINT_FACTS_SUPPLIED']
+                return prevAct;
+            }))
             let duties
             try {
                 console.log('Getting duties')
@@ -56,7 +63,7 @@ class ActorView extends Component {
             this.setState({
                 'availableActs': availableActs,
                 'potentialActs': potentialActs,
-                'previousActs': previousActs,
+                'previousActs': enrichedPreviousActs,
                 'duties': duties,
                 'loading': false
             })
@@ -146,12 +153,22 @@ class ActorView extends Component {
         })
     }
 
+    renderSuppliedFacts(facts) {
+        const renderedFacts = []
+        for (let fact in facts) {
+            if (facts.hasOwnProperty(fact)) {
+                renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
+            }
+        }
+        return <ul>{renderedFacts}</ul>
+    }
+
     renderPreviousActs() {
         if (!this.state.previousActs) {
             return []
         }
         return this.state.previousActs.map((prevAct) => {
-            return <li><p>{prevAct.act}</p></li>
+            return <li><p>{prevAct.act}</p>{this.renderSuppliedFacts(prevAct.facts)}</li>
         })
     }
 

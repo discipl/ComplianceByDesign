@@ -7,7 +7,7 @@
   "homepage": "./",
   "dependencies": {
     "@discipl/core-ephemeral": "^0.11.0",
-    "@discipl/law-reg": "file:../../../packages/discipl-law-reg-0.3.4.tgz",
+    "@discipl/law-reg": "file:../../../packages/discipl-law-reg-0.3.5.tgz",
     "loglevel": "^1.6.3",
     "papaparse": "^5.0.0",
     "read-excel-file": "^4.0.1"
