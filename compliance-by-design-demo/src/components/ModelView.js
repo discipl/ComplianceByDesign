@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import './ModelView.css';
 import {LawReg} from "@discipl/law-reg";
-import EphemeralConnector from "@discipl/core-ephemeral/src/EphemeralConnector";
 
 import ActorView from './ActorView'
+import Util from "@discipl/law-reg/dist/util";
+import EphemeralConnector from "@discipl/core-ephemeral/dist/EphemeralConnector";
 
 const timeoutPromise = (timeoutMillis) => {
     return new Promise(function (resolve, reject) {
@@ -64,46 +65,15 @@ class ModelView extends Component {
     }
     // Wait to allow react to render before crypto stuff
     await timeoutPromise(1)
-    console.log(new EphemeralConnector().getName())
     const core = this.lawReg.getAbundanceService().getCoreAPI()
+    // Ensure ephemeral is loaded
     await core.registerConnector('ephemeral', new EphemeralConnector())
 
-    let lawmakerSsid = await core.newSsid('ephemeral')
-    await core.allow(lawmakerSsid)
 
-    let leraarSsid = await core.newSsid('ephemeral')
-    await core.allow(leraarSsid)
-    let bestuursorgaanSsid = await core.newSsid('ephemeral')
-    await core.allow(bestuursorgaanSsid)
-    let bevoegdGezagSsid = await core.newSsid('ephemeral')
-    await core.allow(bevoegdGezagSsid)
+    const util = new Util(this.lawReg)
 
-    this.modelLink = await this.lawReg.publish(lawmakerSsid, { ...model, 'model': 'LB' }, {
-      '[persoon wiens belang rechtstreeks bij een besluit is betrokken]': 'IS:' + leraarSsid.did,
-      '[degene die voldoet aan bevoegdheidseisen gesteld in]': 'IS:' + leraarSsid.did,
-      '[artikel 3 van de Wet op het primair onderwijs]': 'IS:' + leraarSsid.did,
-      '[artikel 3 van de Wet op de expertisecentra]': 'IS:' + leraarSsid.did,
-      '[artikel XI van de Wet op de beroepen in het onderwijs]': 'IS:' + leraarSsid.did,
-      '[artikel 3 van de Wet primair onderwijs BES]': 'IS:' + leraarSsid.did,
-      '[is benoemd of tewerkgesteld zonder benoeming als bedoeld in artikel 33 van de Wet op het voortgezet onderwijs]': 'IS:' + leraarSsid.did,
-      '[artikel 4.2.1. van de Wet educatie en beroepsonderwijs]': 'IS:' + leraarSsid.did,
-      '[artikel 80 van de Wet voortgezet onderwijs BES]': 'IS:' + leraarSsid.did,
-      '[artikel 4.2.1 van de Wet educatie beroepsonderwijs BES]': 'IS:' + leraarSsid.did,
-      '[die lesgeeft in het hoger onderwijs]': 'IS:' + leraarSsid.did,
-      '[orgaan]': 'IS:' + bestuursorgaanSsid.did,
-      '[rechtspersoon die krachtens publiekrecht is ingesteld]': 'IS:' + bestuursorgaanSsid.did,
-      '[met enig openbaar gezag bekleed]': 'IS:' + bestuursorgaanSsid.did,
-      '[artikel 1 van de Wet op het primair onderwijs]': 'IS:' + bevoegdGezagSsid.did,
-      '[artikel 1 van de Wet op de expertisecentra]': 'IS:' + bevoegdGezagSsid.did,
-      '[artikel 1 van de Wet op het voortgezet onderwijs]': 'IS:' + bevoegdGezagSsid.did,
-      '[artikel 1.1.1., onderdeel w, van de Wet educatie en beroepsonderwijs]': 'IS:' + bevoegdGezagSsid.did,
-      '[artikel 1 van de Wet primair onderwijs BES]': 'IS:' + bevoegdGezagSsid.did,
-      '[artikel 1 van de Wet voortgezet onderwijs BES]': 'IS:' + bevoegdGezagSsid.did,
-      '[artikel 1.1.1, van de Wet educatie en beroepsonderwijs BES]': 'IS:' + bevoegdGezagSsid.did,
-      '[instellingsbestuur bedoeld in artikel 1.1, onderdeel j, van de Wet op het hoger onderwijs en wetenschappelijk onderzoek]': 'IS:' + bevoegdGezagSsid.did,
-      '[minister van Onderwijs, Cultuur en Wetenschap]': 'IS:' + bestuursorgaanSsid.did,
-      '[persoon]': 'ANYONE'
-    })
+    const { ssids, modelLink } = await util.setupModel(model, this.props.config.actors, this.props.config.factFunctionSpec)
+
 
 
     this.needSsid = await core.newSsid('ephemeral')
@@ -112,11 +82,18 @@ class ModelView extends Component {
     this.needLink = await core.claim(this.needSsid, {
       'need': {
         'act': '<<leraar vraagt subsidie voor studiekosten aan>>',
-        'DISCIPL_FLINT_MODEL_LINK': this.modelLink
+        'DISCIPL_FLINT_MODEL_LINK': modelLink
       }
     })
 
-    this.setState({...this.state, 'leraarSsid': leraarSsid, 'bestuursorgaanSsid': bestuursorgaanSsid, 'caseLink': this.needLink, 'loading': false})
+    const actors = {}
+    for (let actor of this.props.config.activeActors) {
+      console.log(ssids)
+      actors[actor] = ssids[actor]
+    }
+
+
+    this.setState({...this.state, 'actors': actors, 'caseLink': this.needLink, 'loading': false})
     console.log('State', this.state)
     console.log('Finished initialization')
     console.log('State', this.state)
@@ -125,6 +102,21 @@ class ModelView extends Component {
 
   onCaseChange(caseLink) {
     this.setState({...this.state, 'caseLink': caseLink, 'revert': false})
+  }
+
+  renderActorViews() {
+    console.log("Rendering actor views")
+    const result = [];
+    const colors = ["#0a0", "#229"];
+    for (let actor in this.state.actors) {
+      console.log('actor',actor)
+      console.log(this.state.actors[actor])
+      const color = colors.shift();
+      result.push(<div>
+        <ActorView lawReg={this.lawReg} actorSsid={this.state.actors[actor]} colorCode={color} caseLink={this.state.caseLink} revert={this.state.revert} name={actor} onCaseChange={this.onCaseChange.bind(this)}/>
+      </div>)
+    }
+    return result;
   }
 
   render() {
@@ -143,12 +135,7 @@ class ModelView extends Component {
           <button onClick={this.revert.bind(this)}>Undo</button>
         </div>
         <div className='grid-container'>
-          <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.leraarSsid} colorCode={"#0a0"} caseLink={this.state.caseLink} revert={this.state.revert} name={'Leraar'} onCaseChange={this.onCaseChange.bind(this)}/>
-          </div>
-          <div>
-            <ActorView lawReg={this.lawReg} actorSsid={this.state.bestuursorgaanSsid} colorCode={"#229"} caseLink={this.state.caseLink} revert={this.state.revert} name={'Minister'} onCaseChange={this.onCaseChange.bind(this)}/>
-          </div>
+          {this.renderActorViews()}
         </div>
         </div>
     );

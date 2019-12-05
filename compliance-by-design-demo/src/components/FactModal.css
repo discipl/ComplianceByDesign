@@ -26,6 +26,11 @@
     border-radius: 5px;
 }
 
+.modal-main .value {
+    margin: auto;
+    width: 200px;
+}
+
 .modal-main .affirm {
     background-color: limegreen;
     border-color: limegreen;
