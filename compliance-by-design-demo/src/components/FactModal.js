@@ -10,10 +10,18 @@ class FactModal extends Component{
     handleAffirm() {
         const result = this.state.factValue || true
         this.props.handleResult(result)
+        this.resetFactValue()
     }
 
     handleDeny() {
         this.props.handleResult(false)
+        this.resetFactValue()
+    }
+
+    resetFactValue() {
+        this.setState({
+            'factValue': ''
+        })
     }
 
     handleInput(event) {
@@ -30,7 +38,7 @@ class FactModal extends Component{
             <div className={showHideClassName}>
                 <section className="modal-main">
                     <p>Is {this.props.fact} van toepassing?</p>
-                    <input className="value display-block" placeholder="Waarde van feit" onChange={this.handleInput.bind(this)}/>
+                    <input className="value display-block" placeholder="Waarde van feit" onChange={this.handleInput.bind(this)} value={this.state.factValue}/>
                     <button className="affirm" onClick={this.handleAffirm.bind(this)}>Yes</button>
                     <button className="deny" disabled={this.state.factValue} onClick={this.handleDeny.bind(this)}>No</button>
                 </section>
