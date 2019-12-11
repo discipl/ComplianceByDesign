@@ -51,13 +51,16 @@ class App extends Component {
                 '[persoon]': 'ANYONE'
             }
         }
+
+        const lerarenbeursConfigWithOverride = window.flintConfig || lerarenbeursConfig;
+        console.log("Using config", lerarenbeursConfigWithOverride)
         return (
             <HashRouter>
             <div>
                 <Route
                     path="/"
                     exact
-                    render={(props) => <ModelView {...props} model={lbWithOverride} config={lerarenbeursConfig}/>}
+                    render={(props) => <ModelView {...props} model={lbWithOverride} config={lerarenbeursConfigWithOverride}/>}
                 />
                 <Route
                     path="/anlb"
