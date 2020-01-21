@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ModelView from "./components/ModelView";
 import {HashRouter, Route} from "react-router-dom";
-import lb from './model/lerarenbeurs'
+import lb from './model/lerarenbeurs.flint'
 import anlb from './model/ANLb.flint'
 import * as log from 'loglevel'
 import UploadModel from "./components/UploadModel";
