@@ -95,7 +95,10 @@ class ActorView extends Component {
             const handleAskFactResult = (result) => {
                 this.setState({'prompt': false})
                 if (result) {
-                    if (!isNaN(Number(result))) {
+                    if (typeof result === 'boolean') {
+                        resolve(result)
+                    }
+                    else if (!isNaN(Number(result))) {
                         resolve(Number(result))
                     }
                     else {
