@@ -29,8 +29,6 @@ describe('The demo', function() {
 
         answerQuestion('[subsidie voor bacheloropleiding leraar]', 'Yes')
 
-        answerQuestion('[leraar voldoet aan bevoegdheidseisen]', 'Yes')
-
         answerQuestion('[leraar die bij aanvang van het studiejaar waarvoor de subsidie bestemd de graad Bachelor mag voeren]', 'Yes')
         answerQuestion('[leraar die op het moment van de subsidieaanvraag in dienst is bij een werkgever]', 'Yes')
         answerQuestion('[leraar werkt bij een of meer bekostigde onderwijsinstellingen]', 'Yes')
