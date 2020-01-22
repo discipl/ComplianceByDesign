@@ -133,10 +133,7 @@ class ActorView extends Component {
 
         return acts.map((act) => {
             console.log('ActionDetails available', act.details)
-            let actDescription = act.details.juriconnect ?
-                <p><a href={'https://wetten.overheid.nl/' + act.details.juriconnect}>{act.act}</a></p>
-                : <p>{act.act}</p>;
-            return <div class="available">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act.act)}>Act!</button></div>
+            return <div class="available"><button class="actButton" onClick={this.takeAction.bind(this, act.act)}>{act.act}</button></div>
         })
     }
 
@@ -147,11 +144,8 @@ class ActorView extends Component {
         }
 
         return acts.map((act) => {
-            let actDescription = act.details.juriconnect ?
-                <p><a href={'https://wetten.overheid.nl/' + act.details.juriconnect}>{act.act}</a></p>
-                : <p>{act.act}</p>;
             console.log('ActionDetails potential', act.details)
-            return <div class="potential">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act.act)}>Act!</button></div>
+            return <div class="potential"><button class="actButton" onClick={this.takeAction.bind(this, act.act)}>{act.act}</button></div>
         })
     }
 
