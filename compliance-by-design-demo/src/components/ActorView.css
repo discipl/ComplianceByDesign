@@ -56,24 +56,22 @@
 
 .available {
   padding-left: 30px;
+  padding-right: 30px;
   background-color: #f5f5a0;
   border-style: solid;
   border-radius: 5px;
   border-width: 2px;
   border-color: #ccc;
-  display: grid;
-  grid-template-columns: 85% 15%;
 }
 
 .potential {
   padding-left: 30px;
+  padding-right: 30px;
   background-color: #eee;
   border-style: solid;
   border-radius: 5px;
   border-width: 2px;
   border-color: #9994;
-  display: grid;
-  grid-template-columns: 85% 15%;
 }
 
 .actButton {

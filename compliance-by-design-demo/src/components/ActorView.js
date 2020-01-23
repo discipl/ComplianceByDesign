@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ActorView.css'
-import FactModal from './FactModal'
+import FactPrompt from './FactPrompt'
 
 class ActorView extends Component {
     constructor(props) {
@@ -8,7 +8,7 @@ class ActorView extends Component {
         console.log('Constructing ActorView', props)
         this.state = {
             'duties': [],
-            'loading': true,
+            'loading': true
         }
     }
 
@@ -65,7 +65,9 @@ class ActorView extends Component {
                 'potentialActs': potentialActs,
                 'previousActs': enrichedPreviousActs,
                 'duties': duties,
-                'loading': false
+                'loading': false,
+                'activeAct': undefined,
+                'factPrompts': []
             })
         }
         catch (e) {
@@ -74,7 +76,14 @@ class ActorView extends Component {
 
     }
 
-    async takeAction(act) {
+    async takeAction(act, actIndex, actType) {
+        this.setState({
+            'activeAct': {
+                'act': act,
+                'index': actIndex,
+                'type': actType
+            }
+        });
         try {
             let caseLink = await this.props.lawReg.take(this.props.actorSsid, this.props.caseLink, act, this.askFact.bind(this))
             if (this.props.onCaseChange) {
@@ -92,30 +101,45 @@ class ActorView extends Component {
 
     async askFact (fact) {
         const resultPromise = new Promise((resolve, reject) => {
+
             const handleAskFactResult = (result) => {
-                this.setState({'prompt': false})
-                if (result) {
-                    if (typeof result === 'boolean') {
-                        resolve(result)
-                    }
-                    else if (!isNaN(Number(result))) {
-                        resolve(Number(result))
-                    }
-                    else {
-                        resolve(result)
-                    }
+
+                let realResult = result || false;
+                if (typeof result === 'boolean') {
+                    realResult = result
                 }
-                else {
-                    resolve(false)
+                else if (!isNaN(Number(result))) {
+                    realResult = Number(result)
                 }
+                this.setState((state) => {
+                    const newFactPrompts = state.factPrompts || [];
+
+                    newFactPrompts[newFactPrompts.length - 1] = {
+                        'fact': fact,
+                        'factValue': realResult,
+                        'final': true
+                    }
+
+                    return {
+                        'factPrompts': newFactPrompts
+                    }
+                });
+
+                resolve(realResult)
             }
 
-            this.setState(
-                {
-                    'prompt': true,
-                    'promptFact': fact,
-                    'promptCallback': handleAskFactResult
-                }
+            this.setState((state) => {
+                const prevFactPrompts = state.factPrompts || [];
+                const newFactPrompts = prevFactPrompts.concat({
+                    'fact': fact,
+                    'resultCallback': handleAskFactResult
+                })
+                console.log("Setting factPrompts to", newFactPrompts)
+                   return {
+                        'factPrompts':  newFactPrompts
+                    }
+            }
+
             )
         })
 
@@ -131,10 +155,21 @@ class ActorView extends Component {
             return []
         }
 
-        return acts.map((act) => {
+        return acts.map((act, index) => {
             console.log('ActionDetails available', act.details)
-            return <div class="available"><button class="actButton" onClick={this.takeAction.bind(this, act.act)}>{act.act}</button></div>
+            return <div class="available"><button class="actButton" onClick={this.takeAction.bind(this, act.act, index, 'availableActs')}>{act.act}</button>{this.renderFactPrompts(act, index, 'availableActs')}</div>
         })
+    }
+
+    renderFactPrompts(act, actIndex, actType) {
+        console.log("Maybe rendering factPrompt", act, actIndex, actType, 'with active Act', this.state.activeAct)
+        if (this.state.activeAct && this.state.activeAct.index === actIndex && this.state.activeAct.type === actType && this.state.factPrompts) {
+            console.log("Really rendering factPrompts", this.state.factPrompts)
+            return this.state.factPrompts.map(factPromptState => {
+                return <FactPrompt handleResult={factPromptState.resultCallback} final={factPromptState.final} factValue={factPromptState.factValue} fact={factPromptState.fact}/>
+            })
+        }
+        return []
     }
 
     renderPotentialActs() {
@@ -143,9 +178,10 @@ class ActorView extends Component {
             return []
         }
 
-        return acts.map((act) => {
+
+        return acts.map((act, index) => {
             console.log('ActionDetails potential', act.details)
-            return <div class="potential"><button class="actButton" onClick={this.takeAction.bind(this, act.act)}>{act.act}</button></div>
+            return <div class="potential"><button class="actButton" onClick={this.takeAction.bind(this, act.act, index, 'potentialActs')}>{act.act}</button>{this.renderFactPrompts(act, index, 'potentialActs')}</div>
         })
     }
 
@@ -202,7 +238,7 @@ class ActorView extends Component {
                   {this.renderPreviousActs()}
               </ul>
             </div>
-            <FactModal show={this.state.prompt} fact={this.state.promptFact} handleResult={this.state.promptCallback}/>
+
         </div>
     }
 }

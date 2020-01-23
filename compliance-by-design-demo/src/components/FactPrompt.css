@@ -1,0 +1,30 @@
+.modal-container {
+    grid-column: 1;
+}
+
+.modal-main span {
+    padding: 5px;
+}
+
+.modal-main button {
+    margin: 5px;
+    min-width: 50px;
+    min-height: 30px;
+    border-radius: 5px;
+}
+
+.modal-main .value {
+    margin: auto;
+    width: 200px;
+    padding: 5px;
+}
+
+.modal-main .affirm {
+    background-color: limegreen;
+    border-color: limegreen;
+}
+
+.modal-main .deny {
+    background-color: orangered;
+    border-color: orangered;
+}
