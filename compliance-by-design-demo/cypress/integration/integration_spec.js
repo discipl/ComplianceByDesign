@@ -1,6 +1,5 @@
 const performAct = (name) => {
-    cy.contains(name)
-        .parent().parent().children('button').click()
+    cy.contains(name).click()
 }
 
 const answerQuestion = (question, answer) => {
