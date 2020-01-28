@@ -193,11 +193,25 @@ class ActorView extends Component {
 
     renderSuppliedFacts(facts) {
         const renderedFacts = []
-        for (let fact in facts) {
-            if (facts.hasOwnProperty(fact)) {
-                renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
+        if (!Array.isArray(facts)) {
+            for (let fact in facts) {
+                if (facts.hasOwnProperty(fact)) {
+                    if (!Array.isArray(facts[fact])) {
+                        renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
+                    }
+                    else {
+                        renderedFacts.push(<ul>{this.renderSuppliedFacts(facts[fact])}</ul>)
+                    }
+
+                }
             }
         }
+        else {
+            for (let fact of facts) {
+                renderedFacts.push(<li>{this.renderSuppliedFacts(fact)}</li>)
+            }
+        }
+
         return <ul>{renderedFacts}</ul>
     }
 
@@ -205,6 +219,7 @@ class ActorView extends Component {
         if (!this.state.previousActs) {
             return []
         }
+
         return this.state.previousActs.map((prevAct) => {
             return <li><p>{prevAct.act}</p>{this.renderSuppliedFacts(prevAct.facts)}</li>
         })
