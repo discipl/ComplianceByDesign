@@ -8,7 +8,8 @@ class ActorView extends Component {
         console.log('Constructing ActorView', props)
         this.state = {
             'duties': [],
-            'loading': true
+            'loading': true,
+            'name': this.props.name
         }
     }
 
@@ -19,7 +20,7 @@ class ActorView extends Component {
     async componentDidUpdate(prevProps, prevState) {
         console.log('ComponentDidUpdate', 'prev:', prevProps, 'current:', this.props)
 
-        const propsChanged = this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid
+        const propsChanged = this.props.caseLink !== prevProps.caseLink || this.props.actors[this.state.name] !== prevProps.actors[this.state.name]
         if (propsChanged) {
             await this.computeRenderData()
         }
@@ -30,24 +31,24 @@ class ActorView extends Component {
         console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
         try {
-            let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, [], [])
+            let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actors[this.state.name], [], [])
             console.log('Got available act links')
             let availableActs = await Promise.all(availableActLinks
                 .map(async (act) => {
-                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actors[this.state.name])
                     return {...act, 'details': details}
                 }))
             console.log('Computing potential acts')
-            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, [], []))
+            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actors[this.state.name], [], []))
                 .map(async (act) => {
-                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actors[this.state.name])
                     return {...act, 'details': details}
                 }))
             console.log('Getting actions')
-            let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
+            let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actors[this.state.name])
             const core = this.props.lawReg.getAbundanceService().getCoreAPI();
             const enrichedPreviousActs = await Promise.all(previousActs.map(async (prevAct) => {
-                let claim = await core.get(prevAct.link, this.props.actorSsid)
+                let claim = await core.get(prevAct.link, this.props.actors[this.state.name])
                 console.log('claim', claim)
                 prevAct.facts = claim.data['DISCIPL_FLINT_FACTS_SUPPLIED']
                 return prevAct;
@@ -55,7 +56,7 @@ class ActorView extends Component {
             let duties
             try {
                 console.log('Getting duties')
-                duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
+                duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actors[this.state.name])
             } catch (e) {
                 console.log('Error', e, ' while determining duties')
                 duties = []
@@ -85,7 +86,7 @@ class ActorView extends Component {
             }
         });
         try {
-            let caseLink = await this.props.lawReg.take(this.props.actorSsid, this.props.caseLink, act, this.askFact.bind(this))
+            let caseLink = await this.props.lawReg.take(this.props.actors[this.state.name], this.props.caseLink, act, this.askFact.bind(this))
             if (this.props.onCaseChange) {
                 this.props.onCaseChange(caseLink)
             }
@@ -145,6 +146,11 @@ class ActorView extends Component {
 
 
         return resultPromise
+    }
+
+    async changeActor(event) {
+        this.setState({'name': event.target.value})
+        await this.computeRenderData()
     }
 
 
@@ -225,6 +231,15 @@ class ActorView extends Component {
         })
     }
 
+    renderActorSelector() {
+        const options = Object.keys(this.props.actors).map(actor => {
+            return actor === this.state.name ?
+                <option selected={true}>{actor}</option> : <option>{actor}</option>
+        });
+
+        return <select className="actorSelector" onChange={this.changeActor.bind(this)}>{options}</select>
+    }
+
     render() {
         console.log('ActorView render with state', this.state)
         if (this.state.loading === true) {
@@ -235,7 +250,7 @@ class ActorView extends Component {
         return <div className="container">
 
             <div className="actorHeader" style={{'backgroundColor': this.props.colorCode}}>
-              <h3>{this.props.name}</h3>
+                {this.renderActorSelector()}
             </div>
             <div className="acts">
                 {this.renderAvailableActs()}

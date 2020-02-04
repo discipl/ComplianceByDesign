@@ -87,7 +87,7 @@ class ModelView extends Component {
     })
 
     const actors = {}
-    for (let actor of this.props.config.activeActors) {
+    for (let actor of this.props.config.actors) {
       console.log(ssids)
       actors[actor] = ssids[actor]
     }
@@ -108,12 +108,13 @@ class ModelView extends Component {
     console.log("Rendering actor views")
     const result = [];
     const colors = ["#0a0", "#229"];
-    for (let actor in this.state.actors) {
+    console.log(this.props.config.actors)
+    for (let actor of this.props.config.activeActors) {
       console.log('actor',actor)
       console.log(this.state.actors[actor])
       const color = colors.shift();
       result.push(<div>
-        <ActorView lawReg={this.lawReg} actorSsid={this.state.actors[actor]} colorCode={color} caseLink={this.state.caseLink} revert={this.state.revert} name={actor} onCaseChange={this.onCaseChange.bind(this)}/>
+        <ActorView lawReg={this.lawReg} actors={this.state.actors} colorCode={color} caseLink={this.state.caseLink} revert={this.state.revert} name={actor} onCaseChange={this.onCaseChange.bind(this)}/>
       </div>)
     }
     return result;
