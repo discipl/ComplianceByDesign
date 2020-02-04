@@ -1,14 +1,12 @@
 .ActorView {
     display: block;
-    width: 45%;
 }
 
 .actorHeader {
   color: #FFF;
-  position: fixed;
   top: 70px;
   height: 70px;
-  width: 49.75%;
+  width: 100%;
   font-size: 1.5em;
   text-shadow: 1px 1px #444;
   text-align: center;
@@ -23,13 +21,14 @@
 
 
 .acts {
-  padding-top: 140px;
   word-wrap: inherit;
   background-color: #fff;
 }
 
 .container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   padding: 0px;
   word-wrap: break-word;
 }

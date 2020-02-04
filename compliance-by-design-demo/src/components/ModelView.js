@@ -113,9 +113,9 @@ class ModelView extends Component {
       console.log('actor',actor)
       console.log(this.state.actors[actor])
       const color = colors.shift();
-      result.push(<div>
+      result.push(
         <ActorView lawReg={this.lawReg} actors={this.state.actors} colorCode={color} caseLink={this.state.caseLink} revert={this.state.revert} name={actor} onCaseChange={this.onCaseChange.bind(this)}/>
-      </div>)
+      )
     }
     return result;
   }
