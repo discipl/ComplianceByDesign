@@ -14,7 +14,7 @@ class App extends Component {
 
         const anlbConfig = {
             'actors': ['RVO', 'collectief'],
-            'activeActors': ['collectief', 'RVO'],
+            'activeActors': ['collectief'],
             'factFunctionSpec': {
                 '[RVO]': 'RVO',
                 '[agrarisch collectief]': 'collectief'

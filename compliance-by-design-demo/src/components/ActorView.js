@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ActorView.css'
-import FactModal from './FactModal'
+import FactPrompt from './FactPrompt'
 
 class ActorView extends Component {
     constructor(props) {
@@ -9,6 +9,7 @@ class ActorView extends Component {
         this.state = {
             'duties': [],
             'loading': true,
+            'name': this.props.name
         }
     }
 
@@ -19,7 +20,7 @@ class ActorView extends Component {
     async componentDidUpdate(prevProps, prevState) {
         console.log('ComponentDidUpdate', 'prev:', prevProps, 'current:', this.props)
 
-        const propsChanged = this.props.caseLink !== prevProps.caseLink || this.props.actorSsid !== prevProps.actorSsid
+        const propsChanged = this.props.caseLink !== prevProps.caseLink || this.props.actors[this.state.name] !== prevProps.actors[this.state.name]
         if (propsChanged) {
             await this.computeRenderData()
         }
@@ -30,24 +31,24 @@ class ActorView extends Component {
         console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
         try {
-            let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actorSsid, [], [])
+            let availableActLinks = await this.props.lawReg.getAvailableActs(this.props.caseLink, this.props.actors[this.state.name], [], [])
             console.log('Got available act links')
             let availableActs = await Promise.all(availableActLinks
                 .map(async (act) => {
-                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actors[this.state.name])
                     return {...act, 'details': details}
                 }))
             console.log('Computing potential acts')
-            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actorSsid, [], []))
+            let potentialActs = await Promise.all((await this.props.lawReg.getPotentialActs(this.props.caseLink, this.props.actors[this.state.name], [], []))
                 .map(async (act) => {
-                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actorSsid)
+                    const details = await this.props.lawReg.getActDetails(act.link, this.props.actors[this.state.name])
                     return {...act, 'details': details}
                 }))
             console.log('Getting actions')
-            let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actorSsid)
+            let previousActs = await this.props.lawReg.getActions(this.props.caseLink, this.props.actors[this.state.name])
             const core = this.props.lawReg.getAbundanceService().getCoreAPI();
             const enrichedPreviousActs = await Promise.all(previousActs.map(async (prevAct) => {
-                let claim = await core.get(prevAct.link, this.props.actorSsid)
+                let claim = await core.get(prevAct.link, this.props.actors[this.state.name])
                 console.log('claim', claim)
                 prevAct.facts = claim.data['DISCIPL_FLINT_FACTS_SUPPLIED']
                 return prevAct;
@@ -55,7 +56,7 @@ class ActorView extends Component {
             let duties
             try {
                 console.log('Getting duties')
-                duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actorSsid)
+                duties = await this.props.lawReg.getActiveDuties(this.props.caseLink, this.props.actors[this.state.name])
             } catch (e) {
                 console.log('Error', e, ' while determining duties')
                 duties = []
@@ -65,7 +66,9 @@ class ActorView extends Component {
                 'potentialActs': potentialActs,
                 'previousActs': enrichedPreviousActs,
                 'duties': duties,
-                'loading': false
+                'loading': false,
+                'activeAct': undefined,
+                'factPrompts': []
             })
         }
         catch (e) {
@@ -74,9 +77,16 @@ class ActorView extends Component {
 
     }
 
-    async takeAction(act) {
+    async takeAction(act, actIndex, actType) {
+        this.setState({
+            'activeAct': {
+                'act': act,
+                'index': actIndex,
+                'type': actType
+            }
+        });
         try {
-            let caseLink = await this.props.lawReg.take(this.props.actorSsid, this.props.caseLink, act, this.askFact.bind(this))
+            let caseLink = await this.props.lawReg.take(this.props.actors[this.state.name], this.props.caseLink, act, this.askFact.bind(this))
             if (this.props.onCaseChange) {
                 this.props.onCaseChange(caseLink)
             }
@@ -92,35 +102,55 @@ class ActorView extends Component {
 
     async askFact (fact) {
         const resultPromise = new Promise((resolve, reject) => {
+
             const handleAskFactResult = (result) => {
-                this.setState({'prompt': false})
-                if (result) {
-                    if (typeof result === 'boolean') {
-                        resolve(result)
-                    }
-                    else if (!isNaN(Number(result))) {
-                        resolve(Number(result))
-                    }
-                    else {
-                        resolve(result)
-                    }
+
+                let realResult = result || false;
+                if (typeof result === 'boolean') {
+                    realResult = result
                 }
-                else {
-                    resolve(false)
+                else if (!isNaN(Number(result))) {
+                    realResult = Number(result)
                 }
+                this.setState((state) => {
+                    const newFactPrompts = state.factPrompts || [];
+
+                    newFactPrompts[newFactPrompts.length - 1] = {
+                        'fact': fact,
+                        'factValue': realResult,
+                        'final': true
+                    }
+
+                    return {
+                        'factPrompts': newFactPrompts
+                    }
+                });
+
+                resolve(realResult)
             }
 
-            this.setState(
-                {
-                    'prompt': true,
-                    'promptFact': fact,
-                    'promptCallback': handleAskFactResult
-                }
+            this.setState((state) => {
+                const prevFactPrompts = state.factPrompts || [];
+                const newFactPrompts = prevFactPrompts.concat({
+                    'fact': fact,
+                    'resultCallback': handleAskFactResult
+                })
+                console.log("Setting factPrompts to", newFactPrompts)
+                   return {
+                        'factPrompts':  newFactPrompts
+                    }
+            }
+
             )
         })
 
 
         return resultPromise
+    }
+
+    async changeActor(event) {
+        this.setState({'name': event.target.value})
+        await this.computeRenderData()
     }
 
 
@@ -131,13 +161,21 @@ class ActorView extends Component {
             return []
         }
 
-        return acts.map((act) => {
+        return acts.map((act, index) => {
             console.log('ActionDetails available', act.details)
-            let actDescription = act.details.juriconnect ?
-                <p><a href={'https://wetten.overheid.nl/' + act.details.juriconnect}>{act.act}</a></p>
-                : <p>{act.act}</p>;
-            return <div class="available">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act.act)}>Act!</button></div>
+            return <div class="available"><button class="actButton" onClick={this.takeAction.bind(this, act.act, index, 'availableActs')}>{act.act}</button>{this.renderFactPrompts(act, index, 'availableActs')}</div>
         })
+    }
+
+    renderFactPrompts(act, actIndex, actType) {
+        console.log("Maybe rendering factPrompt", act, actIndex, actType, 'with active Act', this.state.activeAct)
+        if (this.state.activeAct && this.state.activeAct.index === actIndex && this.state.activeAct.type === actType && this.state.factPrompts) {
+            console.log("Really rendering factPrompts", this.state.factPrompts)
+            return this.state.factPrompts.map(factPromptState => {
+                return <FactPrompt handleResult={factPromptState.resultCallback} final={factPromptState.final} factValue={factPromptState.factValue} fact={factPromptState.fact}/>
+            })
+        }
+        return []
     }
 
     renderPotentialActs() {
@@ -146,12 +184,10 @@ class ActorView extends Component {
             return []
         }
 
-        return acts.map((act) => {
-            let actDescription = act.details.juriconnect ?
-                <p><a href={'https://wetten.overheid.nl/' + act.details.juriconnect}>{act.act}</a></p>
-                : <p>{act.act}</p>;
+
+        return acts.map((act, index) => {
             console.log('ActionDetails potential', act.details)
-            return <div class="potential">{actDescription}<button class="actButton" onClick={this.takeAction.bind(this, act.act)}>Act!</button></div>
+            return <div class="potential"><button class="actButton" onClick={this.takeAction.bind(this, act.act, index, 'potentialActs')}>{act.act}</button>{this.renderFactPrompts(act, index, 'potentialActs')}</div>
         })
     }
 
@@ -163,11 +199,25 @@ class ActorView extends Component {
 
     renderSuppliedFacts(facts) {
         const renderedFacts = []
-        for (let fact in facts) {
-            if (facts.hasOwnProperty(fact)) {
-                renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
+        if (!Array.isArray(facts)) {
+            for (let fact in facts) {
+                if (facts.hasOwnProperty(fact)) {
+                    if (!Array.isArray(facts[fact])) {
+                        renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
+                    }
+                    else {
+                        renderedFacts.push(<ul>{this.renderSuppliedFacts(facts[fact])}</ul>)
+                    }
+
+                }
             }
         }
+        else {
+            for (let fact of facts) {
+                renderedFacts.push(<li>{this.renderSuppliedFacts(fact)}</li>)
+            }
+        }
+
         return <ul>{renderedFacts}</ul>
     }
 
@@ -175,9 +225,19 @@ class ActorView extends Component {
         if (!this.state.previousActs) {
             return []
         }
+
         return this.state.previousActs.map((prevAct) => {
             return <li><p>{prevAct.act}</p>{this.renderSuppliedFacts(prevAct.facts)}</li>
         })
+    }
+
+    renderActorSelector() {
+        const options = Object.keys(this.props.actors).map(actor => {
+            return actor === this.state.name ?
+                <option selected={true}>{actor}</option> : <option>{actor}</option>
+        });
+
+        return <select className="actorSelector" onChange={this.changeActor.bind(this)}>{options}</select>
     }
 
     render() {
@@ -190,7 +250,7 @@ class ActorView extends Component {
         return <div className="container">
 
             <div className="actorHeader" style={{'backgroundColor': this.props.colorCode}}>
-              <h3>{this.props.name}</h3>
+                {this.renderActorSelector()}
             </div>
             <div className="acts">
                 {this.renderAvailableActs()}
@@ -208,7 +268,7 @@ class ActorView extends Component {
                   {this.renderPreviousActs()}
               </ul>
             </div>
-            <FactModal show={this.state.prompt} fact={this.state.promptFact} handleResult={this.state.promptCallback}/>
+
         </div>
     }
 }
