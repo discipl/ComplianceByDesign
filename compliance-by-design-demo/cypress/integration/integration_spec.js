@@ -3,6 +3,7 @@ const performAct = (name) => {
 }
 
 const answerQuestion = (question, answer) => {
+    cy.wait(500)
     console.log("Clicking" ,answer)
     cy.get('.modal-main').last().contains(question).last().parent().contains(answer).click()
 
@@ -101,6 +102,7 @@ describe('The demo', function() {
     // })
 
     it('Should be able walk through a scenario with ANLb', () => {
+        cy.viewport(1900, 1000)
         cy.visit('/#/anlb')
 
         performNonOrderedScenario([
