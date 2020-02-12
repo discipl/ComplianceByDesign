@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ActorView.css'
 import FactPrompt from './FactPrompt'
+import {ActNotAllowedAlert} from "./ActNotAllowedAlert";
 
 class ActorView extends Component {
     constructor(props) {
@@ -92,7 +93,10 @@ class ActorView extends Component {
             }
         } catch (e) {
             if (e.message.includes('is not allowed')) {
-                alert(e.message)
+                const act = e.message.substring(e.message.indexOf("<<"), e.message.indexOf(">>") + 2)
+                this.setState({
+                    'notAllowedAct': act
+                })
             } else {
                 throw e
             }
@@ -240,6 +244,12 @@ class ActorView extends Component {
         return <select className="actorSelector" onChange={this.changeActor.bind(this)}>{options}</select>
     }
 
+    hideNotAllowedAlert() {
+        this.setState({
+            notAllowedAct: undefined
+        })
+    }
+
     render() {
         console.log('ActorView render with state', this.state)
         if (this.state.loading === true) {
@@ -249,6 +259,7 @@ class ActorView extends Component {
         console.log('Props when actorview rendering', this.props)
         return <div className="container">
 
+            <ActNotAllowedAlert act={this.state.notAllowedAct} handleClose={this.hideNotAllowedAlert.bind(this)}></ActNotAllowedAlert>
             <div className="actorHeader" style={{'backgroundColor': this.props.colorCode}}>
                 {this.renderActorSelector()}
             </div>
