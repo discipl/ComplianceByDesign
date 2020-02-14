@@ -3,6 +3,7 @@ import ModelView from "./components/ModelView";
 import {HashRouter, Route} from "react-router-dom";
 import lb from './model/lerarenbeurs.flint'
 import anlb from './model/ANLb.flint'
+import vw from './model/Vreemdelingenwet.flint'
 import * as log from 'loglevel'
 import UploadModel from "./components/UploadModel";
 
@@ -11,6 +12,7 @@ class App extends Component {
         log.getLogger('disciplLawReg').setLevel('warn')
         const lbWithOverride = window.model || lb;
         const anlbWithOverride = window.model || anlb;
+        const vwWithOverride = window.model || vw;
 
         const anlbConfig = {
             'actors': ['RVO', 'collectief'],
@@ -18,6 +20,17 @@ class App extends Component {
             'factFunctionSpec': {
                 '[RVO]': 'RVO',
                 '[agrarisch collectief]': 'collectief'
+            }
+        }
+
+        const vreemdelingenwetConfig = {
+            'actors': ['IND', 'vreemdeling', 'referent', 'erkend referent', 'Staatssecretaris van Justitie en Veiligheid'],
+            'activeActors': ['IND'],
+            'factFunctionSpec': {
+                '[Onze Minister van Justitie en Veiligheid]': 'IND',
+                '[bestuursorgaan]': 'IND',
+                '[vreemdeling]': 'vreemdeling',
+                '[belanghebbende]': 'vreemdeling'
             }
         }
 
@@ -53,6 +66,8 @@ class App extends Component {
         }
 
         const lerarenbeursConfigWithOverride = window.flintConfig || lerarenbeursConfig;
+
+        const vreemdelingenwetConfigWithOverride = window.flintConfig || vreemdelingenwetConfig;
         console.log("Using config", lerarenbeursConfigWithOverride)
         return (
             <HashRouter>
@@ -66,6 +81,11 @@ class App extends Component {
                     path="/anlb"
                     exact
                     render={(props) => <ModelView {...props} model={anlbWithOverride} config={anlbConfig}/>}
+                />
+                <Route
+                    path="/vw"
+                    exact
+                    render={(props) => <ModelView {...props} model={vwWithOverride} config={vreemdelingenwetConfigWithOverride}/>}
                 />
                 <Route
                     path="/upload"
