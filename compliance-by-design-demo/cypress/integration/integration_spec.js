@@ -3,7 +3,7 @@ const performAct = (name) => {
 }
 
 const answerQuestion = (question, answer) => {
-    cy.wait(500)
+    // cy.wait(500)
     console.log("Clicking" ,answer)
     cy.get('.modal-main').last().contains(question).last().parent().contains(answer).click()
 
