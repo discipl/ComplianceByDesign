@@ -1,11 +1,4 @@
-const performAct = (name) => {
-    cy.contains(name).click()
-}
-
-const answerQuestion = (question, answer) => {
-    cy.contains(question).parent().contains(answer).click()
-
-}
+import {performNonOrderedScenario, answerQuestion, performAct} from './spec_util'
 
 
 describe('The demo', function() {
