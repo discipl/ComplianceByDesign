@@ -87,6 +87,9 @@ class ActorView extends Component {
             }
         });
         try {
+            if (this.props.onStartAct) {
+                this.props.onStartAct();
+            }
             let caseLink = await this.props.lawReg.take(this.props.actors[this.state.name], this.props.caseLink, act, this.askFact.bind(this))
             if (this.props.onCaseChange) {
                 this.props.onCaseChange(caseLink)
@@ -99,6 +102,10 @@ class ActorView extends Component {
                 })
             } else {
                 throw e
+            }
+        } finally {
+            if(this.props.onEndAct) {
+                this.props.onEndAct();
             }
         }
 
@@ -246,7 +253,8 @@ class ActorView extends Component {
 
     hideNotAllowedAlert() {
         this.setState({
-            notAllowedAct: undefined
+            'notAllowedAct': undefined,
+            'factPrompts': []
         })
     }
 
