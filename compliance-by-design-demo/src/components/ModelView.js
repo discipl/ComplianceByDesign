@@ -21,7 +21,8 @@ class ModelView extends Component {
     this.state = {
       'lb': this.props.model,
       'loading': true,
-      'revert': false
+      'revert': false,
+      'disableControls': false
     }
   }
 
@@ -104,6 +105,18 @@ class ModelView extends Component {
     this.setState({...this.state, 'caseLink': caseLink, 'revert': false})
   }
 
+  enableControls() {
+    this.setState({
+      'disableControls': false
+    })
+  }
+
+  disableControls() {
+    this.setState({
+      'disableControls': true
+    })
+  }
+
   renderActorViews() {
     console.log("Rendering actor views")
     const result = [];
@@ -114,7 +127,7 @@ class ModelView extends Component {
       console.log(this.state.actors[actor])
       const color = colors.shift();
       result.push(
-        <ActorView lawReg={this.lawReg} actors={this.state.actors} colorCode={color} caseLink={this.state.caseLink} revert={this.state.revert} name={actor} onCaseChange={this.onCaseChange.bind(this)}/>
+        <ActorView lawReg={this.lawReg} actors={this.state.actors} colorCode={color} caseLink={this.state.caseLink} name={actor} onCaseChange={this.onCaseChange.bind(this)} onStartAct={this.disableControls.bind(this)} onEndAct={this.enableControls.bind(this)}/>
       )
     }
     return result;
@@ -132,8 +145,8 @@ class ModelView extends Component {
           <h1>
             Compliance by Design
           </h1>
-          <button onClick={this.reset.bind(this)}>Reset</button>
-          <button onClick={this.revert.bind(this)}>Undo</button>
+          <button disabled={this.state.disableControls} onClick={this.reset.bind(this)}>Reset</button>
+          <button disabled={this.state.disableControls} onClick={this.revert.bind(this)}>Undo</button>
         </div>
         <div className='grid-container'>
           {this.renderActorViews()}
