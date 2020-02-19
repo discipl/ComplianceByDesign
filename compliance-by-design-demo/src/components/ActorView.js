@@ -246,7 +246,8 @@ class ActorView extends Component {
 
     hideNotAllowedAlert() {
         this.setState({
-            notAllowedAct: undefined
+            'notAllowedAct': undefined,
+            'factPrompts': []
         })
     }
 
