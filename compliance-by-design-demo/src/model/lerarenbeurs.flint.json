@@ -5,7 +5,7 @@
       "actor": "[belanghebbende]",
       "action": "[indienen]",
       "object": "[verzoek een besluit te nemen]",
-      "interested-party": "[bestuursorgaan]",
+      "recipient": "[bestuursorgaan]",
       "preconditions": {
         "expression": "NOT",
         "operand": "[bij wettelijk voorschrift is anders bepaald]"
@@ -32,7 +32,7 @@
       "actor": "[bestuursorgaan]",
       "action": "[bekendmaken]",
       "object": "[besluit]",
-      "interested-party": "[belanghebbende]",
+      "recipient": "[belanghebbende]",
       "preconditions": "[aanvraag]",
       "create": [
         "[besluit treedt in werking]"
@@ -59,7 +59,7 @@
       "actor": "[bestuursorgaan]",
       "action": "[besluiten niet te behandelen]",
       "object": "[aanvraag]",
-      "interested-party": "[belanghebbende]",
+      "recipient": "[belanghebbende]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -102,7 +102,7 @@
       "actor": "[bestuursorgaan]",
       "action": "[vaststellen]",
       "object": "[formulier]",
-      "interested-party": "[aanvrager]",
+      "recipient": "[aanvrager]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -128,7 +128,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verstrekken]",
       "object": "[subsidie lerarenbeurs]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -194,7 +194,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verstrekken]",
       "object": "[subsidie lerarenbeurs]",
-      "interested-party": "[bevoegd gezag]",
+      "recipient": "[bevoegd gezag]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -238,7 +238,7 @@
       "actor": "[leraar]",
       "action": "[vragen]",
       "object": "[ingevuld aanvraagformulier studiekosten op de website van de Dienst Uitvoering Onderwijs]",
-      "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "recipient": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -264,7 +264,7 @@
       "actor": "[leraar]",
       "action": "[vragen]",
       "object": "[ingevuld aanvraagformulier studieverlof op de website van de Dienst Uitvoering Onderwijs]",
-      "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "recipient": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -290,7 +290,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[terugvorderen]",
       "object": "[subsidie voor studiekosten]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -313,7 +313,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[terugvorderen]",
       "object": "[subsidie voor studiekosten]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -336,7 +336,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[terugvorderen]",
       "object": "[subsidie voor studieverlof]",
-      "interested-party": "[bevoegd gezag]",
+      "recipient": "[bevoegd gezag]",
       "preconditions": "[besluit tot verlenen subsidie voor kosten in verband met het verlenen van studieverlof aan de leraar]",
       "create": [
         "[terugvordering]",
@@ -354,7 +354,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[treffen]",
       "object": "[betalingsregeling voor het terugbetalen van de subsidie studiekosten]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "[terugvordering]",
       "create": [],
       "terminate": [],
@@ -369,7 +369,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[terugvorderen]",
       "object": "[kosten van collegegeld, studiemiddelen en reiskosten]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
       "create": [
         "[terugvordering]",
@@ -387,7 +387,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verzoeken]",
       "object": "[verzoek tot bewijs van betaling van collegegeld]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
       "create": [
         "[verzoek tot bewijs van betaling van collegegeld]"
@@ -404,7 +404,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verzoeken]",
       "object": "[verzoek tot bewijs van het behalen van ten minste vijftien studiepunten]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
       "create": [
         "[verzoek tot bewijs van het behalen van ten minste vijftien studiepunten]"
@@ -421,7 +421,7 @@
       "actor": "[leraar]",
       "action": "[overleggen]",
       "object": "[bewijsstuk waaruit blijkt dat hij ten minste vijftien studiepunten heeft gehaald]",
-      "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "recipient": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -443,7 +443,7 @@
       "actor": "[leraar]",
       "action": "[overleggen]",
       "object": "[bewijsstuk waaruit blijkt dat hij collegegeld heeft betaald]",
-      "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "recipient": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -465,7 +465,7 @@
       "actor": "[leraar]",
       "action": "[intrekken]",
       "object": "[aanvraag subsidie voor studieverlof]",
-      "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "recipient": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "preconditions": "[binnen twee maanden na het verstrekken van de subsidie]",
       "create": [],
       "terminate": [],
@@ -480,7 +480,7 @@
       "actor": "[leraar]",
       "action": "[intrekken]",
       "object": "[aanvraag subsidie voor studiekosten]",
-      "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "recipient": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "preconditions": "[binnen twee maanden na het verstrekken van de subsidie]",
       "create": [],
       "terminate": [],
@@ -495,7 +495,7 @@
       "actor": "[subsidieontvanger]",
       "action": "[melden]",
       "object": "[niet, niet tijdig of niet geheel aan de subsidieverplichtingen zal worden voldaan]",
-      "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "recipient": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "preconditions": {
         "expression": "NOT",
         "operand": "[aan de subsidie verbonden verplichtingen zal worden voldaan]"
@@ -513,7 +513,7 @@
       "actor": "[bevoegd gezag]",
       "action": "[verlenen]",
       "object": "[aanvraag]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -534,7 +534,7 @@
       "actor": "[bevoegd gezag]",
       "action": "[voldoen aan]",
       "object": "[subsidieverplichting voor subsidie voor studieverlof]",
-      "interested-party": "[minister van Onderwijs, Cultuur en Wetenschap]",
+      "recipient": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -557,7 +557,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[buiten toepassing laten]",
       "object": "[een of meer bepalingen van de subsidieregeling lerarenbeurs]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "[nadelige gevolgen van een besluit zijn onevenredig in verhouding tot de met het besluit te dienen doelen]",
       "create": [
         "<bekend maken besluit>"
@@ -576,7 +576,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[afwijken van]",
       "object": "[een of meer bepalingen van de subsidieregeling lerarenbeurs]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "[nadelige gevolgen van een besluit zijn onevenredig in verhouding tot de met het besluit te dienen doelen]",
       "create": [
         "<bekend maken besluit>"
@@ -595,7 +595,7 @@
       "actor": "[bestuursorgaan]",
       "action": "[weigeren]",
       "object": "[aanvraag subsidieverlening]",
-      "interested-party": "[belanghebbende]",
+      "recipient": "[belanghebbende]",
       "preconditions": {
         "expression": "OR",
         "operands": [
@@ -639,7 +639,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[weigeren]",
       "object": "[subsidieverlening aan een leraar]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "[besluit tot verlenen subsidie voor studiekosten van een leraar in verband met het volgen van een opleiding]",
       "create": [
         "<bekend maken besluit>"
@@ -658,7 +658,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verdelen]",
       "object": "[beschikbare bedrag voor de subsidieregeling lerarenbeurs]",
-      "interested-party": "[Regering]",
+      "recipient": "[Regering]",
       "preconditions": "",
       "create": [
         "<bekend maken besluit>"
@@ -675,7 +675,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verdelen]",
       "object": "[concrete verdeling van het beschikbare budget in een studiejaar per soort onderwijs]",
-      "interested-party": "[Regering]",
+      "recipient": "[Regering]",
       "preconditions": "",
       "create": [],
       "terminate": [],
@@ -690,7 +690,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[berekenen]",
       "object": "[hoogte van de subsidie voor studiekosten]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "",
       "create": [
         "[vergoeding kosten collegegeld]",
@@ -710,7 +710,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[berekenen]",
       "object": "[hoogte van de subsidie voor studieverlof]",
-      "interested-party": "[bevoegd gezag]",
+      "recipient": "[bevoegd gezag]",
       "preconditions": "",
       "create": [
         "[vergoeding studieverlof]"
@@ -727,7 +727,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verstrekken]",
       "object": "[template voor aanvraagformulieren studiekosten]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "",
       "create": [
         "[aanvraagformulieren studiekosten op de website van de Dienst Uitvoering Onderwijs]"
@@ -744,7 +744,7 @@
       "actor": "[minister van Onderwijs, Cultuur en Wetenschap]",
       "action": "[verstrekken]",
       "object": "[template voor aanvraagformulieren studieverlof]",
-      "interested-party": "[leraar]",
+      "recipient": "[leraar]",
       "preconditions": "",
       "create": [
         "[aanvraagformulieren studieverlof op de website van de Dienst Uitvoering Onderwijs]"

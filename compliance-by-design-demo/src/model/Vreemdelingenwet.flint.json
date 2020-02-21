@@ -5,7 +5,7 @@
       "actor": "[Onze Minister van Justitie en Veiligheid]",
       "action": "[inwilligen]",
       "object": "[aanvraag tot verlenen machtiging tot voorlopig verblijf]",
-      "interested-party": "[vreemdeling]",
+      "recipient": "[vreemdeling]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -47,7 +47,7 @@
       "actor": "[Onze Minister van Justitie en Veiligheid]",
       "action": "[afwijzen]",
       "object": "[aanvraag tot het verlenen van een vvr-bep]",
-      "interested-party": "[vreemdeling]",
+      "recipient": "[vreemdeling]",
       "preconditions": {
         "expression": "OR",
         "operands": [
@@ -118,7 +118,7 @@
       "actor": "[Onze Minister van Justitie en Veiligheid]",
       "action": "[inwilligen]",
       "object": "[aanvraag tot het verlenen van een vvr-bep]",
-      "interested-party": "[vreemdeling]",
+      "recipient": "[vreemdeling]",
       "preconditions": {
         "expression": "AND",
         "operands": [
@@ -158,7 +158,7 @@
       "actor": "[Onze Minister van Justitie en Veiligheid]",
       "action": "[niet in behandeling nemen]",
       "object": "[aanvraag tot het verlenen van een vvr-bep]",
-      "interested-party": "[vreemdeling]",
+      "recipient": "[vreemdeling]",
       "preconditions": "[betaling verschuldigde leges is achterwege gebleven]",
       "create": [
         "[besluit tot niet in behandeling nemen aanvraag tot het verlenen van een vvr-bep]"
