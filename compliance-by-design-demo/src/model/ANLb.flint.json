@@ -5,7 +5,7 @@
             "actor": "[agrarisch collectief]",
             "action": "[indienen]",
             "object": "[betalingsaanvraag]",
-            "interested-party": "[RVO]",
+            "recipient": "[RVO]",
             "preconditions": "[betaalverzoek is tussen 1 maart en 15 mei ingediend]",
             "create": [
                 "[aanvraag]"
@@ -28,7 +28,7 @@
             "actor": "[RVO]",
             "action": "[controleren]",
             "object": "[betalingsaanvraag]",
-            "interested-party": "[agrarisch collectief]",
+            "recipient": "[agrarisch collectief]",
             "preconditions": {
                 "expression": "AND",
                 "operands": [
@@ -57,7 +57,7 @@
             "actor": "[RVO]",
             "action": "[teruglegging]",
             "object": "[fouten]",
-            "interested-party": "[agrarisch collectief]",
+            "recipient": "[agrarisch collectief]",
             "preconditions": "[voorafgaand controleren]",
             "create": [
                 "[Correctie]"
@@ -73,7 +73,7 @@
             "actor": "[agrarisch collectief]",
             "action": "[correctie]",
             "object": "[geconstateerde fout]",
-            "interested-party": "[RVO]",
+            "recipient": "[RVO]",
             "preconditions": "[]",
             "create": [],
             "terminate": [],
@@ -92,7 +92,7 @@
             "actor": "[agrarisch collectief]",
             "action": "[verantwoording]",
             "object": "[begroting]",
-            "interested-party": "[RVO]",
+            "recipient": "[RVO]",
             "preconditions": "[]",
             "create": [
                 "<vaststellen voldoen aan alle voorwaarden>",
@@ -114,7 +114,7 @@
             "actor": "[RVO]",
             "action": "[beoordelen]",
             "object": "[betalingsaanvraag]",
-            "interested-party": "[agrarisch collectief]",
+            "recipient": "[agrarisch collectief]",
             "preconditions": {
                 "expression": "AND",
                 "operands": [
@@ -140,7 +140,7 @@
             "actor": "[RVO]",
             "action": "[uitbetalen]",
             "object": "[subsidie ANLb]",
-            "interested-party": "[agrarisch collectief]",
+            "recipient": "[agrarisch collectief]",
             "preconditions": "[]",
             "create": [],
             "terminate": [],
@@ -152,7 +152,7 @@
             "actor": "[provincie]",
             "action": "[vaststellen]",
             "object": "[natuurbeheerplan]",
-            "interested-party": "[]",
+            "recipient": "[]",
             "preconditions": "[]",
             "create": [],
             "terminate": [],
