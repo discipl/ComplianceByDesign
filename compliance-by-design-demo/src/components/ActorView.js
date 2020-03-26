@@ -111,11 +111,11 @@ class ActorView extends Component {
 
     }
 
-    async askFact (fact) {
+    async askFact (fact, _flintItem, _listNames, _listIndices, possibleCreatingActions) {
         const resultPromise = new Promise((resolve, reject) => {
 
-            const handleAskFactResult = (result) => {
-
+            const handleAskFactResult = (result, _flintItem, _listNames, _listIndices, possibleCreatingActions) => {
+                console.log("Params", result, _flintItem, _listNames, _listIndices, possibleCreatingActions)
                 let realResult = result || false;
                 if (typeof result === 'boolean') {
                     realResult = result
@@ -129,6 +129,7 @@ class ActorView extends Component {
                     newFactPrompts[newFactPrompts.length - 1] = {
                         'fact': fact,
                         'factValue': realResult,
+                        'possibleCreatingActions': possibleCreatingActions || [],
                         'final': true
                     }
 
@@ -144,6 +145,7 @@ class ActorView extends Component {
                 const prevFactPrompts = state.factPrompts || [];
                 const newFactPrompts = prevFactPrompts.concat({
                     'fact': fact,
+                    'possibleCreatingActions': possibleCreatingActions || [],
                     'resultCallback': handleAskFactResult
                 })
                 console.log("Setting factPrompts to", newFactPrompts)
@@ -183,7 +185,7 @@ class ActorView extends Component {
         if (this.state.activeAct && this.state.activeAct.index === actIndex && this.state.activeAct.type === actType && this.state.factPrompts) {
             console.log("Really rendering factPrompts", this.state.factPrompts)
             return this.state.factPrompts.map(factPromptState => {
-                return <FactPrompt handleResult={factPromptState.resultCallback} final={factPromptState.final} factValue={factPromptState.factValue} fact={factPromptState.fact}/>
+                return <FactPrompt handleResult={factPromptState.resultCallback} final={factPromptState.final} factValue={factPromptState.factValue} fact={factPromptState.fact} possibleCreatingActions={factPromptState.possibleCreatingActions} previousActs={this.state.previousActs}/>
             })
         }
         return []
@@ -283,9 +285,9 @@ class ActorView extends Component {
             </div>
             <div className="prevActs">
               <h4>Previous acts</h4>
-              <ul>
+              <ol>
                   {this.renderPreviousActs()}
-              </ul>
+              </ol>
             </div>
 
         </div>
