@@ -145,6 +145,7 @@ class ActorView extends Component {
                 const prevFactPrompts = state.factPrompts || [];
                 const newFactPrompts = prevFactPrompts.concat({
                     'fact': fact,
+                    'factValue': possibleCreatingActions ? possibleCreatingActions[0] : undefined,
                     'possibleCreatingActions': possibleCreatingActions || [],
                     'resultCallback': handleAskFactResult
                 })
