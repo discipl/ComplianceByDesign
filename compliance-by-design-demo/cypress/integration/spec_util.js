@@ -9,6 +9,13 @@ const answerQuestion = (question, answer) => {
 
 }
 
+const chooseOption = (question, option) => {
+    // cy.wait(500)
+    console.log("Clicking" ,answer)
+    cy.get('.modal-main').last().contains(question).last().parent().contains(answer).click()
+
+}
+
 const answerQuestionWithValue = (question, value) => {
     console.log("Answering fact with value", value)
     if (typeof value === 'boolean') {
@@ -61,5 +68,6 @@ const performNonOrderedScenario = (acts, facts) => {
 export {
     performAct,
     answerQuestion,
+    chooseOption,
     performNonOrderedScenario,
 }
