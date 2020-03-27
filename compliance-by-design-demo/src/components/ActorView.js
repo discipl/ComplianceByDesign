@@ -217,7 +217,18 @@ class ActorView extends Component {
             for (let fact in facts) {
                 if (facts.hasOwnProperty(fact)) {
                     if (!Array.isArray(facts[fact])) {
-                        renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
+                        if (typeof facts[fact] === 'string' && facts[fact].startsWith('link:')) {
+                            const numberCandidates = this.state.previousActs.map(
+                                (prevAct, index) => {
+                                    return {index: index, ...prevAct} }
+                                    ).filter(prevAct => prevAct.link === facts[fact])
+                            const number = numberCandidates.length > 0 ? numberCandidates[0].index + 1 : "Unknown act"
+                            renderedFacts.push(<li><p>{fact}: Act {number}</p></li>)
+                        }
+                        else {
+                            renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
+                        }
+                        
                     }
                     else {
                         renderedFacts.push(<ul>{this.renderSuppliedFacts(facts[fact])}</ul>)
