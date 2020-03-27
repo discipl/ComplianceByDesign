@@ -11,8 +11,8 @@ const answerQuestion = (question, answer) => {
 
 const chooseOption = (question, option) => {
     // cy.wait(500)
-    console.log("Clicking" ,answer)
-    cy.get('.modal-main').last().contains(question).last().parent().contains(answer).click()
+    cy.get('.modal-main').last().contains(question).last().parent().get('select.value').select(option.toString())
+    cy.get('.modal-main').last().contains(question).last().parent().contains('Yes').click()
 
 }
 
