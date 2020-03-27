@@ -1,4 +1,4 @@
-import {performNonOrderedScenario, answerQuestion, performAct} from './spec_util'
+import {answerQuestion, performAct} from './spec_util'
 
 
 describe('The demo', function() {
