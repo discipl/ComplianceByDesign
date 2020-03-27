@@ -56,7 +56,6 @@ class FactPrompt extends Component{
     }
 
     renderInput() {
-        console.log("Props", this.props)
         if (Array.isArray(this.props.possibleCreatingActions) && this.props.possibleCreatingActions.length > 0) {
             return <select className="value" onChange={this.handleInput.bind(this)} value={this.state.factValue} disabled={this.state.final} hidden={this.isFinalBoolean()}>{this.renderOptions()}</select>
         }

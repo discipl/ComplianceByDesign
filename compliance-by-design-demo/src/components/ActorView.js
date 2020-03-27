@@ -115,7 +115,6 @@ class ActorView extends Component {
         const resultPromise = new Promise((resolve, reject) => {
 
             const handleAskFactResult = (result, possibleCreatingActions) => {
-                console.log("Params", result, possibleCreatingActions)
                 let realResult = result || false;
                 if (typeof result === 'boolean') {
                     realResult = result
