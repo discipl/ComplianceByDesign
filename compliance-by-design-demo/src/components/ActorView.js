@@ -114,8 +114,8 @@ class ActorView extends Component {
     async askFact (fact, _flintItem, _listNames, _listIndices, possibleCreatingActions) {
         const resultPromise = new Promise((resolve, reject) => {
 
-            const handleAskFactResult = (result, _flintItem, _listNames, _listIndices, possibleCreatingActions) => {
-                console.log("Params", result, _flintItem, _listNames, _listIndices, possibleCreatingActions)
+            const handleAskFactResult = (result, possibleCreatingActions) => {
+                console.log("Params", result, possibleCreatingActions)
                 let realResult = result || false;
                 if (typeof result === 'boolean') {
                     realResult = result

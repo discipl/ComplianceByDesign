@@ -14,7 +14,7 @@ class FactPrompt extends Component{
             'factValue': result,
             'final': true
         })
-        this.props.handleResult(result)
+        this.props.handleResult(result, this.props.possibleCreatingActions)
     }
 
     handleDeny() {
@@ -22,7 +22,7 @@ class FactPrompt extends Component{
             'factValue': false,
             'final': true
         })
-        this.props.handleResult(false)
+        this.props.handleResult(false, this.props.possibleCreatingActions)
     }
 
     handleInput(event) {
