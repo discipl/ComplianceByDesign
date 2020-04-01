@@ -204,65 +204,6 @@ class ActorView extends Component {
         })
     }
 
-    renderDuties() {
-        return this.state.duties.map((duty) => {
-            return <li><p>{duty.duty}</p></li>
-        })
-    }
-
-    renderSuppliedFacts(facts) {
-        const renderedFacts = []
-        if (!Array.isArray(facts)) {
-            for (let fact in facts) {
-                if (facts.hasOwnProperty(fact)) {
-                    if (!Array.isArray(facts[fact])) {
-                        if (typeof facts[fact] === 'string' && facts[fact].startsWith('link:')) {
-                            const numberCandidates = this.state.previousActs.map(
-                                (prevAct, index) => {
-                                    return {index: index, ...prevAct} }
-                                    ).filter(prevAct => prevAct.link === facts[fact])
-                            const number = numberCandidates.length > 0 ? numberCandidates[0].index + 1 : "Unknown act"
-                            renderedFacts.push(<li><p>{fact}: Act {number}</p></li>)
-                        }
-                        else {
-                            renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
-                        }
-                        
-                    }
-                    else {
-                        renderedFacts.push(<ul>{this.renderSuppliedFacts(facts[fact])}</ul>)
-                    }
-
-                }
-            }
-        }
-        else {
-            for (let fact of facts) {
-                renderedFacts.push(<li>{this.renderSuppliedFacts(fact)}</li>)
-            }
-        }
-
-        return <ul>{renderedFacts}</ul>
-    }
-
-    renderPreviousActs() {
-        if (!this.state.previousActs) {
-            return []
-        }
-
-        return this.state.previousActs.map((prevAct) => {
-            return <li><p>{prevAct.act}</p>{this.renderSuppliedFacts(prevAct.facts)}</li>
-        })
-    }
-
-    renderActorSelector() {
-        const options = Object.keys(this.props.actors).map(actor => {
-            return actor === this.state.name ?
-                <option selected={true}>{actor}</option> : <option>{actor}</option>
-        });
-
-        return <select className="actorSelector" onChange={this.changeActor.bind(this)}>{options}</select>
-    }
 
     hideNotAllowedAlert() {
         this.setState({
@@ -281,24 +222,9 @@ class ActorView extends Component {
         return <div className="container">
 
             <ActNotAllowedAlert act={this.state.notAllowedAct} handleClose={this.hideNotAllowedAlert.bind(this)}></ActNotAllowedAlert>
-            <div className="actorHeader" style={{'backgroundColor': this.props.colorCode}}>
-                {this.renderActorSelector()}
-            </div>
             <div className="acts">
                 {this.renderAvailableActs()}
                 {this.renderPotentialActs()}
-            </div>
-            <div className="duties">
-                <h4>Duties</h4>
-                <ul>
-                    {this.renderDuties()}
-                </ul>
-            </div>
-            <div className="prevActs">
-              <h4>Previous acts</h4>
-              <ol>
-                  {this.renderPreviousActs()}
-              </ol>
             </div>
 
         </div>

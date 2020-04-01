@@ -1,0 +1,1363 @@
+{
+    "acts": [
+        {
+            "act": "<<aanvragen tegemoetkoming schade covid-19>>",
+            "actor": "[onderneming]",
+            "action": "[aanvragen]",
+            "object": "[verzoek]",
+            "recipient": "[RVO]",
+            "preconditions": {
+                "expression": "AND",
+                "operands": [
+                    "[onderneming is voor 15 maart 2020 opgericht en ingeschreven in het KVK Handelsregister]",
+                    "[bij onderneming werken maximaal 250 personen]",
+                    "[hoofdactiviteit van uw onderneming is op 15 maart 2020 geregistreerd onder een van de vereiste KVK SBI-codes]",
+                    "[onderneming heeft een fysieke vestiging in Nederland]",
+                    "[onderneming voldoet aan eisen voor vestiging]",
+                    "[bankrekeningnummer op dat op naam van de onderneming staat]",
+                    "[onderneming is niet failliet]",
+                    "[onderneming heeft geen verzoek tot verlening van surseance van betaling ingediend bij de rechtbank]",
+                    "[verwacht omzetverlies in de periode van 16 maart 2020 t/m 15 juni 2020 van ten minste € 4.000]",
+                    "[verwachte vaste lasten na gebruik van andere door de overheid beschikbaar gestelde steunmaatregelen in de periode van 16 maart 2020 t/m 15 juni 2020 ten minste € 4.000]",
+                    "[ontvangen overheidssteuen over het huidige en de afgelopen 2 belastingjaren is niet meer dan € 200.000 aan overheidssteun]",
+                    "[onderneming is geen overheidsbedrijf]"
+                ]
+            },
+            "create": [],
+            "terminate": [],
+            "sources": [],
+            "explanation": ""
+        }
+    ],
+    "facts": [
+        {
+            "fact": "[onderneming]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[verzoek]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[RVO]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming is voor 15 maart 2020 opgericht en ingeschreven in het KVK Handelsregister]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[bij onderneming werken maximaal 250 personen]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[SBI-code hoofdactiviteit onderneming]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming heeft een fysieke vestiging in Nederland]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[bankrekeningnummer op dat op naam van de onderneming staat]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming is niet failliet]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming heeft geen verzoek tot verlening van surseance van betaling ingediend bij de rechtbank]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[verwacht omzetverlies in de periode van 16 maart 2020 t/m 15 juni 2020 van ten minste € 4.000]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[verwachte vaste lasten na gebruik van andere door de overheid beschikbaar gestelde steunmaatregelen in de periode van 16 maart 2020 t/m 15 juni 2020 ten minste € 4.000]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[ontvangen overheidssteuen over het huidige en de afgelopen 2 belastingjaren is niet meer dan € 200.000 aan overheidssteun]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming is geen overheidsbedrijf]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming voldoet aan eisen voor vestiging]",
+            "function": {
+                "expression": "OR",
+                "operands": [
+                    "[onderneming heeft ten minste één vestiging met een ander adres te hebben dan het privéadres van de eigenaar/eigenaren]",
+                    {
+                        "expression": "AND",
+                        "operands": [
+                            {
+                                "expression": "OR",
+                                "operands": [
+                                    {
+                                        "expression": "EQUAL",
+                                        "operands": [
+                                            "[SBI-code hoofdactiviteit onderneming]",
+                                            {
+                                                "expression": "LITERAL",
+                                                "operand": "56.10.1"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "expression": "EQUAL",
+                                        "operands": [
+                                            "[SBI-code hoofdactiviteit onderneming]",
+                                            {
+                                                "expression": "LITERAL",
+                                                "operand": "56.10.2"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "expression": "EQUAL",
+                                        "operands": [
+                                            "[SBI-code hoofdactiviteit onderneming]",
+                                            {
+                                                "expression": "LITERAL",
+                                                "operand": "56.21"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "expression": "EQUAL",
+                                        "operands": [
+                                            "[SBI-code hoofdactiviteit onderneming]",
+                                            {
+                                                "expression": "LITERAL",
+                                                "operand": "56.30"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "[onderneming huurt, pacht of heeft in eigendom in elk geval één horecagelegenheid]"
+                        ]
+                    }
+                ]
+            },
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming huurt, pacht of heeft in eigendom in elk geval één horecagelegenheid]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming heeft ten minste één vestiging met een ander adres te hebben dan het privéadres van de eigenaar/eigenaren]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[hoofdactiviteit van uw onderneming is op 15 maart 2020 geregistreerd onder een van de vereiste KVK SBI-codes]",
+            "function": {
+                "expression": "OR",
+                "operands": [
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.19.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.19.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.30"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.41"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.42"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.43.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.43.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.51.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.51.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.51.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.52.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.52.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.52.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.52.4"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.52.5"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.52.6"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.52.7"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.53"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.54.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.54.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.54.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.54.4"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.59.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.59.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.59.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.59.4"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.59.5"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.59.6"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.59.7"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.61"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.62"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.63"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.64.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.64.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.64.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.64.4"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.65"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.71.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.71.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.71.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.71.4"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.71.5"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.71.6"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.71.7"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.71.8"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.72.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.72.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.74.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.75"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.76.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.76.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.76.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.77"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.78.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.78.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.78.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.78.9"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.79.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.79.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.79.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.82"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.89.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.89.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "47.89.9"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "55.10.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "55.10.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "56.10.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "56.10.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "56.21"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "56.30"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "59.14"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "79.11"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "79.12"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "82.30"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "85.52.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "85.52.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "85.53"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "90.01.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "90.01.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "90.01.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "90.02"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "90.04.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "90.04.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "91.02.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "91.02.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "92.00.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "92.00.9"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.11.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.11.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.11.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.11.9"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.4"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.5"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.6"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.7"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.8"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.12.9"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.13"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.14.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.14.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.14.3"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.14.4"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.14.5"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.14.6"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.14.9"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.15.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.15.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.19.5"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.21.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "93.21.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "96.02.1"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "96.02.2"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "EQUAL",
+                        "operands": [
+                            "[SBI-code hoofdactiviteit onderneming]",
+                            {
+                                "expression": "LITERAL",
+                                "operand": "96.04"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "sources": [],
+            "explanation": ""
+        }
+    ],
+    "duties": []
+}

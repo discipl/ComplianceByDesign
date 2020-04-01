@@ -45,5 +45,6 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.3.0",
     "rewire": "^4.0.1"
-  }
+  },
+  "proxy": "https://api.kvk.nl"
 }

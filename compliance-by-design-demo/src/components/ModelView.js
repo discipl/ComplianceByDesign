@@ -6,6 +6,8 @@ import ActorView from './ActorView'
 import Util from "@discipl/law-reg/dist/util";
 import EphemeralConnector from "@discipl/core-ephemeral/dist/EphemeralConnector";
 
+import KvkForm from './KvkForm'
+
 const timeoutPromise = (timeoutMillis) => {
     return new Promise(function (resolve, reject) {
         setTimeout(() => resolve(), timeoutMillis)
@@ -21,8 +23,7 @@ class ModelView extends Component {
     this.state = {
       'lb': this.props.model,
       'loading': true,
-      'revert': false,
-      'disableControls': false
+      'revert': false
     }
   }
 
@@ -99,23 +100,7 @@ class ModelView extends Component {
     console.log('Finished initialization')
     console.log('State', this.state)
   }
-
-
-  onCaseChange(caseLink) {
-    this.setState({...this.state, 'caseLink': caseLink, 'revert': false})
-  }
-
-  enableControls() {
-    this.setState({
-      'disableControls': false
-    })
-  }
-
-  disableControls() {
-    this.setState({
-      'disableControls': true
-    })
-  }
+  
 
   renderActorViews() {
     console.log("Rendering actor views")
@@ -127,30 +112,35 @@ class ModelView extends Component {
       console.log(this.state.actors[actor])
       const color = colors.shift();
       result.push(
-        <ActorView lawReg={this.lawReg} actors={this.state.actors} colorCode={color} caseLink={this.state.caseLink} name={actor} onCaseChange={this.onCaseChange.bind(this)} onStartAct={this.disableControls.bind(this)} onEndAct={this.enableControls.bind(this)}/>
+        <ActorView lawReg={this.lawReg} actors={this.state.actors} colorCode={color} caseLink={this.state.caseLink} name={actor}/>
       )
     }
     return result;
   }
 
+  handleDerivedFacts(facts) {
+    console.log("Derived Facts", facts)
+    this.setState({
+      info: facts
+    })
+  }
   render() {
     console.log('ModelView render with state', this.state)
     if (this.state.loading === true) {
       console.log('View render loading true')
       return (<div><p>Loading...</p></div>)
     }
-    return (
+
+    if (!this.state.info) {
+      return (
         <div>
-        <div className='model-header'>
-          <h1>
-            Compliance by Design
-          </h1>
-          <button disabled={this.state.disableControls} onClick={this.reset.bind(this)}>Reset</button>
-          <button disabled={this.state.disableControls} onClick={this.revert.bind(this)}>Undo</button>
+          <KvkForm handleDerivedFacts={this.handleDerivedFacts.bind(this)}></KvkForm>
         </div>
+      )
+    }
+    return (
         <div className='grid-container'>
           {this.renderActorViews()}
-        </div>
         </div>
     );
   }
