@@ -45,6 +45,12 @@ class KvkForm extends Component {
 
         // TODO: Remove hardcoded, because sample in API doesn't have right sbi code
         derivedFacts['[SBI-code hoofdactiviteit onderneming]'] = "47.19.2"
+
+        const locatedInTheNetherlands = companyInfo.addresses
+                .filter(address =>  address.type === 'vestigingsadres' && address.country === 'Nederland').length > 0
+
+        
+        derivedFacts["[onderneming heeft een fysieke vestiging in Nederland]"] = locatedInTheNetherlands
     
 
         this.setState({
