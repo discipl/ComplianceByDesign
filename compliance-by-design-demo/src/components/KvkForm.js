@@ -18,14 +18,33 @@ class KvkForm extends Component {
 
 
         const derivedFacts = {}
+        // Default facts
+        derivedFacts['[verzoek]'] = true
 
-        // Check foundation and registration date
+
+        derivedFacts['[datum van inschrijving van onderneming in het KVK Handelsregister]'] = companyInfo.registrationDate
+        derivedFacts['[datum van oprichting van onderneming]'] = companyInfo.foundationDate
         
-        const foundedAndRegisteredInTime = (parseInt(companyInfo.foundationDate) < 20200315) && (parseInt(companyInfo.registrationDate) < 20200315)
+        derivedFacts['[aantal personen dat werkt bij onderneming]'] = companyInfo.employees
 
-        derivedFacts['[onderneming is voor 15 maart 2020 opgericht en ingeschreven in het KVK Handelsregister]'] = foundedAndRegisteredInTime
 
-        const fewEmployees = parseInt(companyInfo.employees) < 250
+        // TODO: Check there is exactly one main activity SBI code
+        const mainSbi = companyInfo.businessActivities
+        .filter(activity => activity.isMainSbi)
+        .map(activity => {
+            const sbiWithoutDots = activity.sbiCode
+            if (sbiWithoutDots.length > 4) {
+                return sbiWithoutDots.substring(0, 2) + "." + sbiWithoutDots.substring(2, 4) + "." + sbiWithoutDots.substring(4)
+            }
+            if (sbiWithoutDots.length > 2) {
+                return sbiWithoutDots.substring(0, 2) + "." + sbiWithoutDots.substring(2)
+            }
+
+            return sbiWithoutDots
+        })
+
+        // TODO: Remove hardcoded, because sample in API doesn't have right sbi code
+        derivedFacts['[SBI-code hoofdactiviteit onderneming]'] = "47.19.2"
     
 
         this.setState({
@@ -46,7 +65,10 @@ class KvkForm extends Component {
     render() {
         if (this.state.derivedFacts) {
             return (
-            <button onClick={this.returnDerivedFacts.bind(this)}>Confirm</button>
+                <div>
+                    <p>{JSON.stringify(this.state.derivedFacts)}</p>
+                    <button onClick={this.returnDerivedFacts.bind(this)}>Confirm</button>
+                </div>
             )
         }
         return (

@@ -50,12 +50,75 @@
         },
         {
             "fact": "[onderneming is voor 15 maart 2020 opgericht en ingeschreven in het KVK Handelsregister]",
+            "function": {
+                "expression": "AND",
+                "operands": [
+                    "[onderneming is voor 15 maart 2020 opgericht]",
+                    "[onderneming is voor 15 maart 2020 ingeschreven in het KVK Handelsregister]"
+                ]
+            },
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming is voor 15 maart 2020 opgericht]",
+            "function": {
+                "expression": "LESS_THAN",
+                "operands": [
+                    "[datum van oprichting van onderneming]",
+                    {
+                        "expression": "LITERAL",
+                        "operand": 20200315
+                    }
+                ]
+            },
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[datum van oprichting van onderneming]",
+            "function": "[]",
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[onderneming is voor 15 maart 2020 ingeschreven in het KVK Handelsregister]",
+            "function": {
+                "expression": "LESS_THAN",
+                "operands": [
+                    "[datum van inschrijving van onderneming in het KVK Handelsregister]",
+                    {
+                        "expression": "LITERAL",
+                        "operand": 20200315
+                    }
+                ]
+            },
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[datum van inschrijving van onderneming in het KVK Handelsregister]",
             "function": "[]",
             "sources": [],
             "explanation": ""
         },
         {
             "fact": "[bij onderneming werken maximaal 250 personen]",
+            "function": {
+                "expression": "LESS_THAN",
+                "operands": [
+                    "[aantal personen dat werkt bij onderneming]",
+                    {
+                        "expression": "LITERAL",
+                        "operand": 251
+                    }
+                ]
+            },
+            "sources": [],
+            "explanation": ""
+        },
+        {
+            "fact": "[aantal personen dat werkt bij onderneming]",
             "function": "[]",
             "sources": [],
             "explanation": ""

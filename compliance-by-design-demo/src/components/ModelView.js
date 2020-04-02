@@ -112,7 +112,7 @@ class ModelView extends Component {
       console.log(this.state.actors[actor])
       const color = colors.shift();
       result.push(
-        <ActorView lawReg={this.lawReg} actors={this.state.actors} colorCode={color} caseLink={this.state.caseLink} name={actor}/>
+        <ActorView lawReg={this.lawReg} actors={this.state.actors} colorCode={color} caseLink={this.state.caseLink} name={actor} derivedFacts={this.state.derivedFacts}/>
       )
     }
     return result;
@@ -121,7 +121,7 @@ class ModelView extends Component {
   handleDerivedFacts(facts) {
     console.log("Derived Facts", facts)
     this.setState({
-      info: facts
+      derivedFacts: facts
     })
   }
   render() {
@@ -131,7 +131,7 @@ class ModelView extends Component {
       return (<div><p>Loading...</p></div>)
     }
 
-    if (!this.state.info) {
+    if (!this.state.derivedFacts) {
       return (
         <div>
           <KvkForm handleDerivedFacts={this.handleDerivedFacts.bind(this)}></KvkForm>

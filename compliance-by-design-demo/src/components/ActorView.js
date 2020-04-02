@@ -112,6 +112,9 @@ class ActorView extends Component {
     }
 
     async askFact (fact, _flintItem, _listNames, _listIndices, possibleCreatingActions) {
+        if (this.props.derivedFacts && this.props.derivedFacts.hasOwnProperty(fact)) {
+            return this.props.derivedFacts[fact]
+        }
         const resultPromise = new Promise((resolve, reject) => {
 
             const handleAskFactResult = (result, possibleCreatingActions) => {
