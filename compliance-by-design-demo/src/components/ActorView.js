@@ -111,7 +111,7 @@ class ActorView extends Component {
 
     }
 
-    async askFact (fact, _flintItem, _listNames, _listIndices, possibleCreatingActions) {
+    async askFact (fact, _listNames, _listIndices, possibleCreatingActions) {
         const resultPromise = new Promise((resolve, reject) => {
 
             const handleAskFactResult = (result, possibleCreatingActions) => {
