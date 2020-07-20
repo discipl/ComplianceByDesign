@@ -10,7 +10,8 @@ class ActorView extends Component {
         this.state = {
             'duties': [],
             'loading': true,
-            'name': this.props.name
+            'name': this.props.name,
+            'error' : undefined
         }
     }
 
@@ -28,7 +29,7 @@ class ActorView extends Component {
     }
 
     async computeRenderData() {
-        this.setState({'loading': true})
+        this.setState({'loading': true, 'error' : undefined})
         console.log('ComputeRenderDataState', this.state)
         console.log('ComputeRenderData', this.props)
         try {
@@ -74,6 +75,7 @@ class ActorView extends Component {
         }
         catch (e) {
             console.error("Caught ex", e)
+            this.setState({'loading': false, error: e})
         }
 
     }
@@ -276,6 +278,10 @@ class ActorView extends Component {
         if (this.state.loading === true) {
             console.log('ActorView render loading true')
             return <div className="container"><div className="acts"><p>Loading...</p></div></div>
+        }
+        if (this.state.error) {
+            console.log('ActorView render error true')
+            return <div className="container"><div className="acts"><p>The following error occurred: {this.state.error.toString()}</p></div></div>
         }
         console.log('Props when actorview rendering', this.props)
         return <div className="container">
