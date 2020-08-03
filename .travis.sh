@@ -4,7 +4,7 @@
 set -e
 
 cd compliance-by-design-demo
-npm audit || [ $(date +%s) -lt 1630447200 ] # Temporarily disable audit manual review required
+[ $(date +%s) -lt 1630447200 ] || npm audit  # Temporarily disable audit manual review required
 npm install
 npm start &
 cypress run
