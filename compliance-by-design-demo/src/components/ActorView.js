@@ -162,7 +162,7 @@ class ActorView extends Component {
     }
 
     async changeActor(event) {
-        this.setState({'name': event.target.value})
+        await this.setState({'name': event.target.value})
         await this.computeRenderData()
     }
 
