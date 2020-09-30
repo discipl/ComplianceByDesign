@@ -15,8 +15,8 @@
   "scripts": {
     "start": "react-scripts start",
     "prepack": "./scripts/build-non-split.js",
-    "serve": "npm run prepack && http-server ./build -p 3000",
-    "cy:test": "npm run serve & cypress run",
+    "cypressTest": "cypress run",
+    "serve": "http-server ./build -p 3000",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
