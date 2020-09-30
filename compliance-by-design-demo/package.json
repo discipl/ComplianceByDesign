@@ -39,11 +39,11 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^3.4.1",
+    "cypress": "^5.3.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.4.3",
-    "rewire": "^4.0.1"
+    "rewire": "5.0.0"
   }
 }
