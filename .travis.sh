@@ -4,6 +4,6 @@
 set -e
 
 cd compliance-by-design-demo
+npm audit
 npm install
-npm start &
-cypress run
+npm run cypress-tests
