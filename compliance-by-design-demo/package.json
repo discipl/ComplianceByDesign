@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "prepack": "./scripts/build-non-split.js",
+    "cy:run": "cypress run",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
