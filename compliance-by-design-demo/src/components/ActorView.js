@@ -164,11 +164,10 @@ class ActorView extends Component {
     }
 
     async changeActor(event) {
-        await this.setState({'name': event.target.value})
-        await this.computeRenderData()
+        this.setState({'name': event.target.value}, async () => {
+            await this.computeRenderData()
+        })
     }
-
-
 
     renderAvailableActs() {
         let acts = this.state.availableActs

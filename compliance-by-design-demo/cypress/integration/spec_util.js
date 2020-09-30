@@ -30,7 +30,6 @@ const answerQuestionWithValue = (question, value) => {
 
 const switchToActor = (actor) => {
     cy.get('.actorSelector').select(actor);
-    cy.wait(200)
 }
 
 const performNonOrderedScenario = (acts, facts) => {
