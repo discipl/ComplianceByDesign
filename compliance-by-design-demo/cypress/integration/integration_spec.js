@@ -1,4 +1,4 @@
-import {answerQuestion, performAct} from './spec_util'
+import {answerQuestion, performAct, switchActorTo} from './spec_util'
 
 
 describe('The demo', function() {
@@ -38,5 +38,30 @@ describe('The demo', function() {
         answerQuestion('[leraar ontvangt van de minister een tegemoetkoming in de studiekosten voor het volgen van de opleiding]', 'No')
         answerQuestion('[minister verdeelt het beschikbare bedrag per doelgroep over de aanvragen]', 'Yes')
         answerQuestion('[budget volledig benut]', 'No')
+    })
+
+    it('Should be able walk through a scenario with multiple leraren', function() {
+        cy.visit('')
+
+        switchActorTo(0,'Leraar 1')
+
+        performAct('<<aanvraagformulieren verstrekken voor subsidie studiekosten op de website van de DUO>>')
+
+        answerQuestion('[template voor aanvraagformulieren studiekosten]', 'Yes')
+
+        performAct('<<leraar vraagt subsidie voor studiekosten aan>>')
+
+        answerQuestion('[ingevuld aanvraagformulier studiekosten op de website van de Dienst Uitvoering Onderwijs]', 'Yes')
+
+        answerQuestion('[indienen 1 april tot en met 30 juni, voorafgaand aan het studiejaar waarvoor subsidie wordt aangevraagd]', 'Yes')
+
+        switchActorTo(0,'Leraar 2')
+
+        cy.contains('<<leraar trekt aanvraag subsidie voor studiekosten in>>').should('not.exist');
+
+        switchActorTo(0,'Leraar 1')
+
+        performAct('<<leraar trekt aanvraag subsidie voor studiekosten in>>')
+        answerQuestion('[binnen twee maanden na het verstrekken van de subsidie]', 'Yes')
     })
 })
