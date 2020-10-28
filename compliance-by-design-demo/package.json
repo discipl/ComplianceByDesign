@@ -14,12 +14,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-headless": "cross-env BROWSER=none react-scripts start",
+    "start-headless": "cross-env PORT=3001 BROWSER=none react-scripts start",
     "prepack": "./scripts/build-non-split.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cypress-run": "cypress run",
-    "cypress-tests": "start-server-and-test start-headless http://localhost:3000 cypress-run"
+    "cypress-tests": "start-server-and-test start-headless http://localhost:3001 cypress-run"
   },
   "eslintConfig": {
     "extends": "react-app"
