@@ -14,11 +14,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-headless": "cross-env BROWSER=none react-scripts start",
     "prepack": "./scripts/build-non-split.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cypress-run": "cypress run",
-    "cypress-tests": "start-server-and-test start http://localhost:3000 cypress-run"
+    "cypress-tests": "start-server-and-test start-headless http://localhost:3000 cypress-run"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,12 +42,13 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "cypress": "^5.3.0",
+    "eslint": "^7.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "^4.0.0",
-    "eslint": "^7.11.0",
     "rewire": "5.0.0",
     "start-server-and-test": "^1.11.4"
   }
