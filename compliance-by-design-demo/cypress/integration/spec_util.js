@@ -32,6 +32,10 @@ const switchToActor = (actor) => {
     cy.get('.actorSelector').select(actor);
 }
 
+const switchActorTo = (actorSelectorNumber, actor) => {
+    cy.get('.actorSelector').eq(actorSelectorNumber).select(actor);
+}
+
 const performNonOrderedScenario = (acts, facts) => {
     for (let act of acts) {
         switchToActor(act.actor);
@@ -70,4 +74,5 @@ export {
     answerQuestion,
     chooseOption,
     performNonOrderedScenario,
+    switchActorTo
 }
