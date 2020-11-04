@@ -45,8 +45,6 @@ class FactPrompt extends Component{
     }
 
     renderOptions() {
-        console.log("Props = ", this.props)
-
         return this.props.possibleCreatingActions.map(possibleCreatingAction => {
             const numberCandidates = this.props.previousActs.map(
                 (prevAct, index) => {
@@ -59,7 +57,6 @@ class FactPrompt extends Component{
     }
 
     _getActorDid(act) {
-        console.log(Object.values(act.facts))
         const expression = Object.values(act.facts).find((fact) => fact.expression === "IS")
         if (!expression) return undefined
         return expression.operand
