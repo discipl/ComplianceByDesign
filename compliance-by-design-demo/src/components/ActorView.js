@@ -53,6 +53,7 @@ class ActorView extends Component {
                 let claim = await core.get(prevAct.link, this.props.actors[this.state.name])
                 console.log('claim', claim)
                 prevAct.facts = claim.data['DISCIPL_FLINT_FACTS_SUPPLIED']
+                prevAct.actorDid = await core.getDidOfLinkedClaim(prevAct.link)
                 return prevAct;
             }))
             let duties
