@@ -46,13 +46,21 @@ class FactPrompt extends Component{
 
     renderOptions() {
         return this.props.possibleCreatingActions.map(possibleCreatingAction => {
-            const numberCandidates = this.props.previousActs.map(
+            const candidate = this.props.previousActs.map(
                 (prevAct, index) => {
                     return {index: index, ...prevAct} }
-                    ).filter(prevAct => prevAct.link === possibleCreatingAction)
-            const number = numberCandidates.length > 0 ? numberCandidates[0].index + 1 : "Unknown act"
-            return <option value={possibleCreatingAction}>{number}</option>
+                    ).find(prevAct => prevAct.link === possibleCreatingAction)
+
+            const number = candidate ? `Act ${candidate.index + 1}` :"Unknown act"
+            const name = this._getActorName(candidate ? candidate.actorDid : undefined)
+            return <option value={possibleCreatingAction}>{number} from {name}</option>
         })
+    }
+
+    _getActorName(did) {
+        if (!did) return "Unknown actor"
+        const actors = this.props.actors
+        return Object.keys(actors).find((actorName) => actors[actorName].did === did)
     }
 
     renderInput() {

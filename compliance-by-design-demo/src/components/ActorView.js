@@ -53,6 +53,7 @@ class ActorView extends Component {
                 let claim = await core.get(prevAct.link, this.props.actors[this.state.name])
                 console.log('claim', claim)
                 prevAct.facts = claim.data['DISCIPL_FLINT_FACTS_SUPPLIED']
+                prevAct.actorDid = await core.getDidOfLinkedClaim(prevAct.link)
                 return prevAct;
             }))
             let duties
@@ -186,7 +187,7 @@ class ActorView extends Component {
         if (this.state.activeAct && this.state.activeAct.index === actIndex && this.state.activeAct.type === actType && this.state.factPrompts) {
             console.log("Really rendering factPrompts", this.state.factPrompts)
             return this.state.factPrompts.map(factPromptState => {
-                return <FactPrompt handleResult={factPromptState.resultCallback} final={factPromptState.final} factValue={factPromptState.factValue} fact={factPromptState.fact} possibleCreatingActions={factPromptState.possibleCreatingActions} previousActs={this.state.previousActs}/>
+                return <FactPrompt handleResult={factPromptState.resultCallback} final={factPromptState.final} factValue={factPromptState.factValue} fact={factPromptState.fact} possibleCreatingActions={factPromptState.possibleCreatingActions} previousActs={this.state.previousActs} actors={this.props.actors}/>
             })
         }
         return []
@@ -228,7 +229,7 @@ class ActorView extends Component {
                         else {
                             renderedFacts.push(<li><p>{fact}: {JSON.stringify(facts[fact])}</p></li>)
                         }
-                        
+
                     }
                     else {
                         renderedFacts.push(<ul>{this.renderSuppliedFacts(facts[fact])}</ul>)
